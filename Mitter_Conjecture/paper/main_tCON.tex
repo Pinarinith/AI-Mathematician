@@ -1,0 +1,1631 @@
+% Keep the current LaTeX output and document hooks: tCON2e v5.0 predates
+% the hook system and otherwise bypasses modern natbib/hyperref cleanup.
+\makeatletter
+\let\TConKernelOutputPage\@outputpage
+\let\TConKernelEndDocument\enddocument
+\makeatother
+\documentclass{tCON2e}
+\makeatletter
+\let\@outputpage\TConKernelOutputPage
+\let\enddocument\TConKernelEndDocument
+% This is a manuscript, so omit the class's unassigned publication fields.
+\let\ps@title\ps@plain
+\makeatother
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{anyfontsize}
+\usepackage{mathtools,bm,mathrsfs}
+\usepackage{booktabs,array,enumitem}
+\usepackage{needspace}
+\usepackage{float}
+\usepackage{xcolor}
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{comment}
+\usetikzlibrary{arrows.meta,positioning,shapes.geometric}
+\usepackage[longnamesfirst,sort]{natbib}
+\bibpunct[, ]{(}{)}{;}{a}{,}{,}
+\renewcommand\bibfont{\fontsize{10}{12}\selectfont}
+\usepackage{hyperref}
+\usepackage[nameinlink,noabbrev]{cleveref}
+\newcommand{\needrev}[1]{#1}
+\newenvironment{revision}{\begingroup\color{black}}{\endgroup}
+\tolerance=1800
+\emergencystretch=2em
+\crefname{theorem}{theorem}{theorems}
+\Crefname{theorem}{Theorem}{Theorems}
+\crefname{proposition}{proposition}{propositions}
+\Crefname{proposition}{Proposition}{Propositions}
+\crefname{lemma}{lemma}{lemmas}
+\Crefname{lemma}{Lemma}{Lemmas}
+\crefname{corollary}{corollary}{corollaries}
+\Crefname{corollary}{Corollary}{Corollaries}
+\crefname{definition}{definition}{definitions}
+\Crefname{definition}{Definition}{Definitions}
+\crefname{remark}{remark}{remarks}
+\Crefname{remark}{Remark}{Remarks}
+\crefname{equation}{equation}{equations}
+\Crefname{equation}{Equation}{Equations}
+\crefname{figure}{Figure}{Figures}
+\Crefname{figure}{Figure}{Figures}
+\hypersetup{
+  hidelinks,
+  pdftitle={Constancy of the Wong Matrix in State Dimension Three and rank Two},
+  pdfauthor={Songlin Zhou},
+  pdfsubject={Finite-dimensional estimation algebras and the Wong matrix}
+}
+
+
+\setlength{\parindent}{1.5em}
+\setlength{\parskip}{0.18em}
+\setlist[itemize]{leftmargin=2.2em,itemsep=0.2em,topsep=0.3em}
+\setlist[enumerate]{leftmargin=2.4em,itemsep=0.2em,topsep=0.3em}
+\allowdisplaybreaks[3]
+\numberwithin{equation}{section}
+
+\newtheoremstyle{journalplain}
+  {0.75em}{0.75em}{\itshape}{}{\bfseries}{.}{0.55em}{}
+\newtheoremstyle{journaldef}
+  {0.75em}{0.75em}{\normalfont}{}{\bfseries}{.}{0.55em}{}
+\theoremstyle{journalplain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{journaldef}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+
+\DeclareMathOperator{\ad}{ad}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\wt}{wt}
+\DeclareMathOperator{\inop}{in}
+\newcommand{\R}{\mathbb R}
+\newcommand{\C}{\mathbb C}
+\newcommand{\N}{\mathbb N}
+\newcommand{\U}{\mathcal U}
+\newcommand{\dd}{\,\mathrm d}
+\newcommand{\pd}{\partial}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\Lie}[2]{\left[#1,#2\right]}
+\newcommand{\zetaSym}{\zeta}
+\makeatletter\let\revision\relax\let\endrevision\relax\makeatother
+\newenvironment{revision}{}{}
+
+\articletype{RESEARCH ARTICLE}
+\title{Finite Dimensional Estimation Algebra with State Dimention 3 and Rank 2: Consistancy of Wong Matrix}
+\author{\name{Songlin Zhou}}
+
+\begin{document}
+\maketitle
+\begin{revision}
+\begin{abstract}
+We study the structure of finite-estimation algebras with state dimension three and rank two arising from smooth nonlinear
+filtering systems, and establish the constancy of the Wong $\Omega$-matrix in this case.
+Building on the linear structural results of~\cite{Shi2017Finite}, our proof combines Euler-operator techniques, and methods from polynomial dynamical systems. The central idea is to show that any nonzero
+slope in the affine Wong matrix forces an infinite family of linearly
+independent elements in the estimation algebra, contradicting finite
+dimensionality. Consequently, the drift admits a Yau-type representation
+as the sum of an affine vector field and the gradient of a smooth
+function. This gives a further structural resolution of Mitter's conjecture in this setting.\footnote{The main theorem was proved by AI Mathematician~\cite{liu2026aim}, a mathematical proving agent,
+and its proof was formally verified in Lean, which is publicly
+available at \url{https://github.com/Pinarinith/AI-Mathematician/tree/main/Mitter_Conjecture/lean}. The author takes full responsibility for
+the correctness of the proof and the entire content of this paper.}
+\end{abstract}
+
+\begin{keywords}
+nonlinear filtering; estimation algebra; Wong matrix; non-maximal rank;
+Euler operator
+\end{keywords}
+\begin{classcode}
+17B66; 93E11; 35K15
+\end{classcode}
+
+\section{Introduction and main result}
+
+Since the development of the Kalman-Bucy filter for linear Gaussian
+systems in the early 1960s, the search for exact finite-dimensional
+filters for nonlinear systems has attracted sustained interest.
+The aim is to describe the conditional distribution of the state
+exactly through finitely many recursively evolving statistics.
+The innovations approach and the Duncan-Mortensen-Zakai (DMZ)
+equation provide general formulations of nonlinear filtering,
+but they do not in general yield a closed finite-dimensional
+system~\citep{Fujisaki1972Stochastic,Marcus1984Algebraic}.
+Numerical solution of the resulting equations typically requires
+approximating the evolving conditional density or its representation
+\citep{Luo2013Complete}.
+The estimation-algebra approach, introduced by Brockett, Clark,
+and Mitter~\citep{Brockett1980The,Brockett1981Nonlinear,Mitter1979On},
+uses the Lie algebra generated by the filtering operators to
+investigate when an exact finite-dimensional realization is possible.
+When this algebra is finite dimensional,
+the Wei-Norman method can then express the explicit evolution
+through finitely many ordinary differential equations using Lie algebraic method for time-varying differential equations
+\citep{Wei1964On,Marcus1984Algebraic}.
+The principal advantage of this approach is that it identifies
+an algebraic mechanism for exact finite-dimensional closure,
+providing a systematic framework for constructing recursive
+filters. The study of estimation algebras is therefore of fundamental importance
+to the theory of finite-dimensional nonlinear filtering.
+
+Following the nonlinear filtering Lie algebra approaches of Bene\v{s} and Wong~\citep{Benes1981Exact,Wong1983New}, the classification of finite-dimensional
+estimation algebras of maximal rank was completed by Yau and his
+collaborators~\citep{Yau2003Complete,Yau2005Classification}.
+For nonmaximal rank, Wu and Yau~\citep{Wu2006Classification} classified
+the case of state dimension two. In state dimension three and linear
+rank two, Shi and Yau first proved that the Wong matrix is affine
+\citep{Shi2017Finite} and subsequently established Mitter's conjecture proposed in ICM 1983,
+namely that every function element of the estimation algebra is affine
+\citep{Shi2020Finite}. More recent work has substantially extended this
+picture. Jiao and Yau studied the exact subclass, in which the drift is
+a gradient and the Wong matrix vanishes, combining structure results
+in state dimension three and rank two with Riccati and Schr\"odinger
+analysis of the associated potentials~\citep{Jiao2023Structure}.
+They also extended the affine Wong-matrix theorem to arbitrary state
+dimension $n$ and rank $n-1$~\citep{Jiao2024FiniteDimensional}.
+Under the additional assumption of a constant Wong matrix, Yu, Jiao,
+and Yau obtained a complete classification for rank $n-1$
+\citep{Yu2024Complete}.
+
+The nonmaximal-rank case is more difficult because the algebra
+contains fewer independent coordinate functions, limiting the
+control that commutator identities provide over the Wong matrix.
+Indeed, Jiao and Yau constructed rank-$n-2$ examples in which
+the Wong matrix has nonpolynomial smooth elements
+\citep{Jiao2020New}.
+In this paper, we combine techniques of Euler operators and methods from polynomial dynamical systems. We prove that the Wong
+matrix is constant when the state dimension is three and the
+linear rank is two, thereby removing the constant-Wong-matrix
+assumption from the classification of \citet{Yu2024Complete}
+in this case. The following is our main theorem.
+\begin{theorem}[Main theorem]\label{thm:main}
+Let $E$ be a finite-dimensional estimation algebra of a smooth nonlinear
+filtering system on $\mathbb R^3$, as in
+\eqref{eq:D-eta-L0}--\eqref{eq:estimation-algebra}, with state dimension 3 and rank 2. Then the Wong matrix $\Omega$ is constant, i.e., $\omega_{12},\omega_{13},\omega_{23}$ are constants.
+\end{theorem}
+
+The paper is organized as follows: Section~\ref{sec:2} describes some basic concepts of estimation algebra and well-known results for our proof. In Section~\ref{sec:3}, we complete the proof within 3 steps: 
+\begin{enumerate}
+    \item We prove that $\omega_{12}$ is constant.
+    \item We prove that $\omega_{13}$ and $\omega_{23}$ do not have $x_3$-coordinate.
+    \item We prove that $\omega_{13}$ and $\omega_{23}$ are constant.
+\end{enumerate}
+
+\section{Basic concepts and results.}
+\label{sec:2}
+
+
+\subsection{Basic concepts}
+The filtering problem we consider in this paper is based on the following model.
+\begin{equation}
+\begin{aligned}
+\mathrm dx(t)&=f(x(t))\,\mathrm dt+g(x(t))\,\mathrm dv(t),
+&x(0)&=x_0,\\
+\mathrm dy(t)&=h(x(t))\,\mathrm dt+\mathrm dw(t),
+&y(0)&=0.
+\end{aligned}
+\label{eq:filtering-model}
+\end{equation}
+Here $x,v,y,w$ belong to $\mathbb R^n, \mathbb R^p, \mathbb R^m, \mathbb R^m$, respectively, where $x(t)$ is the state process and $y(t)$ is the observation process.
+We assume that $f$ and $h=(q_1,\ldots,q_m)$ are $C^\infty$ smooth and
+$g(x)g(x)^T=I_n$.
+Let $\sigma$ denote the
+normalized conditional density given the observation $\{y(s): 0 \le s \le t\}$, then $\sigma$ satisfies the well-known DMZ equation
+\[
+\mathrm d\sigma(t,x)=L_0\sigma(t,x)\mathrm dt+
+\sum_{j=1}^m L_j\sigma(t,x)\mathrm dy_j, \quad \sigma(0,x) = \sigma_0,
+\]
+where $L_j\phi=h_j\phi$ for $1\le j\le m$ and
+\[
+L_0=\frac12\Delta-\sum_{i=1}^n f_i\partial_i
+-\sum_{i=1}^n\partial_i f_i-\frac12\sum_{j=1}^m h_j^2.
+\]
+Equivalently, let
+\begin{equation}
+D_i=\partial_i-f_i,\quad
+\eta=\sum_{i=1}^n\!\left(\partial_i f_i+f_i^2\right)+\sum_{j=1}^m h_j^2,\quad
+L_0=\frac12\sum_{i=1}^n D_i^2-\frac12\eta.
+\label{eq:D-eta-L0}
+\end{equation}
+In the following, we briefly introduce Lie algebra for differential operators and the estimation algebra.
+\begin{definition}
+ For two differential operators $X$ and $Y$, the Lie bracket $[,]:\mathcal F \times \mathcal F \to \mathcal F, [X,Y]:=XY-YX$ satisfying the following three axioms:
+ \begin{enumerate}
+     \item The Lie bracket is bilinear;
+     \item $[x,x] = 0$ for all $x \in \mathcal F$;
+     \item Jacobi identity: $[x,[y,z]] + [y,[z,x]] + [z,[x,y]] = 0$ for all $x,y,z \in \mathcal F$.
+ \end{enumerate}
+\end{definition}
+\begin{definition}
+The estimation algebra $E$ of \eqref{eq:filtering-model} is the smallest
+real Lie algebra containing $L_0,L_1,\ldots,L_m$:
+\begin{equation}
+E=\operatorname{Lie}_{\mathbb R}\langle L_0,h_1,\ldots,h_m\rangle.
+\label{eq:estimation-algebra}
+\end{equation}
+Its linear rank is $\dim_{\mathbb R}L(E)$, where
+\(
+L(E)=E\cap\operatorname{span}_{\mathbb R}\{x_1,x_2,...,x_n\}.
+\)
+A function element of $E$ is a smooth function whose multiplication
+operator belongs to $E$.
+\end{definition}
+
+\begin{definition}
+The Wong matrix is $\Omega=(\omega_{ij})_{1\le i,j\le n}$, with
+\begin{equation}
+\omega_{ij}=\partial_i f_j-\partial_j f_i=[D_j,D_i].
+\label{eq:wong-def}
+\end{equation}
+In particular, $\omega_{ji}=-\omega_{ij}$.
+\end{definition}
+
+\begin{definition}
+Let $\mathcal U_r$ be the vector space of smooth-coefficient differential
+operators of order at most $r$ with finite index $I_P \subset \mathbb N^n$. $P \in \mathcal U_r$ can be represented as
+\[
+P=\sum_{(i_1,i_2,...,i_n)) \in I_P}a_{i_1,i_2,...,i_n}(x)\partial_1^{i_1}\partial_2^{i_2}...\partial_n^{i_n},
+\]
+where $|i|:=\sum_{k=1}^n i_k \le r$. The order of $P$ is denoted by $ord(P) = \max_i |i|$.
+\end{definition}
+
+In this paper, the notation $[D^\alpha]P$ means the coefficient of $D^\alpha$ in operator $P$. We write $\ad_P Q=[P,Q]$, and $ad_P^l Q = [P,ad_P^{l-1}Q]$ for iterated commutators.
+\begin{comment}
+the one-variable Euler operator is $t\partial_t$.
+\end{comment}
+\subsection{Preliminaries}
+From now on, we consider the finite-dimensional algebra with state dimension $n = 3$ and linear rank 2. We choose orthonormal coordinates so that there exist $c_i$ such that $x_1 + c_i \in E$, and for any constant $c$, $x_3 + c \notin E$.
+We recall the known results and methodologies needed in the proof.
+
+\begin{theorem}[See~\citet{Ocone1981Finite}]\label{thm:ocone}
+If $E$ is a finite-dimensional estimation algebra and a multiplication
+operator $u$ belongs to $E$, then $u$ is a polynomial of degree at most two.
+\end{theorem}
+\begin{lemma}[See~\cite{Shi2017Finite}]\label{lem:bianchi}
+The elements of the Wong matrix satisfies:
+\begin{equation}
+\partial_3\omega_{12}-\partial_2\omega_{13}+\partial_1\omega_{23}=0.
+\label{eq:Bianchi}
+\end{equation}
+For the affine Wong matrix, $\partial_3\omega_{12}=0$,
+$\partial_2\omega_{13}=k_2$, and $\partial_1\omega_{23}=h_1$.
+Consequently $h_1=k_2$.
+\end{lemma}
+
+\begin{theorem}[See~\cite{Shi2017Finite}]\label{thm:top-coeff}
+Let $E$ be a finite-dimensional estimation algebra. If $P\in E$ has
+positive differential order $r$, every coefficient of its ordinary
+principal symbol $\sigma_r(P)$ is polynomial in the state variables.
+Equivalently, its highest-order $D$-normal coefficients are polynomials.
+\end{theorem}
+
+\begin{theorem}[See~\cite{Shi2017Finite}]\label{thm:shi-yau-affine}
+Suppose that $E$ is finite-dimensional, the state dimension is three,
+and the rank is two, then
+\begin{align}
+\omega_{12} &= b_1x_1+b_2x_2+b_0, \\
+\omega_{13} &= k_1x_1+k_2x_2+k_3x_3+h_0, \\
+\omega_{23} &= h_1x_1+h_2x_2+h_3x_3+k_0,
+\end{align}
+where all coefficients are real constants.
+\end{theorem}
+
+\begin{lemma}[See~\cite{Shi2017Finite}]\label{prop:gauge}
+Let $\Lambda\in C^\infty(\mathbb R^3;\mathbb R)$. The map
+\(
+\mathcal G_\Lambda(P)=e^\Lambda P e^{-\Lambda}
+\)
+is an automorphism of the Lie algebra of differential operators.
+It fixes multiplication operators and preserves differential
+order and elements of Wong matrix. In particular,
+\(
+E_\Lambda:=\mathcal G_\Lambda(E)
+\)
+is isomorphic to $E$.
+\end{lemma}
+
+\begin{lemma}\label{lem:polynomial-drift}
+Let $f\in C^\infty(\mathbb R^3;\mathbb R^3)$, then there exists
+$\Lambda\in C^\infty(\mathbb R^3;\mathbb R)$ such that
+$\widetilde f=f+\nabla\Lambda$ satisfies
+\begin{align}
+\widetilde f_1&=0,\notag\\
+\widetilde f_2
+&=\frac{b_1}{2}x_1^2+b_2x_1x_2+b_0x_1,
+\label{eq:f2-general}\\
+\widetilde f_3
+&=\frac{k_1}{2}x_1^2+k_2x_1x_2+k_3x_1x_3+k_0x_1
++\frac{h_2}{2}x_2^2+h_3x_2x_3+h_0x_2.
+\label{eq:f3-general}
+\end{align}
+\end{lemma}
+
+\begin{proof}
+Let $\widetilde f$ be the polynomial vector field displayed above.
+Direct differentiation gives
+\(
+\partial_1\widetilde f_2-\partial_2\widetilde f_1=\omega_{12},
+\partial_1\widetilde f_3-\partial_3\widetilde f_1=\omega_{13},
+\partial_2\widetilde f_3-\partial_3\widetilde f_2=\omega_{23}.
+\)
+Consequently, the one-form
+\(
+\sum_{i=1}^{3}(\widetilde f_i-f_i)\,dx_i
+\)
+is closed. By the Poincar\'e lemma on $\mathbb R^3$, it equals
+$d\Lambda$ for some globally defined smooth real function
+$\Lambda$. Hence $\widetilde f=f+\nabla\Lambda$, and
+\(
+e^\Lambda D_i e^{-\Lambda}
+=
+\partial_i-f_i-\partial_i\Lambda
+=
+\widetilde D_i.
+\)
+\end{proof}
+
+
+\begin{lemma}\label{lem:operator-products-symbols}
+Let $g,h\in C^\infty(\mathbb R^n)$ and
+$\alpha,\beta\in\mathbb N_0^n$, put $r=|\alpha|$ and $s=|\beta|$. If $r+s\geq2$, then
+\[
+[gD^\alpha,hD^\beta]
+\equiv
+\sum_{\substack{1\leq\ell\leq n\\
+                 \alpha_\ell+\beta_\ell>0}}
+\left(
+\alpha_\ell g\,\partial_\ell h
+-\beta_\ell h\,\partial_\ell g
+\right)
+D^{\alpha+\beta-e_\ell}
+\pmod{\mathcal U_{r+s-2}},
+\]
+where $e_\ell$ is the $\ell$th standard multi-index.
+\end{lemma}
+
+\begin{lemma}\label{lem:commutator-identities}
+Let $E$ be an estimation algebra, let $X,Y,Z\in E$, and let
+$g,h\in C^\infty(\mathbb R^n)$. With the notation above, the
+following identities hold for $1\leq i,j,k\leq n$:
+\begin{enumerate}
+\renewcommand{\labelenumi}{(\arabic{enumi})}
+
+\item
+\(
+[XY,Z]=X[Y,Z]+[X,Z]Y.
+\)
+
+
+\item
+\(
+\displaystyle
+[L_0,g]
+=
+\sum_{a=1}^{n}\frac{\partial g}{\partial x_a}D_a
++\frac12\Delta g.
+\)
+
+\item
+\(
+\displaystyle
+[L_0,D_i]
+=
+\sum_{a=1}^{n}\omega_{ia}D_a
++\frac12\sum_{a=1}^{n}
+\frac{\partial\omega_{ia}}{\partial x_a}
++\frac12\frac{\partial\eta}{\partial x_i}.
+\)
+
+
+\item
+\(
+\displaystyle
+[gD_i,hD_j]
+=
+gh\omega_{ji}
++g\frac{\partial h}{\partial x_i}D_j
+-h\frac{\partial g}{\partial x_j}D_i,
+\)
+where $\omega_{ji}=[D_i,D_j]$.
+
+\item
+\(
+\displaystyle
+[gD_i^2,h]
+=
+2g\frac{\partial h}{\partial x_i}D_i
++g\frac{\partial^2h}{\partial x_i^2}.
+\)
+
+\item
+\(
+\begin{aligned}[t]
+[D_i^2,hD_j]
+&=
+2\frac{\partial h}{\partial x_i}D_iD_j
++2h\omega_{ji}D_i
++\frac{\partial^2h}{\partial x_i^2}D_j
++h\frac{\partial\omega_{ji}}{\partial x_i}.
+\end{aligned}
+\)
+
+\item
+\(
+\begin{aligned}[t]
+[D_i^2,D_j^2]
+&=
+4\omega_{ji}D_jD_i
++2\frac{\partial\omega_{ji}}{\partial x_j}D_i
++2\frac{\partial\omega_{ji}}{\partial x_i}D_j
++\frac{\partial^2\omega_{ji}}{\partial x_i\partial x_j}
++2\omega_{ji}^2.
+\end{aligned}
+\)
+
+\item
+\(
+\begin{aligned}[t]
+[D_k^2,hD_iD_j]
+&=
+2\frac{\partial h}{\partial x_k}D_kD_iD_j
++2h\omega_{jk}D_iD_k
++2h\omega_{ik}D_kD_j
++\frac{\partial^2h}{\partial x_k^2}D_iD_j\\
+&+2h\frac{\partial\omega_{jk}}{\partial x_i}D_k
++h\frac{\partial\omega_{jk}}{\partial x_k}D_i
++h\frac{\partial\omega_{ik}}{\partial x_k}D_j
++h\frac{\partial^2\omega_{jk}}{\partial x_i\partial x_k}.
+\end{aligned}
+\)
+
+\item
+\(
+\begin{aligned}[t]
+[gD_iD_j,hD_k]
+&=
+g\frac{\partial h}{\partial x_j}D_iD_k
++g\frac{\partial h}{\partial x_i}D_jD_k
+-h\frac{\partial g}{\partial x_k}D_iD_j\\
+&\quad
++gh\omega_{kj}D_i
++gh\omega_{ki}D_j
++g\frac{\partial^2h}{\partial x_i\partial x_j}D_k
++gh\frac{\partial\omega_{kj}}{\partial x_i}.
+\end{aligned}
+\)
+
+\end{enumerate}
+\end{lemma}
+
+\section{Proof of the main theorem}\label{sec:3}
+\subsection{$\omega_{12}$ is constant}\label{sec:visible}
+
+First, we consider
+\begin{align}
+H_0
+&=[L_0,D_1]-\frac12(b_2+k_3)
+ =\omega_{12}D_2+\omega_{13}D_3+\frac12\eta_1 \in E,
+\label{eq:H0bar}\\
+H_1
+&=[L_0,D_2]-\frac12(-b_1+h_3)
+ =-\omega_{12}D_1+\omega_{23}D_3+\frac12\eta_2 \in E.
+\label{eq:H1bar}
+\end{align}
+For $B\in E\cap\mathcal U_2$, write
+\[
+B=a_{11}D_1^2+a_{12}D_1D_2+a_{22}D_2^2+\cdots
+\pmod{\mathcal U_1},
+\]
+where the omitted second-order terms contain $D_3$.
+Direct computation gives
+\(
+[[B,x_1],x_1]=2a_{11},
+[[B,x_1],x_2]=a_{12},
+[[B,x_2],x_2]=2a_{22}.
+\)
+These functions belong to $E$. By the preceding result on function
+elements,
+\(
+a_{11},a_{12},a_{22}
+\in\operatorname{span}_{\mathbb R}\{1,x_1,x_2\}.
+\)
+
+\begin{lemma}\label{lem:linear-diagonal-coefficient}
+Let $C\in E\cap\mathcal U_2$. If, for $i=1$ or $i=2$,
+\[
+C=(Ax_i+c)D_i^2+\cdots\pmod{\mathcal U_1},
+\]
+where $A,c\in\mathbb R$, then $A=0$.
+\end{lemma}
+
+\begin{proof}
+It suffices to consider $i=1$. Define
+\(
+P_0=[L_0,C], P_{r+1}=[P_r,C]\quad(r\geq0).
+\)
+Each $P_r$ belongs to $E$. The commutator formulas give
+\[
+P_0=AD_1^3+\cdots\pmod{\mathcal U_2}
+\]
+and, inductively,
+\[
+P_r=\frac{(r+2)!}{2}A^{r+1}D_1^{r+3}
+     +\cdots\pmod{\mathcal U_{r+2}}.
+\]
+Here the terms containing $D_2$ or $D_3$ with order $r+3$ are omitted.
+Indeed, since
+\(
+[D_1^{r+3},C]
+=(r+3)A D_1^{r+4}+\cdots\pmod{\mathcal U_{r+3}},
+\)
+commuting two omitted terms leaves at least one $D_2$ or $D_3$
+factor at order $r+4$. Commuting an omitted term with a displayed
+term can remove its last such factor only by differentiating
+$Ax_1+c$, or the constant displayed coefficient of $P_r$, in
+$x_2$ or $x_3$; these derivatives vanish. The terms arising from
+$[D_i,D_j]=\omega_{ji}$ have lower differential order and are
+included in $\mathcal U_{r+3}$.
+
+If $A\ne0$, $P_r$ has order $r+3$ lies in $E$, contradicting finite-dimensionality
+of $E$. The case $i=2$ is identical after interchanging $x_1$ and $x_2$.
+\end{proof}
+
+\begin{lemma}\label{lem:constant-quadratic-coefficients}
+Under the assumptions of the main theorem, suppose that
+$b_1=0$ and $b_2\ne0$, so that
+\[
+\omega_{12}=b_2x_2+b_0.
+\]
+Then, for every $B\in E\cap\mathcal U_2$, the coefficients of $D_1D_2$
+and $D_2^2$ are constant.
+\end{lemma}
+
+\begin{proof}
+Direct calculation gives
+\begin{align*}
+[H_0,B]
+&=\omega_{12}(\partial_2a_{11})D_1^2
+ +(\omega_{12}\partial_2a_{12}-b_2a_{12})D_1D_2
+ +(\omega_{12}\partial_2a_{22}-2b_2a_{22})D_2^2
+ +\cdots\pmod{\mathcal U_1},\\
+[H_1,B]
+&=(-\omega_{12}\partial_1a_{11}+b_2a_{12})D_1^2
+ +(-\omega_{12}\partial_1a_{12}+2b_2a_{22})D_1D_2
+ -\omega_{12}(\partial_1a_{22})D_2^2
+ +\cdots\pmod{\mathcal U_1}.
+\end{align*}
+The omitted second-order terms again contain $D_3$.
+Terms involving $D_3$ in $B$ do not contribute to the three
+displayed coefficients, because
+$\partial_3\omega_{12}=\partial_3a_{11}
+=\partial_3a_{12}=\partial_3a_{22}=0$.
+Both commutators belong to $E\cap\mathcal U_2$.
+
+Since $a_{11}$ is affine,
+\[
+\begin{aligned}
+{}[H_0,B]-b_2B
+={}&\bigl(-b_2(\partial_1a_{11})x_1
+       +b_0\partial_2a_{11}-b_2a_{11}(0)\bigr)D_1^2+\cdots\pmod{\mathcal U_1},
+\end{aligned}
+\]
+where the omitted terms are the other second-order terms.
+Lemma~\ref{lem:linear-diagonal-coefficient} gives
+$\partial_1a_{11}=0$. This holds for every
+$B\in E\cap\mathcal U_2$.
+
+Similarly,
+\(
+[H_1,B]
+=-(\partial_1a_{22})(b_2x_2+b_0)D_2^2
+ +\cdots\pmod{\mathcal U_1},
+\)
+where the omitted terms are the other second-order terms.
+The same lemma gives $\partial_1a_{22}=0$.
+Applying it once more to $B$ gives $\partial_2a_{22}=0$.
+Thus $a_{22}$ is constant.
+
+The coefficient of $D_1^2$ in $[H_1,B]$ is now $b_2a_{12}$.
+By the conclusion already obtained for every element of
+$E\cap\mathcal U_2$, this coefficient is independent of $x_1$.
+Hence $\partial_1a_{12}=0$.
+It remains to prove $\partial_2a_{12}=0$.
+
+Define
+\(
+P_0=[L_0,B],\qquad P_{r+1}=[P_r,B]\quad(r\geq0).
+\)
+Since $a_{11},a_{12}$ are affine functions of $x_2$ and $a_{22}$
+is constant, direct calculation gives
+\[
+P_0=(\partial_2a_{11})D_1^2D_2
+    +(\partial_2a_{12})D_1D_2^2
+    +\cdots\pmod{\mathcal U_2}.
+\]
+Repeated application of the same commutator formulas yields,
+for $r\geq1$,
+\[
+\begin{aligned}
+P_r
+={}&2^r(\partial_2a_{12})^{r+1}D_1^{r+1}D_2^2\\
+&+(2^{r+1}-1)(\partial_2a_{11})(\partial_2a_{12})^r
+  D_1^{r+2}D_2\\
+&+(2^r-1)(\partial_2a_{11})^2(\partial_2a_{12})^{r-1}
+  D_1^{r+3}
+ +\cdots\pmod{\mathcal U_{r+2}}.
+\end{aligned}
+\]
+To check the induction, commute each of
+the three displayed monomials with $B$. Only differentiation of
+$a_{11}$ and $a_{12}$ with respect to $x_2$ contributes to terms
+of the next order that do not contain $D_3$. The omitted terms
+cannot contribute such terms, because all displayed coefficients
+are independent of $x_3$.
+
+If $\partial_2a_{12}\ne0$, the coefficient of
+$D_1^{r+1}D_2^2$ is nonzero for every $r$, so the orders of the
+elements $P_r\in E$ are unbounded. This contradicts
+finite-dimensionality.
+$a_{12}$ is constant as well.
+\end{proof}
+
+\begin{theorem}\label{thm:w12-constant}
+Under the assumptions of the main theorem,
+$b_1=b_2=0$, so $\omega_{12}=b_0$.
+\end{theorem}
+
+\begin{proof}
+Suppose that $(b_1,b_2)\ne(0,0)$. Make the orthogonal change
+of coordinates
+\[
+\begin{pmatrix}x_1\\x_2\end{pmatrix}
+=
+\frac{1}{\sqrt{b_1^2+b_2^2}}
+\begin{pmatrix}b_2&b_1\\-b_1&b_2\end{pmatrix}
+\begin{pmatrix}y_1\\y_2\end{pmatrix},
+\qquad x_3=y_3.
+\]
+This transformation preserves the second-order
+part of $L_0$ and transforms $\omega_{12}$ into
+$\sqrt{b_1^2+b_2^2}\,y_2+b_0$.
+The transformed algebra is isomorphic to $E$, and $\omega_{13},\omega_{23}$ stay affine.
+After renaming the coordinates and coefficients, we may
+therefore assume
+\(
+b_1=0,b_2>0,
+\omega_{12}=b_2x_2+b_0.
+\)
+Direct calculation gives
+\[
+[D_1,H_0]=k_1D_3\pmod{\mathcal U_0},
+\qquad
+[D_1,H_1]=k_2D_3\pmod{\mathcal U_0}.
+\]
+Since $[D_3,x_1]=[D_3,x_2]=0$ and
+$\partial_3\omega_{12}=0$, it follows that
+\begin{equation}
+\begin{aligned}
+{}[[D_1,H_0],x_i]&=[[D_1,H_1],x_i]=0
+\qquad(i=1,2),\\
+[\omega_{12},[D_1,H_1]]&=0.
+\end{aligned}
+\label{eq:jacobi-vertical}
+\end{equation}
+
+The constant terms subtracted in
+\eqref{eq:H0bar}--\eqref{eq:H1bar} do not affect the following
+commutators. By the Jacobi identity,
+\[
+[D_2,H_0]-[D_1,H_1]
+=[L_0,\omega_{12}]=b_2D_2.
+\]
+Using $[D_2,D_1]=\omega_{12}$ and
+$[H_0,\omega_{12}]=b_2\omega_{12}$, we obtain
+\begin{equation}
+\begin{aligned}
+{}[D_2,[D_1,H_0]]-[D_1,[D_1,H_1]]
+&=[D_1,b_2D_2]+[\omega_{12},H_0]=-2b_2\omega_{12}.
+\end{aligned}
+\label{eq:jacobi-first-obstruction}
+\end{equation}
+
+Next, direct calculation gives
+\[
+[L_0,H_0]
+=b_2D_2^2+k_1D_1D_3+k_2D_2D_3+k_3D_3^2
+\pmod{\mathcal U_1}.
+\]
+All displayed coefficients are constant. Since
+\(
+[L_0,D_iD_j]
+=[L_0,D_i]D_j+D_i[L_0,D_j]
+\in\mathcal U_2,
+\)
+and the commutator of $L_0$ with a first-order operator
+has order at most two, we have
+\(
+[L_0,[L_0,H_0]]\in E\cap\mathcal U_2.
+\)
+
+Using $[H_0,x_1]=0$, $[H_0,x_2]=\omega_{12}$, and the
+Jacobi identity, we obtain
+\begin{align*}
+[[L_0,H_0],x_1]&=[D_1,H_0],\\
+[[L_0,H_0],x_2]&=[D_1,H_1]+2b_2D_2.\\
+\bigl[[[L_0,[L_0,H_0]],x_1],x_2\bigr]
+&=2[D_2,[D_1,H_0]],\\
+\bigl[[[L_0,[L_0,H_0]],x_2],x_2\bigr]
+&=2[D_2,[D_1,H_1]].
+\label{eq:jacobi-head-extraction}
+\end{align*}
+The left-hand sides of the last two equations are, respectively, the coefficient
+of $D_1D_2$ and twice the coefficient of $D_2^2$ in
+$[L_0,[L_0,H_0]] \in E\cap\mathcal U_2$.
+By Lemma~\ref{lem:constant-quadratic-coefficients},
+these coefficients are constant. Consequently,
+\[
+[D_2,[D_1,H_0]]
+\quad\text{and}\quad
+[D_2,[D_1,H_1]]
+\]
+are constant multiplication operators.
+
+Finally, take the commutator of both sides of
+\eqref{eq:jacobi-first-obstruction} with $D_2$:
+\[
+\begin{aligned}
+{}[D_2,[D_1,[D_1,H_1]]]
+&=[D_1,[D_2,[D_1,H_1]]]
+  +[\omega_{12},[D_1,H_1]]=[D_1,[D_2,[D_1,H_1]]],
+\end{aligned}
+\]
+where the last equality follows from
+\eqref{eq:jacobi-vertical}.
+The constant multiplication operators above commute
+with $D_1$ and $D_2$. Therefore,
+\[
+\begin{aligned}
+0=[D_2,[D_2,[D_1,H_0]]]
+  -[D_1,[D_2,[D_1,H_1]]]=[D_2,-2b_2\omega_{12}]
+=-2b_2^2\,1.
+\end{aligned}
+\]
+This contradicts $b_2>0$ and proves the theorem.
+\end{proof}
+
+
+\subsection{$h_3$ = $k_3$ = 0.}
+
+By Theorem~\ref{thm:w12-constant}, $b_1=b_2=0$.
+Suppose that $\mu=k_3^2+h_3^2>0$.
+By Lemmas~\ref{lem:polynomial-drift} and~\ref{prop:gauge},
+we may use the drift in
+\eqref{eq:f2-general}--\eqref{eq:f3-general}, retaining
+the notation $E,D_i,L_0,H_i$. In particular,
+$f_1=0$ and $f_2=b_0x_1$.
+
+Choose the affine coordinate
+\[
+t=\frac{k_3\omega_{13}+h_3\omega_{23}}{\mu}
+=x_3+\alpha x_1+\beta x_2+\delta,
+\]
+where
+\(
+\alpha=\frac{k_3k_1+h_3k_2}{\mu},
+\beta=\frac{k_3k_2+h_3h_2}{\mu},
+\delta=\frac{k_3k_0+h_3h_0}{\mu}.
+\)
+The coordinate derivatives in $(x_1,x_2,t)$ are
+\(
+\nabla_1=\partial_1-\alpha\partial_3,
+\nabla_2=\partial_2-\beta\partial_3,
+\partial_t=\partial_3,
+\)
+where $\partial_i$ denotes differentiation in the original
+coordinates. Then, the Euler operator
+\[
+J:=\frac{k_3(H_0-b_0D_2)+h_3(H_1+b_0D_1)}{\mu}
+=t\partial_3+r(x_1,x_2,t)\in E
+\]
+for a smooth function $r$.
+Take
+\[
+\Lambda(x_1,x_2,t)
+=\int_0^t
+\frac{r(x_1,x_2,s)-r(x_1,x_2,0)}{s}\,\mathrm ds,
+\]
+where the integrand extends smoothly across $s=0$.
+Writing $\widehat P=e^\Lambda Pe^{-\Lambda}$ and
+$\widehat E=e^\Lambda Ee^{-\Lambda}$, we obtain
+\(
+\widehat J=t\partial_3+r(x_1,x_2,0),
+\)
+and
+\(
+\widehat D_1
+=\nabla_1+\alpha\partial_3-\partial_1\Lambda,
+\widehat D_2
+=\nabla_2+\beta\partial_3-b_0x_1-\partial_2\Lambda.
+\)
+
+To extract the required terms involving $\partial_3$ as elements of
+the estimation algebra, we establish the following lemma. It shows
+that projection onto each weight component preserves membership
+in the algebra for the operators in $\widehat E$.
+
+\begin{lemma}\label{lem:smooth-euler-module}
+Let $\widehat E,\widehat D_1,\widehat D_2,\widehat L_0$
+be defined as above, and suppose that
+\[
+\widehat J=t\partial_t+r_0(x_1,x_2)\in\widehat E.
+\]
+For each $P\in\{\widehat D_1,\widehat D_2,\widehat L_0\}$,
+write
+\[
+P=
+\sum_{\substack{i,j,q\ge0\\i+j+q\le2}}
+a_{ijq}(x_1,x_2,t)
+\partial_{x_1}^i\partial_{x_2}^j\partial_t^q.
+\]
+(1) Then every coefficient is polynomial in $t$:
+\[
+a_{ijq}(x_1,x_2,t)
+=\sum_{p\ge0}a_{ijqp}(x_1,x_2)t^p,\quad
+a_{ijqp}\in C^\infty(\mathbb R^2).
+\]
+(2) Moreover, define the \textbf{weight} of a nonzero term by
+\(
+\operatorname{wt}\!\left(
+a_{ijqp}(x_1,x_2)t^p
+\partial_{x_1}^i\partial_{x_2}^j\partial_t^q
+\right)=p-q.
+\)
+Let $P_w$ denote the sum of all terms of weight $w$ in $P$, then for every $w\in\mathbb Z$, there exists
+$\pi_w\in\mathbb R[s]$ such that
+\[
+P_w=\pi_w(\operatorname{ad}_{\widehat J})P
+\in\widehat E.
+\]
+\end{lemma}
+
+\begin{proof}
+Direct calculation gives
+\[
+[t\partial_t,a\partial_{x_1}^i\partial_{x_2}^j\partial_t^q]
+=(t\partial_ta-qa)\partial_{x_1}^i\partial_{x_2}^j\partial_t^q.
+\]
+In a commutator with $r_0$, at least one derivative in
+$x_1,x_2$ falls on $r_0$. Thus commutation with $r_0$
+lowers the differential order in these variables.
+Since $P$ has order at most two,
+$(\operatorname{ad}_{r_0})^3P=0.$
+Moreover, $r_0$ is independent of $t$, so the Jacobi
+identity gives
+\(
+[\operatorname{ad}_{t\partial_t},\operatorname{ad}_{r_0}]
+=\operatorname{ad}_{[t\partial_t,r_0]}=0.
+\)
+
+Let $\chi$ be the characteristic polynomial of
+$\operatorname{ad}_{\widehat J}$ on $\widehat E$.
+By the Cayley--Hamilton theorem,
+$\chi(\operatorname{ad}_{\widehat J})P=0$.
+Expanding this polynomial in the two commuting adjoint
+maps and using $(\operatorname{ad}_{r_0})^3P=0$, we obtain
+\[
+\begin{aligned}
+0
+&=\chi(\operatorname{ad}_{t\partial_t})P
++\chi'(\operatorname{ad}_{t\partial_t})[r_0,P]
++\frac12\chi''(\operatorname{ad}_{t\partial_t})
+  [r_0,[r_0,P]].
+\end{aligned}
+\]
+Because the adjoint maps commute, this identity can be
+substituted repeatedly. Each substitution introduces
+at least one further commutator with $r_0$.
+After three substitutions, every resulting term vanishes.
+Hence
+\(
+\bigl[\chi(\operatorname{ad}_{t\partial_t})\bigr]^3P=0.
+\)
+
+The first displayed identity shows that
+$\operatorname{ad}_{t\partial_t}$ does not mix different
+derivative monomials. Comparing their coefficients gives
+\[
+[\chi(t\partial_t-q)]^3a_{ijq}=0.
+\]
+Applying Lemma~\ref{lem:global-smooth-euler} for each fixed
+$(x_1,x_2)$ yields
+\[
+a_{ijq}(x_1,x_2,t)
+=
+\sum_{\substack{p\ge0\\\chi(p-q)=0}}
+\frac{\partial_t^p a_{ijq}(x_1,x_2,0)}{p!}\,t^p.
+\]
+There are only finitely many such $p$, independently of
+$(x_1,x_2)$, and the displayed coefficients are smooth.
+This proves (1).
+
+For (2), write $P=\sum_w P_w$, a finite sum.
+By the definition of weight,
+\[
+[t\partial_t,P_w]=wP_w.
+\]
+Commutation with $r_0$ changes neither the power of $t$
+nor the number of $\partial_t$ factors, so it preserves
+weight. It also lowers the differential order in
+$x_1,x_2$. Consequently,
+\[
+(\operatorname{ad}_{\widehat J}-w)^3P_w
+=(\operatorname{ad}_{r_0})^3P_w=0.
+\]
+
+Fix an occurring weight $w$. Since the polynomials
+$(s-v)^3$ for distinct occurring weights $v$ are pairwise
+coprime, the Chinese remainder theorem gives
+$\pi_w\in\mathbb R[s]$ satisfying
+\[
+\begin{aligned}
+\pi_w(s)&\equiv1\pmod{(s-w)^3},\\
+\pi_w(s)&\equiv0\pmod{(s-v)^3}
+\qquad\text{for every other occurring weight }v.
+\end{aligned}
+\]
+The preceding annihilation identities therefore imply
+\[
+\pi_w(\operatorname{ad}_{\widehat J})P
+=
+\sum_v\pi_w(\operatorname{ad}_{\widehat J})P_v
+=P_w.
+\]
+Since $\widehat J\in\widehat E$, its adjoint action
+preserves $\widehat E$, and hence $P_w\in\widehat E$.
+For a weight that does not occur, take $\pi_w=0$.
+\end{proof}
+
+\begin{theorem}\label{thm:sector-I-smooth}
+Under the assumptions of the main theorem, $k_3=h_3=0$.
+\end{theorem}
+
+\begin{proof}
+By Lemma~\ref{lem:smooth-euler-module},
+$\partial_1\Lambda$ and $\partial_2\Lambda$ are polynomial
+in $t$, and their positive-weight components are
+multiplication operators in $\widehat E$.
+Since the coordinate change leaves $x_1,x_2$ fixed and
+gauge conjugation fixes multiplication operators, we also have
+$
+\widehat E\cap C^\infty(\mathbb R^3)
+=\operatorname{span}_{\mathbb R}\{1,x_1,x_2\}.$
+Hence $\partial_1\Lambda$ and $\partial_2\Lambda$ are
+independent of $t$, while
+$
+\partial_3\Lambda=\rho(x_3)
+=\rho(t-\alpha x_1-\beta x_2-\delta)
+$
+for some $\rho\in C^\infty(\mathbb R)$.
+
+Using \eqref{eq:f3-general}, direct expansion gives
+\begin{align}
+\widehat L_0
+&=
+\underbrace{\frac12(\nabla_1^2+\nabla_2^2)}_{\text{weight }0}
++
+\underbrace{\alpha\nabla_1\partial_3
++\beta\nabla_2\partial_3}_{\text{weight }-1}
++
+\underbrace{\frac{1+\alpha^2+\beta^2}{2}\partial_3^2}_{\text{weight }-2}
+\notag\\
+&\quad
+\underbrace{+a_1\nabla_1+a_2\nabla_2
+-\bigl((k_3x_1+h_3x_2)t
++\rho(t-\alpha x_1-\beta x_2-\delta)+b\bigr)\partial_3
++u(x_1,x_2,t)}_{\text{weight }\ge 0,\text{ depending on the order of } \rho}.
+\label{eq:Lhat-short}
+\end{align}
+where $a_1,a_2,b$ depend only on $x_1,x_2$.
+Lemma~\ref{lem:smooth-euler-module} gives
+$u\in C^\infty(\mathbb R^2)[t]$, $\rho\in\mathbb R[t]$ is a polynomial, and
+the $-2$ weight term is
+\[
+(\widehat L_0)_{-2}
+=\frac{1+\alpha^2+\beta^2}{2}\partial_3^2\in\widehat E,
+\qquad
+\partial_3^2\in\widehat E.
+\]
+
+\emph{Case 1: $\deg\rho=d\ge2$.}
+Write $\rho(s)=a_ds^d+\cdots$, with $a_d\ne0$.
+Then
+\[
+(\widehat L_0)_{d-1}
+=-a_dt^d\partial_3\pmod{\mathcal U_0}
+\]
+belongs to $\widehat E$.
+Start with $P_2=\partial_3^2$. If
+$P_m=\partial_3^m\pmod{\mathcal U_{m-1}}$ belongs to
+$\widehat E$, the commutator formulas give
+\begin{align*}
+[(\widehat L_0)_{d-1},P_m]
+&=m a_d d\,t^{d-1}\partial_3^m
+\pmod{\mathcal U_{m-1}},\\
+[P_m,[(\widehat L_0)_{d-1},P_m]]
+&=m^2 a_d d(d-1)t^{d-2}\partial_3^{2m-1}
+\pmod{\mathcal U_{2m-2}}.
+\end{align*}
+Commuting $d-2$ times with $\partial_3^2$ gives
+\[
+\begin{aligned}
+&\operatorname{ad}_{\partial_3^2}^{\,d-2}
+\bigl([P_m,[(\widehat L_0)_{d-1},P_m]]\bigr)
+=2^{d-2}m^2 a_d d!\,\partial_3^{2m+d-3}
+\pmod{\mathcal U_{2m+d-4}}.
+\end{aligned}
+\]
+Dividing by the displayed nonzero constant produces
+$P_{2m+d-3}$ with the same required form.
+Since $2m+d-3>m$, iteration gives elements of unbounded
+differential order, contradicting finite-dimensionality.
+
+\emph{Case 2: $\rho(s)=cs+c_0$.}
+This includes $\rho=0$. The weight-zero component is
+\[
+\begin{aligned}
+(\widehat L_0)_0
+&=\frac12(\nabla_1^2+\nabla_2^2)
++a_1\nabla_1+a_2\nabla_2
+-(k_3x_1+h_3x_2+c)t\partial_3+u_0(x_1,x_2)
+\in\widehat E.
+\end{aligned}
+\]
+If $\partial_3^m\in\widehat E$ for $m\ge2$, then
+\[
+\frac{[(\widehat L_0)_0,\partial_3^m]-mc\partial_3^m}{m}
+=(k_3x_1+h_3x_2)\partial_3^m\in\widehat E.
+\]
+A further calculation gives
+\[
+\begin{aligned}
+&\bigl[(k_3x_1+h_3x_2)\partial_3^m,
+[(\widehat L_0)_0,(k_3x_1+h_3x_2)\partial_3^m]\bigr]
+=-(k_3^2+h_3^2)\partial_3^{2m}
+=-\mu\partial_3^{2m} \in \widehat E.
+\end{aligned}
+\]
+which is a contradiction against finite-dimensionality.
+Therefore $k_3=h_3=0$.
+\end{proof}
+
+\section{$k_1=k_2=h_1 = h_2=0$}\label{sec:mixed}
+
+
+\begin{lemma}\label{lem:constant-wronskian}
+Let $p,q\in\mathbb R[\tau]$. If $pq'-p'q$ is a nonzero
+constant, then
+\[
+\operatorname{span}_{\mathbb R}\{p,q\}
+=\operatorname{span}_{\mathbb R}\{1,\tau\}.
+\]
+\end{lemma}
+
+\begin{proof}
+The nonzero Wronskian implies that $p,q$ are linearly
+independent. If their degrees coincide, subtract a constant
+multiple of one from the other to cancel its leading term.
+After interchanging them if necessary, their degrees satisfy
+$r<s$. Their Wronskian has degree $r+s-1$, with nonzero
+leading coefficient
+$(s-r)\operatorname{lc}(p)\operatorname{lc}(q)$, where $\operatorname{lc}(p)$ means the leading coefficient of polinomial $p$.
+Thus $r+s=1$, so $r=0$ and $s=1$, proving the assertion.
+\end{proof}
+
+\begin{theorem}\label{thm:remaining-visible}
+Under the assumptions of the main theorem, $k_1=k_2=h_2=0$.
+\end{theorem}
+
+\noindent\emph{Sketch of proof.}
+We argue by contradiction. If the remaining coefficient matrix \(
+S_n=(\operatorname{ad}_{\widetilde L_0})^n(\partial_1)
+\in\widetilde E.
+\)
+is nonzero, an orthogonal coordinate change and a translation
+reduce the problem to $k_1\ne0$, $k_2=k_0=0$.
+We can restrict the $x_3$-dependence of $\eta$ and produces a
+first-order element of the form
+$\partial_3+g(x_1,x_2)+\varepsilon(x_3)$.
+
+A gauge conjugation removes $\varepsilon$ (which is a polinomial byTheorem~\ref{thm:top-coeff}) from this first-order
+element while preserving finite-dimensionality.
+Further commutators, together with the function-element theorem,
+show that the remaining scalar coefficient is also polynomial.
+Consequently, every coefficient of $\widetilde L_0$ is polynomial
+in $x_3$.
+
+We then consider a sequence of Lie algebra elements
+\[
+S_n=(\operatorname{ad}_{\widetilde L_0})^n(\partial_1)
+\in\widetilde E.
+\]
+Their coefficients remain polynomial in $x_3$, so each $S_n$
+has finite "weighted-degrees". Since their span is finite-dimensional,
+these weights must have a common upper bound.
+
+We contradict this bound in two cases.
+If $\deg\varepsilon\ge3$, direct commutator calculations give
+terms whose nonzero highest weighted-degrees increases without bound.
+If $\deg\varepsilon\le2$, these terms satisfy a polynomial recurrence
+described by an associated dynamical system.
+If the recurrence vanished at some stage, suitable trajectories
+would yield two linearly independent polynomial solutions of
+\[
+u''=k_1\zeta(\tau)u,\qquad \zeta(0)=1.
+\]
+Their Wronskian is a nonzero constant, so
+Lemma~\ref{lem:constant-wronskian} would force their span to
+contain a nonzero constant solution, contradicting $k_1\ne0$.
+Thus the highest-weight terms never vanish, and the weighted-degrees
+again grow without bound, deriving contradictions.
+
+\begin{proof}
+By Theorems~\ref{thm:w12-constant} and~\ref{thm:sector-I-smooth},
+$\omega_{12}=b_0$ and $k_3=h_3=0$. By Lemma~\ref{lem:bianchi} we have $h_1 = k_2$,
+suppose that the symmetry matrix
+\[
+\begin{pmatrix}k_1&k_2\\k_2&h_2\end{pmatrix}\ne0.
+\]
+An orthogonal change of $(x_1,x_2)$ diagonalizes this matrix.
+Choose a nonzero eigenvalue as the first diagonal entry and
+translate $x_1$ to remove the constant term in $\omega_{13}$.
+After renaming the coordinates and coefficients, we have
+\[
+k_1\ne0,\qquad k_2=k_0=0,\qquad
+\omega_{13}=k_1x_1,\qquad \omega_{23}=h_2x_2+h_0.
+\]
+By Lemmas~\ref{lem:polynomial-drift} and~\ref{prop:gauge},
+we may also assume
+\(
+f_1=0,f_2=b_0x_1,
+f_3=\frac{k_1}{2}x_1^2+\frac{h_2}{2}x_2^2+h_0x_2,
+\)
+retaining the notation $E,D_i,L_0,H_i,\eta$.
+
+\medskip
+\noindent\emph{Step 1: Determine the $x_3$-dependence of $\eta$.}
+
+Direct calculation gives
+\begin{align}
+[D_1,H_0]
+&=k_1D_3-b_0^2-k_1^2x_1^2+\tfrac12\eta_{11},\label{eq:1}\\
+[D_2,H_0]
+&=-k_1x_1(h_2x_2+h_0)+\tfrac12\eta_{12},\label{eq:2}\\
+[D_2,H_1]
+&=h_2D_3-b_0^2-(h_2x_2+h_0)^2+\tfrac12\eta_{22},\label{eq:3}
+\end{align}
+and hence
+\begin{align}
+[D_1,[D_1,H_0]]
+&=\tfrac12\partial_1^3(\eta-f_3^2),\label{eq:4}\\
+[D_2,[D_1,H_0]]
+&=\tfrac12\partial_1^2\partial_2(\eta-f_3^2),\label{eq:5}\\
+[D_2,[D_2,H_0]]
+&=\tfrac12\partial_1\partial_2^2(\eta-f_3^2),\label{eq:6}\\
+[D_2,[D_2,H_1]]
+&=\tfrac12\partial_2^3(\eta-f_3^2).\label{eq:7}
+\end{align}
+These are function elements of $E$, and therefore belong to
+$\operatorname{span}_{\mathbb R}\{1,x_1,x_2\}$.
+
+Set $\eta_0(x_1,x_2)=\eta(x_1,x_2,0)$.
+Since $f_3$ is independent of $x_3$, the preceding identities~\ref{eq:4}-\ref{eq:7}
+show that all third-order derivatives of $\eta-\eta_0$
+with respect to $x_1,x_2$ vanish. Taylor's formula therefore gives
+\[
+\begin{aligned}
+\eta={}&\eta_0(x_1,x_2)
++a_{11}(x_3)x_1^2+a_{12}(x_3)x_1x_2+a_{22}(x_3)x_2^2\\
+&+\ell_1(x_3)x_1+\ell_2(x_3)x_2+e(x_3),
+\end{aligned}
+\]
+where all six coefficient functions are smooth and vanish
+at $x_3=0$.
+
+Moreover,
+\(
+[D_2,H_0]\) and \(
+h_2[D_1,H_0]-k_1[D_2,H_1]
+\)
+are function elements of $E$ and hence are independent of $x_3$.
+The equations~\ref{eq:1}-\ref{eq:3} consequently imply that
+$\eta_{12}$ and $h_2\eta_{11}-k_1\eta_{22}$ are independent of $x_3$.
+Substituting the expansion above gives
+\[
+a_{12}'(x_3)=0,
+\qquad
+h_2a_{11}'(x_3)-k_1a_{22}'(x_3)=0.
+\]
+Since $a_{11}(0)=a_{12}(0)=a_{22}(0)=0$, it follows that
+\(
+a_{12}=0,
+h_2a_{11}=k_1a_{22}.
+\)
+As $k_1\ne0$, define
+\(
+\varepsilon(x_3)=\frac{a_{11}(x_3)}{k_1}.
+\)
+Then $a_{11}=k_1\varepsilon$ and $a_{22}=h_2\varepsilon$.
+Using
+\(
+f_3=\frac{k_1}{2}x_1^2+\frac{h_2}{2}x_2^2+h_0x_2,
+\)
+we obtain
+\(
+a_{11}x_1^2+a_{22}x_2^2
+=2\varepsilon f_3-2h_0\varepsilon x_2.
+\)
+Replacing $\ell_2$ by $\ell_2-2h_0\varepsilon$ and retaining
+the same notation, we thus have
+\[
+\eta=\eta_0(x_1,x_2)+2\varepsilon(x_3)f_3
++\ell_1(x_3)x_1+\ell_2(x_3)x_2+e(x_3).
+\]
+Here $\varepsilon,\ell_1,\ell_2,e$ are smooth and still vanish
+at $x_3=0$.
+
+The identity for $[D_1,H_0]$ now gives
+\[
+T=\frac1{k_1}[D_1,H_0]
+=\partial_3+g(x_1,x_2)+\varepsilon(x_3)\in E
+\]
+for some $g\in C^\infty(\mathbb R^2)$.
+Direct calculation yields
+\[
+[T,H_0-b_0D_2]=\tfrac12\ell_1'(x_3),
+\qquad
+[T,H_1+b_0D_1]=\tfrac12\ell_2'(x_3).
+\]
+Both are function elements depending only on $x_3$,
+so $\ell_1'$ and $\ell_2'$ are constants.
+Since $\ell_1(0)=\ell_2(0)=0$, we obtain
+$\ell_1(x_3)=c_1x_3$ and $\ell_2(x_3)=c_2x_3$.
+Consequently,
+\begin{equation}
+\eta=\eta_0(x_1,x_2)+2\varepsilon(x_3)f_3+e(x_3)
++x_3(c_1x_1+c_2x_2),
+\qquad c_1,c_2\in\mathbb R.
+\label{eq:sectorII-eta}
+\end{equation}
+
+\medskip
+\noindent\emph{Step 2: Obtain polynomial coefficients in $x_3$.}
+
+Choose $\Lambda=\Lambda(x_3)$ with $\Lambda'=\varepsilon$,
+and write $\widetilde P=e^\Lambda Pe^{-\Lambda}$ and
+$\widetilde E=e^\Lambda Ee^{-\Lambda}$.
+Then $\partial_1\in\widetilde E$ and
+$\widetilde T=\partial_3+g(x_1,x_2)\in\widetilde E$.
+Set $r=e-\varepsilon^2$. Expanding $\widetilde L_0$ using
+\eqref{eq:sectorII-eta} gives
+\begin{align}
+\widetilde L_0
+&=\tfrac12(\partial_1^2+\partial_2^2+\partial_3^2)
+-b_0x_1\partial_2-(f_3+\varepsilon)\partial_3\notag\\
+&\quad+V_0(x_1,x_2)+x_3V_1(x_1,x_2)
+-\tfrac12\bigl(\varepsilon'(x_3)+r(x_3)\bigr).
+\label{eq:sectorII-L}
+\end{align}
+Furthermore,
+\[
+[\widetilde L_0,\widetilde T]
+=(\partial_1g)\partial_1+(\partial_2g)\partial_2
++\varepsilon'(x_3)\partial_3\pmod{\mathcal U_0}.
+\]
+Transporting this operator back to $E$ and applying
+Theorem~\ref{thm:top-coeff} shows that $\varepsilon'$ is
+polynomial; if the operator has order zero, the displayed
+coefficients vanish. Hence $\varepsilon\in\mathbb R[x_3]$.
+
+Let $d=\deg\varepsilon$, with $d=0$ if $\varepsilon=0$,
+and let $m=\max\{2,d\}$.
+The commutator formulas give
+\[
+[g,[g,\widetilde L_0]]
+=(\partial_1g)^2+(\partial_2g)^2,
+\qquad
+[\partial_3,[g,\widetilde L_0]]=0.
+\]
+Since $[\partial_3,g]=0$, it follows that
+\[
+\begin{aligned}
+\operatorname{ad}_{\widetilde T}^{\,m}(\widetilde L_0)
++\varepsilon^{(m)}\widetilde T
+={}&\varepsilon^{(m)}g
++\mathbf 1_{\{m=2\}}
+ \bigl((\partial_1g)^2+(\partial_2g)^2\bigr)-\tfrac12r^{(m)}(x_3).
+\end{aligned}
+\]
+Here $\varepsilon^{(m)}$ is constant, so the left-hand side
+belongs to $\widetilde E$. It is a multiplication operator,
+and therefore is independent of $x_3$. Thus $r^{(m)}$ is
+constant and
+\[
+r\in\mathbb R[x_3],\qquad
+\deg r\le\max\{2,d\}\quad(r\ne0).
+\]
+
+\medskip
+\noindent\emph{Step 3: Exclude $d\ge3$ by increasing weighted-degrees.}
+
+For the remaining steps, consider finite-order differential
+operators whose coefficients are smooth in $x_1,x_2$ and
+polynomial in $x_3$. Define the weighted degree of a nonzero
+term by
+\[
+\nu\!\left(
+a(x_1,x_2)x_3^p
+\partial_1^{q_1}\partial_2^{q_2}\partial_3^{q_3}
+\right)
+=p+q_1+q_2+2q_3,
+\]
+where $a\in C^\infty(\mathbb R^2)$ and
+$p,q_1,q_2,q_3\in\mathbb N_0$.
+For a nonzero operator $P$, let $\nu(P)$ be the largest
+weighted degree of its nonzero terms in normal form,
+and set $\nu(0)=-\infty$.
+The product rule gives, for operators $P$ polynomial in
+$x_3$ and integers $s\ge0$,
+\begin{align*}
+\nu([\tfrac12\Delta-f_3\partial_3,P])
+&\le\nu(P)+1,\\
+\nu([x_3^s\partial_3,P])
+&\le\nu(P)+s-1,\\
+\nu([x_3^s,P])
+&\le\nu(P)+s-3,\\
+\nu([-b_0x_1\partial_2+V_0+x_3V_1,P])
+&\le\nu(P).
+\end{align*}
+Consider
+\[
+S_n=(\operatorname{ad}_{\widetilde L_0})^n(\partial_1)
+\in\widetilde E.
+\]
+Their coefficients are polynomial in $x_3$. Their real span
+is finite-dimensional, so a finite basis gives a common
+upper bound for $\nu(S_n)$.
+
+Suppose $d\ge3$, and write
+$\varepsilon(x_3)=a x_3^d+\cdots$, where $a\ne0$.
+Since $\deg r\le d$, only $-a x_3^d\partial_3$ can increase
+weighted-degree by $d-1$. Direct calculation gives
+\[
+S_1=k_1x_1\partial_3+\text{terms of weighted-degree at most }1
+\]
+and iteratively,
+\[
+[-a x_3^d\partial_3,x_1x_3^q\partial_3]
+=a(d-q)x_1x_3^{q+d-1}\partial_3.
+\]
+Thus the highest-weighted-degree term of $S_{n+1}$ is
+\[
+k_1a^n\prod_{j=0}^{n-1}\bigl(d-j(d-1)\bigr)
+x_1x_3^{n(d-1)}\partial_3.
+\]
+Every factor is nonzero because $d/(d-1)$ is not an integer
+when $d\ge3$. Its weighted-degree is $n(d-1)+2$, contradicting
+the common upper bound. Hence $d\le2$.
+
+\medskip
+\noindent\emph{Step 4: Exclude $d\le2$ using the Wronskian lemma.}
+
+Let $a$ be the coefficient of $x_3^2$ in $\varepsilon$.
+The preceding bounds give $\nu(S_n)\le n+1$.
+For $b(x_1,x_3)\partial_1^i\partial_3^j$ homogeneous of
+weighted-degree $n+1$, direct calculation gives
+\begin{align*}
+[\widetilde L_0,b\partial_1^i\partial_3^j]
+&=(\partial_1b)\partial_1^{i+1}\partial_3^j
++(\partial_3b)\partial_1^i\partial_3^{j+1}\\
+&\quad
++i k_1x_1b\partial_1^{i-1}\partial_3^{j+1}
++a(2jx_3b-x_3^2\partial_3b)\partial_1^i\partial_3^j\\
+&\quad+\text{terms of weighted-degree at most }n+1.
+\end{align*}
+The term multiplied by $i$ is omitted when $i=0$.
+The nonzero displayed terms have weighted-degree $n+2$ and involve
+neither $x_2$ nor $\partial_2$.
+
+Starting from $S_0=\partial_1$, the preceding commutator
+calculation shows inductively that the terms of weighted
+degree $n+1$ in $S_n$ have polynomial coefficients in
+$x_1,x_3$ and involve only $\partial_1,\partial_3$.
+Write
+\[
+S_n=\sum_{i,j\ge0}
+b_{ij}^{(n)}(x_1,x_3)\partial_1^i\partial_3^j
++\text{terms of weighted degree at most }n,
+\]
+where the displayed sum consists of the terms of weighted
+degree $n+1$. Introduce independent variables $\xi,\zeta$
+and define
+\[
+q_n(x_1,x_3,\xi,\zeta)
+=\sum_{i,j\ge0}b_{ij}^{(n)}(x_1,x_3)\xi^i\zeta^j.
+\]
+Thus $q_n=0$ if and only if the weighted-degree-$(n+1)$
+terms of $S_n$ vanish.
+
+For a single term $b\partial_1^i\partial_3^j$,
+the terms of weighted-degree $n+2$ in its commutator
+with $\widetilde L_0$ are recorded by
+\[
+\begin{aligned}
+&(\partial_1b)\xi^{i+1}\zeta^j
++(\partial_3b)\xi^i\zeta^{j+1}
++i k_1x_1b\xi^{i-1}\zeta^{j+1}
++a\bigl(2j x_3b-x_3^2\partial_3b\bigr)\xi^i\zeta^j.
+\end{aligned}
+\]
+Here the term multiplied by $i$ is omitted when $i=0$.
+Summing over $i,j$ gives
+\[
+\begin{aligned}
+q_0&=\xi,\\
+q_{n+1}
+&=\xi\partial_{x_1}q_n
++(\zeta-a x_3^2)\partial_{x_3}q_n
++k_1x_1\zeta\partial_\xi q_n
++2a x_3\zeta\partial_\zeta q_n.
+\end{aligned}
+\]
+Terms of weighted degree at most $n$ in $S_n$ cannot
+contribute to this formula, since commutation with
+$\widetilde L_0$ increases weighted degree by at most one.
+
+To interpret this recurrence, consider the auxiliary system
+\[
+\dot x_1=\xi,\qquad
+\dot x_3=\zeta-a x_3^2,\qquad
+\dot\xi=k_1x_1\zeta,\qquad
+\dot\zeta=2a x_3\zeta.
+\]
+Its right-hand sides are precisely the four coefficients
+in the recurrence. Along any local solution, the chain rule gives
+\[
+\begin{aligned}
+\frac{d}{d\tau}
+q_n(x_1(\tau),x_3(\tau),\xi(\tau),\zeta(\tau))
+&=\dot x_1\partial_{x_1}q_n
++\dot x_3\partial_{x_3}q_n
++\dot\xi\partial_\xi q_n
++\dot\zeta\partial_\zeta q_n\\
+&=q_{n+1}(x_1(\tau),x_3(\tau),\xi(\tau),\zeta(\tau)),
+\end{aligned}
+\]
+where the partial derivatives are evaluated along the solution.
+Since $q_0=\xi$, induction yields
+\[
+q_n(x_1(\tau),x_3(\tau),\xi(\tau),\zeta(\tau))
+=\frac{d^n\xi}{d\tau^n}(\tau).
+\]
+
+Suppose now that $q_N=0$ as a polynomial for some $N\ge1$.
+Then $\xi^{(N)}=0$ along every local solution.
+Consequently, $\xi(\tau)$ is polynomial in $\tau$,
+and so is $x_1(\tau)$ because $\dot x_1=\xi$.
+
+The equations for $x_3,\zeta$ are independent of $x_1,\xi$.
+Fix $x_3(0)=0$ and $\zeta(0)=1$.
+By uniqueness, the two solutions with
+\[
+(x_1(0),\xi(0))=(1,0)
+\qquad\text{and}\qquad
+(x_1(0),\xi(0))=(0,1)
+\]
+have the same functions $x_3(\tau),\zeta(\tau)$.
+Their $x_1$ components therefore give polynomial solutions
+$p,q$ of the same equation
+\[
+u''=k_1\zeta(\tau)u,
+\]
+with
+\(
+p(0)=1,p'(0)=0,
+q(0)=0,q'(0)=1.
+\)
+Their Wronskian has derivative zero and initial value one,
+so $pq'-p'q=1$ on a common interval, hence as a polynomial
+identity. Lemma~\ref{lem:constant-wronskian} implies that
+their span contains the constant function $1$.
+Substitution into the equation gives $k_1\zeta(\tau)=0$,
+contrary to $k_1\ne0$ and $\zeta(0)=1$.
+
+Therefore $q_n\ne0$ for every $n$, and
+$\nu(S_n)=n+1$, again contradicting the common upper bound.
+The assumed nonzero coefficient matrix is therefore impossible,
+and $k_1=k_2=h_2=0$ in the original coordinates.
+\end{proof}
+
+
+
+
+
+
+Combining the proofs of
+\begin{enumerate}
+    \item $b_1 = b_2 = 0$, i.e., $\omega_{12}$ is constant,
+    \item $k_3 = h_3 = 0$, i.e., $\omega_{13}$ and $\omega_{23}$ are independent with $x_3$,
+    \item $k_1=k_2=h_1=h_2 = 0$,i.e., $\omega_{13}$ and $\omega_{23}$ are constants,
+\end{enumerate}
+we then finish the establishment of the main theorem~\ref{thm:main}.
+\appendix
+\section{Proof of the Kernel of Euler Operator}\label{app:euler}
+\begin{lemma}[Global smooth Euler equation]\label{lem:global-smooth-euler}
+Let $Q\in\mathbb C[s]\setminus\{0\}$ and let $A=t\partial_t$. Then
+\[
+ \ker_{C^\infty(\mathbb R;\mathbb C)}Q(A)
+ =\operatorname{span}_{\mathbb C}
+   \{t^n:n\in\mathbb N_0,\ Q(n)=0\}.
+\]
+In particular, every globally smooth solution of a nonzero polynomial Euler equation is a
+finite polynomial.
+\end{lemma}
+
+\begin{proof}
+If $Q$ is a nonzero constant, both sides of the asserted identity are zero.
+Assume henceforth that $N:=\deg Q\ge1$.
+For $u\in C^\infty(\mathbb R;\mathbb C)$ and every $n\in\mathbb N_0$, the Leibniz rule gives
+\[
+ \bigl(Q(A)u\bigr)^{(n)}(0)=Q(n)u^{(n)}(0).
+\]
+Suppose that $Q(A)u=0$, and set
+\[
+ S=\{n\in\mathbb N_0:Q(n)=0\},
+ \qquad
+ p(t)=\sum_{n\in S}\frac{u^{(n)}(0)}{n!}t^n.
+\]
+The set $S$ is finite, $Q(A)p=0$, and $v=u-p$ satisfies $Q(A)v=0$ and is
+flat at $t=0$.
+
+We now rigorously exclude nonzero flat solutions. On $t>0$, set $t=e^s$
+and $V_+(s)=v(e^s)$; on $t<0$, set $t=-e^s$ and
+$V_-(s)=v(-e^s)$. On both half-lines, $A=\partial_s$, and hence
+\[
+ Q(\partial_s)V_\pm=0.
+\]
+For either choice of sign, put
+\[
+W_\pm(s)=\bigl(V_\pm(s),V_\pm'(s),\ldots,V_\pm^{(N-1)}(s)\bigr)^T.
+\]
+After dividing the equation by the nonzero leading coefficient of $Q$,
+there is a constant complex companion matrix $M$ such that
+$W_\pm'=MW_\pm$. Flatness of $v$ and the chain rule imply
+\[
+\|W_\pm(s)\|=o(e^{Ls})\qquad(s\to-\infty)
+\quad\hbox{for every }L>0.
+\]
+Choose a Euclidean norm on $\mathbb C^N$ and its induced matrix norm.
+Fix $s_0\in\mathbb R$. Uniqueness for this constant-coefficient system gives,
+for $s\le s_0$,
+\[
+W_\pm(s_0)=e^{(s_0-s)M}W_\pm(s),
+\qquad
+\|W_\pm(s_0)\|
+\le e^{(s_0-s)\|M\|}\|W_\pm(s)\|.
+\]
+Choose $L>\|M\|$ and let $s\to-\infty$. The right-hand side tends to zero,
+so $W_\pm(s_0)=0$. Since $s_0$ was arbitrary, $V_+=V_-=0$.
+Consequently $v=0$ on both half-lines and at the origin, proving the claim.
+\end{proof}
+
+
+\end{revision}
+
+\bibliographystyle{plainnat}
+\bibliography{ref}
+
+\end{document}
