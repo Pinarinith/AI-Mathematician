@@ -320,7 +320,7 @@ $\partial_3\omega_{12}=0$, $\partial_2\omega_{13}=k_2$ and
 $\partial_1\omega_{23}=h_1$, so the identity reads $-k_2+h_1=0$.
 \end{proof}
 
-\begin{lemma}[Gauge conjugation, see~Lemma 3.1 of~\citet{Shi2017Finite}]\label{prop:gauge}
+\begin{lemma}[Gauge conjugation]\label{prop:gauge}
 Let $\Lambda\in C^\infty(\mathbb R^3;\mathbb R)$. The map
 \(
 \mathcal G_\Lambda(P)=e^\Lambda P e^{-\Lambda}
@@ -333,6 +333,21 @@ E_\Lambda:=\mathcal G_\Lambda(E)
 \)
 is isomorphic to $E$.
 \end{lemma}
+
+\begin{proof}
+Conjugation by the invertible operator $e^\Lambda$ is an algebra
+automorphism, with inverse $\mathcal G_{-\Lambda}$, hence preserves the
+commutator and so is a Lie algebra automorphism. If $u$ denotes
+multiplication by a smooth function, then $e^\Lambda u e^{-\Lambda}=u$,
+so multiplication operators are fixed. For the covariant derivative,
+$e^\Lambda D_i e^{-\Lambda}=D_i+\partial_i\Lambda$, which is again a
+first-order operator; conjugating the Leibniz expansion of a general
+$P$ shows that the principal symbol is unchanged, so the differential
+order is preserved. Finally, replacing $f$ by $f-\nabla\Lambda$ leaves
+$\omega_{ij}=\partial_if_j-\partial_jf_i$ unchanged, since
+$\partial_i\partial_j\Lambda-\partial_j\partial_i\Lambda=0$. Hence
+$E_\Lambda\cong E$.
+\end{proof}
 
 \begin{lemma}\label{lem:polynomial-drift}
 Let $f\in C^\infty(\mathbb R^3;\mathbb R^3)$, then there exists
