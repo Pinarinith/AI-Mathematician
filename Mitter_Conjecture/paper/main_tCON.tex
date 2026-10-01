@@ -112,7 +112,7 @@ dimensionality. Consequently, the drift admits a Yau-type representation
 as the sum of an affine vector field and the gradient of a smooth
 function. This gives a further structural resolution of Mitter's conjecture in this setting.\footnote{The main theorem was basically proved by AI Mathematician~\citep{liu2026aim}, a mathematical proving agent,
 and its proof was formally verified in Lean, which is publicly
-available at \url{https://github.com/Pinarinith/AI-Mathematician/tree/main/Mitter_Conjecture/lean}. The author takes full responsibility for
+available at \url{https://github.com/Pinarinith/AI-Mathematician/tree/main/Mitter_Conjecture/lean/verification/mitter-main}. The author takes full responsibility for
 the correctness of the proof and the entire content of this paper.}
 \end{abstract}
 
@@ -164,7 +164,7 @@ namely that every function element of the estimation algebra is affine
 provide a key foundation for our proof, we have also formalized
 and verified these results in Lean, within the same verification
 package as our main theorem; see
-\url{https://github.com/Pinarinith/AI-Mathematician/tree/main/Mitter_Conjecture/lean}.}. More recent work has substantially extended this
+\url{https://github.com/Pinarinith/AI-Mathematician/tree/main/Mitter_Conjecture/lean/verification/shi-yau-2020}.}. More recent work has substantially extended this
 picture. Jiao and Yau studied the exact subclass, in which the drift is
 a gradient and the Wong matrix vanishes, combining structure results
 in state dimension three and rank two with Riccati and Schr\"odinger
@@ -285,18 +285,29 @@ the one-variable Euler operator is $t\partial_t$.
 From now on, we consider the finite-dimensional algebra with state dimension $n = 3$ and linear rank 2. We choose orthonormal coordinates so that there exist $c_i$ such that $x_1 + c_i \in E$, and for any constant $c$, $x_3 + c \notin E$.
 We recall the known results and methodologies needed in the proof.
 
-\begin{theorem}[Ocone \citep{Ocone1981Finite}]\label{thm:ocone}
+\begin{theorem}[See~\citep{Ocone1981Finite}]\label{thm:ocone}
 If $E$ is a finite-dimensional estimation algebra and a multiplication
 operator $u$ belongs to $E$, then $u$ is a polynomial of degree at most two.
 \end{theorem}
-\begin{theorem}[See~\citet{Yau2005Classification,Wu2006Classification}]\label{thm:top-coeff}
+\begin{lemma}[See~\citet{Yau2005Classification,Wu2006Classification}]\label{lem:bianchi}
+The elements of the Wong matrix satisfy:
+\begin{equation}
+\partial_3\omega_{12}-\partial_2\omega_{13}+\partial_1\omega_{23}=0.
+\label{eq:Bianchi}
+\end{equation}
+For the affine Wong matrix, $\partial_3\omega_{12}=0$,
+$\partial_2\omega_{13}=k_2$, and $\partial_1\omega_{23}=h_1$.
+Consequently $h_1=k_2$.
+\end{lemma}
+
+\begin{theorem}[See~\citep{Shi2017Finite}]\label{thm:top-coeff}
 Let $E$ be a finite-dimensional estimation algebra. If $P\in E$ has
 positive differential order $r$, every coefficient of its ordinary
 principal symbol $\sigma_r(P)$ is polynomial in the state variables.
 Equivalently, its highest-order $D$-normal coefficients are polynomials.
 \end{theorem}
 
-\begin{theorem}[See~Theorems 3.4 and 3.10 of~\citet{Shi2017Finite}]\label{thm:shi-yau-affine}
+\begin{theorem}[See~\citep{Shi2017Finite}]\label{thm:shi-yau-affine}
 Suppose that $E$ is finite-dimensional, the state dimension is three,
 and the rank is two, then
 \begin{align}
@@ -307,20 +318,7 @@ and the rank is two, then
 where all coefficients are real constants.
 \end{theorem}
 
-\begin{theorem}\label{thm:bianchi-affine}
-For the affine Wong matrix of Theorem~\ref{thm:shi-yau-affine}, $h_1=k_2$.
-\end{theorem}
-
-\begin{proof}
-Since $\omega_{ij}=\partial_if_j-\partial_jf_i$, the Bianchi identity
-$\partial_3\omega_{12}-\partial_2\omega_{13}+\partial_1\omega_{23}=0$ holds
-by equality of mixed partials. Substituting the affine expressions of
-Theorem~\ref{thm:shi-yau-affine} gives
-$\partial_3\omega_{12}=0$, $\partial_2\omega_{13}=k_2$ and
-$\partial_1\omega_{23}=h_1$, so the identity reads $-k_2+h_1=0$.
-\end{proof}
-
-\begin{lemma}[Gauge conjugation]\label{prop:gauge}
+\begin{lemma}[See~\citep{Shi2017Finite}]\label{prop:gauge}
 Let $\Lambda\in C^\infty(\mathbb R^3;\mathbb R)$. The map
 \(
 \mathcal G_\Lambda(P)=e^\Lambda P e^{-\Lambda}
@@ -333,21 +331,6 @@ E_\Lambda:=\mathcal G_\Lambda(E)
 \)
 is isomorphic to $E$.
 \end{lemma}
-
-\begin{proof}
-Conjugation by the invertible operator $e^\Lambda$ is an algebra
-automorphism, with inverse $\mathcal G_{-\Lambda}$, hence preserves the
-commutator and so is a Lie algebra automorphism. If $u$ denotes
-multiplication by a smooth function, then $e^\Lambda u e^{-\Lambda}=u$,
-so multiplication operators are fixed. For the covariant derivative,
-$e^\Lambda D_i e^{-\Lambda}=D_i+\partial_i\Lambda$, which is again a
-first-order operator; conjugating the Leibniz expansion of a general
-$P$ shows that the principal symbol is unchanged, so the differential
-order is preserved. Finally, replacing $f$ by $f-\nabla\Lambda$ leaves
-$\omega_{ij}=\partial_if_j-\partial_jf_i$ unchanged, since
-$\partial_i\partial_j\Lambda-\partial_j\partial_i\Lambda=0$. Hence
-$E_\Lambda\cong E$.
-\end{proof}
 
 \begin{lemma}\label{lem:polynomial-drift}
 Let $f\in C^\infty(\mathbb R^3;\mathbb R^3)$, then there exists
@@ -390,7 +373,7 @@ e^\Lambda D_i e^{-\Lambda}
 \end{proof}
 
 
-\begin{lemma}[\citep{Wu2006Classification}]\label{lem:operator-products-symbols}
+\begin{lemma}[See~\citep{Wu2006Classification}]\label{lem:operator-products-symbols}
 Let $g,h\in C^\infty(\mathbb R^n)$ and
 $\alpha,\beta\in\mathbb N_0^n$, put $r=|\alpha|$ and $s=|\beta|$. If $r+s\geq2$, then
 \[
@@ -408,7 +391,7 @@ D^{\alpha+\beta-e_\ell}
 where $e_\ell$ is the $\ell$th standard multi-index.
 \end{lemma}
 
-\begin{lemma}[\citep{Yau1994FiniteDimensional,Chiou1994FiniteDimensional}]\label{lem:commutator-identities}
+\begin{lemma}[See~\citep{Yau1994FiniteDimensional,Chiou1994FiniteDimensional}]\label{lem:commutator-identities}
 Let $E$ be an estimation algebra, let $X,Y,Z\in E$, and let
 $g,h\in C^\infty(\mathbb R^n)$. With the notation above, the
 following identities hold for $1\leq i,j,k\leq n$:
@@ -511,7 +494,7 @@ where $\omega_{ji}=[D_i,D_j]$.
 g\frac{\partial h}{\partial x_j}D_iD_k
 +g\frac{\partial h}{\partial x_i}D_jD_k
 -h\frac{\partial g}{\partial x_k}D_iD_j\\
-&\quad
+&
 +gh\omega_{kj}D_i
 +gh\omega_{ki}D_j
 +g\frac{\partial^2h}{\partial x_i\partial x_j}D_k
@@ -998,7 +981,7 @@ $\pi_w\in\mathbb R[s]$ satisfying
 \begin{aligned}
 \pi_w(s)&\equiv1\pmod{(s-w)^3},\\
 \pi_w(s)&\equiv0\pmod{(s-v)^3}
-\qquad\text{for every other finitely occurring weight }v.
+\qquad\text{for other occurring weight }v.
 \end{aligned}
 \]
 The preceding annihilation identities therefore imply
@@ -1194,18 +1177,19 @@ Their Wronskian is a nonzero constant, so
 Lemma~\ref{lem:constant-wronskian} would force their span to
 contain a nonzero constant solution, contradicting $k_1\ne0$.
 Thus the highest-weight terms never vanish, and the weighted-degrees
-again grow without bound, deriving contradictions.
+again grow without bound, deriving contradictions. Now we begin the detailed proof.
 
 \begin{proof}
 By Theorems~\ref{thm:w12-constant} and~\ref{thm:sector-I-smooth},
-$\omega_{12}=b_0$ and $k_3=h_3=0$. By Theorem~\ref{thm:bianchi-affine} we have $h_1 = k_2$, so it suffices to exclude the case
+$\omega_{12}=b_0$ and $k_3=h_3=0$. By Lemma~\ref{lem:bianchi} we have $h_1 = k_2$,
+suppose that the symmetry matrix
 \[
 \begin{pmatrix}k_1&k_2\\k_2&h_2\end{pmatrix}\ne0.
 \]
-We argue by contradiction. An orthogonal change of $(x_1,x_2)$
-diagonalizes the matrix above. Choose a nonzero eigenvalue as the first
-diagonal entry and translate $x_1$ to remove the constant term in
-$\omega_{13}$. After renaming the coordinates and coefficients, we have
+Then an orthogonal change of $(x_1,x_2)$ diagonalizes this matrix.
+Choose a nonzero eigenvalue as the first diagonal entry and
+translate $x_1$ to remove the constant term in $\omega_{13}$.
+After renaming the coordinates and coefficients, we have
 \[
 k_1\ne0,\qquad k_2=k_0=0,\qquad
 \omega_{13}=k_1x_1,\qquad \omega_{23}=h_2x_2+h_0.
@@ -1573,11 +1557,7 @@ The assumed nonzero coefficient matrix is therefore impossible,
 and $k_1=k_2=h_2=0$ in the original coordinates.
 \end{proof}
 
-
-
-
-
-
+We can know derive the proof of the main theorem~\ref{thm:main} as the conclusion of above establishments.
 \begin{proof}[Proof of Theorem~\ref{thm:main}]
 By Theorem~\ref{thm:shi-yau-affine}, the Wong matrix is affine, so it
 suffices to show that every one of its coefficients vanishes. This is
@@ -1585,11 +1565,15 @@ done in three steps.
 \begin{enumerate}
     \item Theorem~\ref{thm:w12-constant} gives $b_1=b_2=0$, i.e., $\omega_{12}=b_0$ is constant.
     \item Theorem~\ref{thm:sector-I-smooth} gives $k_3=h_3=0$, i.e., $\omega_{13}$ and $\omega_{23}$ are independent of $x_3$.
-    \item Theorem~\ref{thm:remaining-visible} gives $k_1=k_2=h_2=0$, and Theorem~\ref{thm:bianchi-affine} gives $h_1=k_2=0$; hence $\omega_{13}$ and $\omega_{23}$ are constant.
+    \item Theorem~\ref{thm:remaining-visible} gives $k_1=k_2=h_1 =h_2=0$, hence $\omega_{13}$ and $\omega_{23}$ are constant.
 \end{enumerate}
 All coefficients of the affine Wong matrix have been eliminated, so
 $\Omega$ is constant.
 \end{proof}
+
+
+
+
 \appendix
 \section{Proof of the Kernel of Euler Operator}\label{app:euler}
 \begin{lemma}[Global smooth Euler equation]\label{lem:global-smooth-euler}

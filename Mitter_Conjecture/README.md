@@ -30,10 +30,21 @@ lean/
   ProofRouteAudit.lean         — expands the public statements and traces
                                  the actual proof terms (no circularity)
   verification/                — acceptance certificates and per-module logs
+    mitter-main/               — verification address for the main theorem
+    shi-yau-2020/              — verification address for the Shi–Yau 2020 result
   reports/                     — correspondence and audit reports
   lakefile.toml                — Lake build configuration
   lean-toolchain               — Lean version (leanprover/lean4:v4.35.0-rc2)
 ```
+
+The two verifications have separate addresses that share a common parent,
+`lean/verification/`:
+
+- main theorem — `lean/verification/mitter-main/`
+- Shi–Yau 2020 — `lean/verification/shi-yau-2020/`
+
+Each address carries a README stating the exact theorem it certifies, the
+module that proves it, and how to reproduce the check.
 
 The Shi–Yau 2017 and 2020 structural results are verified **within this same
 package**, not in a separate tree: their proofs share the model layer and the
