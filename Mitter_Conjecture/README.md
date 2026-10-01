@@ -15,6 +15,7 @@ paper/
   main_tCON.pdf      — compiled paper
   ref.bib            — bibliography
   tCON2e.cls         — journal class file (IEEE Trans. Control)
+  journal-version/   — standalone journal-format manuscript
 
 lean/
   Wong/                        — Lean 4 proof modules (164 files)

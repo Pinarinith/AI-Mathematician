@@ -1,0 +1,2695 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[a4paper,margin=26mm,headheight=14pt]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,bm,mathrsfs}
+\usepackage{newtxtext,newtxmath}
+\usepackage{booktabs,array,enumitem}
+\usepackage{needspace}
+\usepackage{float}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,shapes.geometric}
+\usepackage{hyperref}
+\usepackage[nameinlink,noabbrev]{cleveref}
+\newcommand{\needrev}[1]{\textcolor{brightgreen}{#1}}
+\crefname{theorem}{theorem}{theorems}
+\Crefname{theorem}{Theorem}{Theorems}
+\crefname{proposition}{proposition}{propositions}
+\Crefname{proposition}{Proposition}{Propositions}
+\crefname{lemma}{lemma}{lemmas}
+\Crefname{lemma}{Lemma}{Lemmas}
+\crefname{corollary}{corollary}{corollaries}
+\Crefname{corollary}{Corollary}{Corollaries}
+\crefname{definition}{definition}{definitions}
+\Crefname{definition}{Definition}{Definitions}
+\crefname{remark}{remark}{remarks}
+\Crefname{remark}{Remark}{Remarks}
+\crefname{equation}{equation}{equations}
+\Crefname{equation}{Equation}{Equations}
+\crefname{figure}{Figure}{Figures}
+\Crefname{figure}{Figure}{Figures}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!45!black,
+  citecolor=green!35!black,
+  urlcolor=blue!55!black,
+  pdftitle={Constancy of the Wong Matrix for Three-Dimensional Finite-Dimensional Estimation Algebras of Linear Rank Two and Quadratic Rank Zero},
+  pdfsubject={Finite-dimensional estimation algebras and the Wong matrix}
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{Three-Dimensional Rank-Two Estimation Algebras}
+\fancyhead[R]{Constancy of the Wong Matrix}
+\fancyfoot[C]{\thepage}
+
+\setlength{\parindent}{1.5em}
+\setlength{\parskip}{0.18em}
+\setlist[itemize]{leftmargin=2.2em,itemsep=0.2em,topsep=0.3em}
+\setlist[enumerate]{leftmargin=2.4em,itemsep=0.2em,topsep=0.3em}
+\allowdisplaybreaks[3]
+\numberwithin{equation}{section}
+
+\newtheoremstyle{journalplain}
+  {0.75em}{0.75em}{\itshape}{}{\bfseries}{.}{0.55em}{}
+\newtheoremstyle{journaldef}
+  {0.75em}{0.75em}{\normalfont}{}{\bfseries}{.}{0.55em}{}
+\theoremstyle{journalplain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{journaldef}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+
+\DeclareMathOperator{\ad}{ad}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\wt}{wt}
+\DeclareMathOperator{\inop}{in}
+\newcommand{\R}{\mathbb R}
+\newcommand{\C}{\mathbb C}
+\newcommand{\N}{\mathbb N}
+\newcommand{\U}{\mathcal U}
+\newcommand{\dd}{\,\mathrm d}
+\newcommand{\pd}{\partial}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\Lie}[2]{\left[#1,#2\right]}
+\newcommand{\zetaSym}{\zeta}
+
+\title{\bfseries
+Constancy of the Wong Matrix for Three-Dimensional\\
+Finite-Dimensional Estimation Algebras}
+\author{Songlin Zhou}
+\date{\today}
+
+\begin{document}
+\maketitle
+\vspace{-2.2em}
+
+\begin{abstract}
+For a three-dimensional nonlinear filtering system with smooth drift and
+observation functions and orthogonal diffusion, we prove that every
+finite-dimensional estimation algebra of linear rank two and quadratic rank
+zero has a constant Wong matrix.  The proof remains entirely in the
+$C^\infty$ category.  Starting from the published function-element theorem
+and affine-structure theorems, we first give a self-contained all-order proof
+of constancy of the visible entry $\omega_{12}$: a quotient of normally
+ordered principal symbols and triangular growth at every order exclude all
+nonzero visible slopes.  We then divide the remaining parameters into three
+mutually exclusive sectors.  When a hidden slope is nonzero, a smooth Euler
+finite-module lemma shows that the normally ordered coefficients of a
+finite-dimensional adjoint module are automatically polynomial in the hidden
+Euler variable, and that every weight component is obtained by a genuine Lie
+word projection furnished by the Chinese remainder theorem.  This yields
+$\partial_3^2$ and then a strictly increasing differential-order Lie ladder.
+When the hidden slopes vanish but the visible-slope matrix is nonzero, a
+rigidity theorem for the potential followed by a weighted associated-graded
+argument excludes hidden profiles of every degree.  The argument covers the
+rank-one boundary, arbitrary constant tails, and every zero-parameter branch;
+it uses neither analyticity, a maximal-rank hypothesis, nor extrapolation from
+finitely many orders.
+\end{abstract}
+
+\medskip
+\noindent\textbf{Keywords:}
+Nonlinear filtering; finite-dimensional estimation algebra; Wong matrix;
+non-maximal rank; Euler operator.
+
+\smallskip
+\noindent\textbf{2020 Mathematics Subject Classification:}
+17B66, 93E11, 35K15.
+
+
+This paper settles the remaining quadratic-rank-zero branch of the original
+classification. The precise result is as follows.
+
+\begin{samepage}
+\begin{theorem}[Main theorem]\label{thm:main}
+Consider
+\begin{align}
+\dd x(t)&=f(x(t))\,\dd t+g(x(t))\,\dd v(t),
+       &&x(t)\in\R^3,\label{eq:filter-x}\\
+\dd y(t)&=h(x(t))\,\dd t+\dd w(t),\label{eq:filter-y}
+\end{align}
+where $f\in C^\infty(\R^3;\R^3)$,
+$h\in C^\infty(\R^3;\R^m)$, and $g\colon\R^3\to O(3)$.  Suppose that the
+associated estimation algebra $E$ is finite-dimensional, the state dimension
+is three, the linear rank is two, and the quadratic rank is zero.  Then its
+Wong matrix $\Omega$ is constant.
+
+More explicitly, in the affine normal form used below,
+\begin{align}
+\omega_{12}&=b_1x_1+b_2x_2+b_0,\label{eq:affine-w12-general}\\
+\omega_{13}&=k_1x_1+k_2x_2+k_3x_3+k_0,\label{eq:affine-w13}\\
+\omega_{23}&=h_1x_1+h_2x_2+h_3x_3+h_0,\label{eq:affine-w23}
+\end{align}
+one necessarily has
+\[
+b_1=b_2=k_1=k_2=k_3 = h_1 =h_2=h_3=0.
+\]
+Consequently,
+\[
+\Omega=
+\begin{pmatrix}
+0&b_0&k_0\\
+-b_0&0&h_0\\
+-k_0&-h_0&0
+\end{pmatrix}.
+\]
+\end{theorem}
+\end{samepage}
+
+
+\section{Notations and Prelimiries}
+
+\subsection{Notations}
+
+To avoid confusion with the affine Wong coefficients
+$h_0,h_1,h_2,h_3$ below, write the components of the observation map as
+$h=(q_1,\ldots,q_m)$.  Set
+\begin{equation}
+D_i=\pd_i-f_i,\qquad
+\eta=\sum_{i=1}^{3}(\pd_i f_i+f_i^2)+\sum_{j=1}^{m}q_j^2,
+\qquad
+L_0=\frac12\sum_{i=1}^{3}D_i^2-\frac12\eta .
+\label{eq:D-eta-L0}
+\end{equation}
+On expansion,
+\[
+L_0=\frac12\Delta-\sum_i f_i\pd_i-\sum_i\pd_i f_i
+       -\frac12\sum_jq_j^2.
+\]
+The estimation algebra is
+\[
+E=\operatorname{Lie}_{\R}\langle L_0,q_1,\ldots,q_m\rangle .
+\]
+Functions are identified with multiplication operators.  Following the
+definition in the literature, let
+\[
+\mathscr L(E)=E\cap\{\text{homogeneous linear polynomials}\};
+\]
+the linear rank is $\dim_\R\mathscr L(E)$.  The assertion that the quadratic
+rank is zero means here that $E$ contains no nonzero polynomial multiplication
+operator of degree exactly two.  These are precisely the two rank assumptions
+in the main theorem; they include neither maximal rank, analyticity, nor any
+additional elimination condition.  The Wong entries are defined by
+\begin{equation}
+\omega_{ij}=[D_j,D_i]=\pd_i f_j-\pd_j f_i.
+\label{eq:wong-def}
+\end{equation}
+The definitions of the estimation algebra, linear rank, and Wong matrix agree
+with Jiao~\cite[Definitions 2.3--2.5, pp.~21--22]{Jiao2022}; quadratic rank
+zero is understood according to the convention in the preceding sentence.
+
+Let $\U_r$ denote the space of smooth-coefficient differential operators of
+order at most $r$.  Normal ordering takes the form
+\[
+P=\sum_\alpha a_\alpha(x)\pd^\alpha,
+\]
+and
+\begin{equation}
+(a\pd^\alpha)(b\pd^\beta)
+=\sum_{\gamma\le\alpha}\binom{\alpha}{\gamma}
+a(\pd^\gamma b)\pd^{\alpha-\gamma+\beta}.
+\label{eq:normal-product}
+\end{equation}
+In particular,
+\begin{equation}
+[D_i,u]=\pd_i u,\qquad
+[L_0,u]=\sum_i(\pd_i u)D_i+\frac12\Delta u,
+\label{eq:function-brackets}
+\end{equation}
+and
+\begin{equation}
+[L_0,D_i]
+=\sum_j\omega_{ij}D_j
+ +\frac12\sum_j\pd_j\omega_{ij}
+ +\frac12\pd_i\eta .
+\label{eq:L0Di}
+\end{equation}
+
+
+\subsection{Prelimiries}
+
+
+Standard definitions of estimation algebras and the Wong matrix may be found in
+Ocone~\cite{Ocone1981}, Shi--Yau~\cite{ShiYau2017}, and Chapter~2 of Jiao's
+doctoral dissertation~\cite[pp.~21--26]{Jiao2022}.
+
+Shi and Yau proved that the entries of the Wong matrix of a finite-dimensional
+estimation algebra of state dimension three and linear rank two are
+polynomials of degree at most one
+\cite[Theorems 3.4 and 3.10]{ShiYau2017}.  They also proved the following theorem:
+\begin{theorem}\cite[Theorem 1.1, p.~2178]{ShiYau2020}.  
+    Let E be the finite dimensional estimation algebra of with
+state dimension 3 and rank 2. Then the $\Omega$-matrix has linear structure; i.e., all the
+$\Omega$-matrix are degree 1 polynomials.
+\end{theorem}
+Thus the genuinely unresolved case
+is precisely the branch of quadratic rank zero treated here. 
+Jiao investigated the remaining rank-two case from the viewpoint of the
+structure of the drift and the associated potential function.
+Jiao further proved that the
+potential function admits a restricted quartic form. More precisely,
+Theorem~5.4 of \cite{Jiao2022} shows that
+\[
+\eta(x)=p_4(x)+\phi(x_3),
+\]
+where
+\[
+p_4\in\mathbb R[x_1,x_2,x_3],
+\qquad
+\deg p_4\le4 .
+\]
+This implies strong algebraic restrictions on the nonlinear drift.
+
+Furthermore, Theorem~5.5 of \cite{Jiao2022} gives an equivalent
+description of the drift structure: the drift vector field can be
+decomposed as
+\[
+f=q+\nabla w,
+\]
+where \(q\) is a quadratic polynomial vector field and \(w\) is a smooth
+potential function. Thus, finite-dimensionality together with the rank
+assumption forces the drift to have a quadratic-polynomial component
+plus a gradient component.
+
+Jiao then imposed two additional assumptions: the quadratic polynomial
+drift condition and an elimination condition introduced in Chapter~5.
+Under these extra hypotheses, Theorem~5.12 of \cite{Jiao2022} proves that
+the corresponding filter is a Yau filter, which means that the Wong
+matrix is constant:
+\[
+\Omega(x)\equiv\Omega_0 .
+\]
+Therefore, Jiao's result establishes the constancy of the Wong matrix
+for a restricted subclass of the rank-two case. The purpose of the
+present work is to remove these additional assumptions and prove the
+constancy of the Wong matrix in the general quadratic-rank-zero case.
+
+
+\begin{theorem}[Ocone's function-element theorem]\label{thm:ocone}
+If $E$ is a finite-dimensional estimation algebra and a multiplication
+operator $\phi$ belongs to $E$, then $\phi$ is a polynomial of degree at most
+two.
+\end{theorem}
+
+\noindent
+This is due to Ocone~\cite{Ocone1981}; see also
+Shi--Yau~\cite[Theorem 2.7, p.~4230]{ShiYau2017} and
+Jiao~\cite[Theorem 2.4, p.~25]{Jiao2022}.
+
+\begin{theorem}[Polynomiality of highest-order coefficients]\label{thm:top-coeff}
+Let $E$ be a finite-dimensional estimation algebra.  If, for some
+$\ell\ge0$,
+\[
+A=\sum_{|\alpha|=\ell+1}a_\alpha(x)D^\alpha
+\pmod{\U_\ell}
+\]
+belongs to $E$, then every highest-order coefficient $a_\alpha$ is a
+polynomial.
+\end{theorem}
+
+\noindent
+This is the standard result restated by
+Shi--Yau~\cite[Theorem 2.9, p.~4230]{ShiYau2017}.  We apply it only to genuine
+highest-order coefficients and never use it to control the zeroth-order term
+of a first-order operator.
+
+\begin{theorem}[Shi--Yau affine structure]\label{thm:shi-yau-affine}
+Suppose that $E$ is finite-dimensional, the state dimension is three, and the
+linear rank is two.  After two independent linear functions have been
+orthonormalized to $x_1,x_2$,
+\[
+\omega_{12}\in\R[x_1,x_2],\qquad \deg\omega_{12}\le1,
+\]
+and $\omega_{13},\omega_{23}$ are affine polynomials in
+$x_1,x_2,x_3$.
+\end{theorem}
+
+\noindent
+The first assertion is~\cite[Theorem 3.4, p.~4233]{ShiYau2017}; the latter
+two are~\cite[Theorem 3.10, pp.~4243--4245]{ShiYau2017}.
+
+\begin{corollary}[The function-element space]\label{cor:function-space}
+Under the assumptions of the main theorem, an initial orthogonal change of
+coordinates can be made so that
+\begin{equation}
+E\cap C^\infty(\R^3)
+=\Span_\R\{1,x_1,x_2\}.
+\label{eq:function-space}
+\end{equation}
+Moreover, $x_1,x_2,D_1,D_2,1\in E$.
+\end{corollary}
+
+\begin{proof}
+Since the linear rank is two, choose an orthonormal basis of
+$\mathscr L(E)$ and then make a constant orthogonal change of coordinates so
+that $x_1,x_2\in E$.  Hence
+\[
+D_i=[L_0,x_i],\qquad [D_i,x_i]=1\qquad(i=1,2),
+\]
+and therefore $D_1,D_2,1\in E$.  On the other hand, by
+\cref{thm:ocone}, every function element is a polynomial of degree at most
+two, while quadratic rank zero excludes its degree-two part.  It can thus be
+written as $c+\ell$, where $c\in\R$ and $\ell$ is a homogeneous linear
+polynomial.  Since $1\in E$,
+$\ell=(c+\ell)-c\cdot1\in\mathscr L(E)$, and therefore
+$\ell\in\Span\{x_1,x_2\}$.  This proves~\eqref{eq:function-space} and the
+membership of all the listed elements.
+
+
+\subsection{Affine parameters, the Bianchi identity, and a gauge representative}
+
+By~\cref{thm:shi-yau-affine}, initially write
+\[
+\omega_{23}=h_1x_1+h_2x_2+h_3x_3+h_0.
+\]
+Here $h_0,h_1,h_2,h_3$ are real coefficients of a Wong entry; the observation
+components have uniformly been denoted by $q_j$.
+Because $\omega$ is an exterior derivative, one always has
+\begin{equation}
+\pd_3\omega_{12}-\pd_2\omega_{13}+\pd_1\omega_{23}=0.
+\label{eq:Bianchi}
+\end{equation}
+Note that  Since $\omega_{12}$ is independent of $x_3$, $\partial_3 \omega_{12} = 0, \partial_2\omega_{13} = k_2, \partial_3 \omega_{23} = h_1$. It follows that $h_1=k_2$,
+which gives~\eqref{eq:affine-w12-general}--\eqref{eq:affine-w23}.
+
+On $\R^3$, two smooth drifts with the same curl differ by a gradient.  Gauge
+conjugation
+\[
+\mathcal G_\Lambda(P)=e^\Lambda Pe^{-\Lambda}
+\]
+satisfies
+\[
+\mathcal G_\Lambda(D_i)=D_i-\pd_i\Lambda;
+\]
+it therefore adds $\nabla\Lambda$ to the drift, fixes every multiplication
+operator, and preserves Lie brackets.  We may consequently choose the
+representative
+\begin{align}
+f_1&=0,\notag\\
+f_2&=\frac{b_1}{2}x_1^2+b_2x_1x_2+b_0x_1,\label{eq:f2-general}\\
+f_3&=\frac{k_1}{2}x_1^2+k_2x_1x_2+k_3x_1x_3+k_0x_1
+ +\frac{h_2}{2}x_2^2+h_3x_2x_3+h_0x_2.
+\label{eq:f3-general}
+\end{align}
+This is also the short Poincare argument of Jiao's Theorem~5.5
+\cite[pp.~83--85]{Jiao2022}, reproduced here in full.  Gauge conjugation is
+used only as an isomorphism of Lie algebras of differential operators; we do
+not claim that the conjugated algebra is the estimation algebra of the same
+realizable filtering system.
+
+\end{proof}
+
+\begin{comment}
+\begin{lemma}[Transfer of structural input to gauge representatives]
+\label{lem:gauge-transfer}
+For a Lie algebra $E$ of smooth differential operators on $\R^3$, define
+\[
+\mathscr F(E)
+:=
+\left\{
+u\in C^\infty(\R^3):
+\text{$u$, regarded as a multiplication operator, belongs to $E$}
+\right\}.
+\]
+
+Let $E_{\rm orig}$ be the estimation algebra of the original filtering
+system, and let $E'$ be obtained from $E_{\rm orig}$ by a finite composition
+of smooth multiplication conjugations and invertible constant affine
+changes of coordinates. Then the following statements hold.
+
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item Multiplication conjugation fixes every function element pointwise,
+whereas an affine coordinate change transports function elements
+bijectively by pullback. Consequently, the identity
+\[
+\mathscr F(E_{\rm orig})
+=\Span_\R\{1,x_1,x_2\},
+\]
+linear rank two, and the absence of polynomial function elements of total
+degree exactly two transfer to the current representative.
+
+\item If $P\in E'$ has ordinary differential order
+\[
+\ord(P)=r\ge1,
+\]
+then every coefficient of its ordinary principal symbol $\sigma_r(P)$ is a
+polynomial. Equivalently, every coefficient of total $D'$-order $r$ in the
+current $D'$-normal form is a polynomial. No conclusion about lower-order
+coefficients is asserted.
+
+\item Multiplication conjugation leaves every Wong entry unchanged.
+Under an invertible constant affine coordinate change, the Wong two-form
+is transformed by an invertible constant pullback. Therefore the property
+that the Wong matrix is constant is preserved in both directions.
+\end{enumerate}
+\end{lemma}
+
+
+\begin{tcolorbox}[title={Proof of (i), Step 1: multiplication conjugation fixes function elements}]
+Let
+\[
+\mathcal G_\Lambda(P)
+:=e^\Lambda P e^{-\Lambda},
+\qquad
+\Lambda\in C^\infty(\R^3).
+\]
+For every multiplication operator $u$,
+\[
+\mathcal G_\Lambda(u)
+=e^\Lambda u e^{-\Lambda}
+=u.
+\]
+Since $\mathcal G_{-\Lambda}$ is the inverse conjugation, we have
+\[
+u\in E
+\quad\Longleftrightarrow\quad
+u\in\mathcal G_\Lambda(E).
+\]
+Hence
+\[
+\mathscr F(\mathcal G_\Lambda(E))
+=\mathscr F(E).
+\]
+Thus multiplication conjugation fixes the function-element space
+pointwise, rather than merely mapping it to an abstractly isomorphic
+vector space.
+\end{tcolorbox}
+
+\begin{tcolorbox}[title={Proof of (i), Step 2: function elements under affine pullback}]
+Let
+\[
+\Phi(y)=Ay+c,
+\qquad
+A\in{\rm GL}_3(\R).
+\]
+Define
+\[
+(U_\Phi v)(y):=v(\Phi(y)),
+\qquad
+\mathcal C_\Phi(P):=U_\Phi P U_\Phi^{-1}.
+\]
+For a multiplication operator $u$,
+\[
+\mathcal C_\Phi(u)=u\circ\Phi.
+\]
+Consequently,
+\[
+\mathscr F(\mathcal C_\Phi(E))
+=
+\{u\circ\Phi:u\in\mathscr F(E)\}.
+\]
+
+Let $p$ be a nonzero polynomial of total degree $d$, and write
+\[
+p=p_d+p_{d-1}+\cdots+p_0,
+\]
+where $p_j$ is homogeneous of degree $j$ and $p_d\neq0$. The highest
+homogeneous part of $p\circ\Phi$ is
+\[
+p_d(Ay).
+\]
+Since $A$ is invertible,
+\[
+p_d(Ay)\neq0.
+\]
+Therefore
+\[
+\deg(p\circ\Phi)=\deg p.
+\]
+Applying the same argument to $\Phi^{-1}$ proves that total polynomial
+degree is preserved in both directions.
+
+It follows in particular that the property
+\[
+\text{``there is no polynomial function element of total degree exactly two''}
+\]
+is invariant under invertible affine coordinate changes.
+\end{tcolorbox}
+
+\begin{tcolorbox}[title={Proof of (i), Step 3: preservation of linear rank two}]
+Suppose
+\[
+\mathscr F(E)
+=\Span_\R\{1,x_1,x_2\}.
+\]
+After the affine change $x=Ay+c$,
+\[
+\mathscr F(\mathcal C_\Phi(E))
+=
+\Span_\R
+\left\{
+1,(Ay+c)_1,(Ay+c)_2
+\right\}.
+\]
+The homogeneous linear parts of $(Ay+c)_1$ and $(Ay+c)_2$ are the first
+two row forms of $A$. They are linearly independent because $A$ is
+invertible.
+
+A translation may add constants to these linear functions. However,
+$1$ belongs to the function-element space, so those constants can be
+subtracted. After choosing two adapted homogeneous linear coordinates
+$y_1,y_2$, we again obtain
+\[
+\mathscr F(\mathcal C_\Phi(E))
+=\Span_\R\{1,y_1,y_2\}.
+\]
+Thus the linear rank remains two.
+\end{tcolorbox}
+
+
+\begin{tcolorbox}[title={Proof of (ii), Step 1: a smooth gauge preserves the ordinary principal symbol}]
+Let
+\[
+P
+=
+\sum_{|\alpha|=r}
+a_\alpha(x)\pd^\alpha
+\pmod{\U_{r-1}},
+\qquad r\ge1.
+\]
+First,
+\[
+\mathcal G_\Lambda(\pd_i)
+=e^\Lambda\pd_i e^{-\Lambda}
+=\pd_i-\pd_i\Lambda.
+\]
+The second term is an operator of order zero. Induction on $|\alpha|$
+therefore gives
+\[
+e^\Lambda\pd^\alpha e^{-\Lambda}
+=
+\pd^\alpha
+\pmod{\U_{|\alpha|-1}}.
+\]
+In particular, for $|\alpha|=r$,
+\[
+e^\Lambda\pd^\alpha e^{-\Lambda}
+=
+\pd^\alpha
+\pmod{\U_{r-1}}.
+\]
+Since every coefficient $a_\alpha$ is a multiplication operator and is
+fixed by the gauge,
+\[
+\mathcal G_\Lambda(P)
+=
+\sum_{|\alpha|=r}
+a_\alpha(x)\pd^\alpha
+\pmod{\U_{r-1}}.
+\]
+Hence
+\[
+\sigma_r(\mathcal G_\Lambda(P))
+=
+\sigma_r(P).
+\]
+Thus smooth multiplication conjugation preserves ordinary differential
+order and leaves the ordinary highest-order principal symbol unchanged.
+\end{tcolorbox}
+
+\begin{tcolorbox}[title={Proof of (ii), Step 2: affine transformation of the principal symbol}]
+Under
+\[
+x=Ay+c,
+\]
+the derivatives transform according to
+\[
+\pd_{x_i}
+=
+\sum_s(A^{-1})_{si}\pd_{y_s}.
+\]
+If
+\[
+p_r(x,\xi):=\sigma_r(P)(x,\xi),
+\]
+then the transformed principal symbol is
+\[
+\sigma_r(\mathcal C_\Phi(P))(y,\zeta)
+=
+p_r(Ay+c,A^{-T}\zeta).
+\]
+Therefore the transformed principal coefficients are constant linear
+combinations of the functions
+\[
+a_\alpha(Ay+c).
+\]
+If all $a_\alpha$ are polynomials, then all transformed coefficients are
+polynomials. Applying the inverse affine transformation proves the converse.
+Thus polynomiality of all ordinary principal coefficients is preserved in
+both directions.
+\end{tcolorbox}
+
+\begin{tcolorbox}[title={Proof of (ii), Step 3: relation between \(D\)-normal form and the ordinary symbol}]
+Let
+\[
+D_i=\pd_i-f_i.
+\]
+Since $f_i$ is a multiplication operator, $D_i-\pd_i$ has differential
+order zero. For the ordered monomial
+\[
+D^\alpha
+=
+D_1^{\alpha_1}D_2^{\alpha_2}D_3^{\alpha_3},
+\]
+induction on $|\alpha|$ gives
+\[
+D^\alpha
+=
+\pd^\alpha
+\pmod{\U_{|\alpha|-1}}.
+\]
+Consequently, if
+\[
+Q
+=
+\sum_{|\alpha|=r}
+b_\alpha(x)D^\alpha
+\pmod{\U_{r-1}},
+\]
+then
+\[
+Q
+=
+\sum_{|\alpha|=r}
+b_\alpha(x)\pd^\alpha
+\pmod{\U_{r-1}}.
+\]
+Hence
+\[
+\sigma_r(Q)(x,\xi)
+=
+\sum_{|\alpha|=r}
+b_\alpha(x)\xi^\alpha.
+\]
+Thus the highest-order $D$-normal coefficients are exactly the coefficients
+of the ordinary principal symbol. This identification does not apply to
+lower-order $D$-slots.
+\end{tcolorbox}
+
+\begin{tcolorbox}[title={Proof of (ii), Step 4: application of the highest-coefficient theorem}]
+Let $T$ denote the finite composition of the gauge conjugations and affine
+coordinate changes used to obtain $E'$ from $E_{\rm orig}$. For
+$P\in E'$, define
+\[
+P_{\rm orig}:=T^{-1}P\in E_{\rm orig}.
+\]
+The preceding steps show that
+\[
+\ord(P_{\rm orig})=\ord(P)=r.
+\]
+Write $P_{\rm orig}$ in the original $D$-normal form:
+\[
+P_{\rm orig}
+=
+\sum_{|\alpha|=r}
+b_\alpha(x)D^\alpha
+\pmod{\U_{r-1}}.
+\]
+Since $E_{\rm orig}$ is a genuine finite-dimensional estimation algebra,
+we may apply \cref{thm:top-coeff} to $P_{\rm orig}$. It follows that every
+$b_\alpha$ is a polynomial.
+
+By the preceding subproofs, gauge conjugation leaves the principal symbol
+unchanged, while an affine coordinate change preserves polynomiality of
+all principal coefficients. Therefore all coefficients of
+\[
+\sigma_r(P)
+\]
+are polynomials. Equivalently, the coefficients of total order $r$ in the
+current $D'$-normal form are polynomials.
+\end{tcolorbox}
+
+\begin{tcolorbox}[title={Proof of (iii), Step 1: the Wong entries are gauge invariant}]
+Under multiplication conjugation, the transformed drift is
+\[
+f_i^\Lambda=f_i+\pd_i\Lambda.
+\]
+Therefore
+\begin{align*}
+\omega_{ij}^\Lambda
+&=
+\pd_i f_j^\Lambda-\pd_j f_i^\Lambda\\
+&=
+\pd_i(f_j+\pd_j\Lambda)
+-\pd_j(f_i+\pd_i\Lambda)\\
+&=
+\omega_{ij}
++\pd_i\pd_j\Lambda-\pd_j\pd_i\Lambda\\
+&=
+\omega_{ij}.
+\end{align*}
+Thus multiplication conjugation fixes every Wong entry pointwise.
+In particular,
+\[
+\Omega^\Lambda=\Omega.
+\]
+Hence the statement that $\Omega$ is constant is exactly gauge invariant.
+\end{tcolorbox}
+
+\begin{tcolorbox}[title={Proof of (iii), Step 2: constancy under affine coordinates}]
+Regard the Wong matrix as the coefficient matrix of the two-form
+\[
+\mathcal W
+=
+\frac12\sum_{i,j}\omega_{ij}(x)\,
+\dd x_i\wedge\dd x_j.
+\]
+For the affine transformation
+\[
+x=\Phi(y)=Ay+c,
+\]
+its pullback is
+\[
+\Phi^\ast\mathcal W
+=
+\frac12\sum_{r,s}\omega'_{rs}(y)\,
+\dd y_r\wedge\dd y_s,
+\]
+where
+\[
+\Omega'(y)
+=
+A^T\Omega(Ay+c)A.
+\]
+If $\Omega$ is constant, then $\Omega'$ is constant. Conversely,
+\[
+\Omega(x)
+=
+A^{-T}
+\Omega'\!\left(A^{-1}(x-c)\right)
+A^{-1}.
+\]
+Thus, if $\Omega'$ is constant, then $\Omega$ is constant as well.
+Therefore Wong-matrix constancy is invariant under invertible constant
+affine coordinate changes.
+\end{tcolorbox}
+
+
+To simplify notation, the current isomorphic representative will henceforth
+still be denoted by $E$.  Whenever a published structure theorem is used, it
+is understood to be applied first to $E_{\rm orig}$ and then transferred by
+the preceding lemma; an arbitrary gauge-conjugated Lie algebra is never
+silently treated as a new filtering estimation algebra.
+
+\end{comment}
+
+\section{Proof of constancy of $\omega_{12}$}
+
+\begin{theorem}
+    By direct calculation, we have the following elementary results:
+\begin{itemize}
+\item We have
+\begin{align}
+ H_0&=[L_0,D_1]-\frac12\pd_2\omega_{12}-\frac12\pd_3\omega_{13}
+=\omega_{12}D_2+\omega_{13}D_3+\frac12\eta_1,\label{eq:H0bar}\\
+ H_1&=[L_0,D_2]-\frac12\pd_1\omega_{21}-\frac12\pd_3\omega_{23}
+=\omega_{21}D_1+\omega_{23}D_3+\frac12\eta_2.\label{eq:H1bar}
+\end{align}
+\item Set $X_1 = [L_0,H_1]$ and $X_2 = [L_0,H_2]$, we have
+\begin{align}
+ X_0&=b_1D_1D_2+b_2D_2^2+k_1D_1D_3+k_2D_2D_3+k_3D_3^2\notag\\
+&+\left(-\omega_{12}^2-\omega_{13}^2+\frac12\eta_{11}\right)D_1
++\left(-\omega_{13}\omega_{23}+\frac12\eta_{12}\right)D_2\notag\\
+&+\left(\omega_{12}\omega_{23}+\frac12\eta_{13}\right)D_3
+\pmod{\mathcal U_0},\label{eq:X0-comp}\\
+ X_1&=-b_1D_1^2-b_2D_2D_1+k_2D_1D_3+h_2D_2D_3+h_3D_3^2\notag\\
+&+\left(-\omega_{23}\omega_{13}+\frac12\eta_{12}\right)D_1
++\left(-\omega_{21}^2-\omega_{23}^2+\frac12\eta_{22}\right)D_2\notag\\
+&+\left(-\omega_{21}\omega_{31}+\frac12\eta_{23}\right)D_3
+\pmod{\mathcal U_0}.\label{eq:X1-comp}
+\end{align}
+\item Set $Y_0 = [L_0,X_0]$ and $Y_1 = [L_0,X_1]$, then $Y_0$ and $Y_1$ are second-order operators: 
+\begin{align}
+Y_0&=
+\left(-3k_1\omega_{13}-3b_1\omega_{12}+\frac12\eta_{111}\right)D_1^2\notag\\
+&+\left(b_1\omega_{12}-h_2\omega_{13}-2k_2\omega_{23}+\frac12\eta_{122}\right)D_2^2\notag\\
+&+\left(-4b_2\omega_{12}-(3k_2+h_1)\omega_{13}-2k_1\omega_{23}+\eta_{112}\right)D_1D_2\notag\\
+&+\left(h_3\omega_{12}+k_1\omega_{13}+k_2\omega_{23}+\frac12\eta_{133}\right)D_3^2\notag\\
+&+\left((h_1-k_2)\omega_{12}-4k_3\omega_{13}+2b_1\omega_{23}+\eta_{113}\right)D_1D_3\notag\\
+&+\left((h_2+k_1)\omega_{12}+(b_1-h_3)\omega_{13}
++3(b_2-k_3)\omega_{23}+\eta_{123}\right)D_2D_3
+\pmod{\mathcal U_1}.\label{eq:Y0-comp}
+\end{align}
+\begin{align}
+Y_1&=
+\left(
+b_2\omega_{12}
+-2k_2\omega_{13}
+-k_1\omega_{23}
++\frac12\eta_{112}
+\right)D_1^2\notag\\
+&+\left(
+-3b_2\omega_{12}
+-3h_2\omega_{23}
++\frac12\eta_{222}
+\right)D_2^2\notag\\
+&+\left(
+-4b_1\omega_{12}
+-2h_2\omega_{13}
+-4k_2\omega_{23}
++\eta_{122}
+\right)D_1D_2\notag\\
+&+\left(
+-k_3\omega_{12}
++k_2\omega_{13}
++h_2\omega_{23}
++\frac12\eta_{233}
+\right)D_3^2\notag\\
+&+\left(
+-2b_2\omega_{13}
+-4h_3\omega_{23}
++\eta_{223}
+\right)D_2D_3\notag\\
+&+\left(
+-(h_2+k_1)\omega_{12}
+-3(b_1+h_3)\omega_{13}
+-(b_2+k_3)\omega_{23}
++\eta_{123}
+\right)D_1D_3 \pmod{\mathcal U_1}.
+\end{align}
+\end{itemize}
+\end{theorem}
+
+\subsection{The visible second-order class and triangular growth}
+
+\begin{definition}\label{def:G}
+Let $\mathcal G$ be the set of all elements of $E$ of order at most two.  For
+$B\in\mathcal G$, write its second-order part as
+\begin{equation}
+B=a_{11}D_1^2+a_{22}D_2^2+a_{33}D_3^2+a_{12}D_1D_2
+ +a_{13}D_1D_3+a_{23}D_2D_3
+\pmod{\mathcal U_1}.
+\label{eq:G-form}
+\end{equation}
+Note that since $B\in E$,
+\[
+[[B,x_1],x_1]=2a_{11} \in E,
+\quad [[B,x_2],x_2]=2a_{22} \in E,
+\quad [[B,x_1],x_2]=a_{12} \in E.
+\]
+It follows from~\eqref{eq:function-space} that
+\[
+a_{11},a_{22},a_{12}\in\Span_\R\{1,x_1,x_2\}.
+\]
+\end{definition}
+
+
+\begin{theorem}\label{Thm3.1}
+Let \(B\in\mathcal G\), and write \(B=Q_B+R_B\pmod{\mathcal U_1}\):
+\begin{align}
+    Q_B &= a_{11}D_1^2 + a_{12}D_1D_2 + a_{22} D_2^2\\
+    R_B &= a_{33}D_3^2 + a_{13} D_1D_3 + a_{23} D_2D_3,
+\end{align}
+Then for \begin{align}
+[H_0,B]
+&=[\omega_{12}D_2,Q_B]
++[\omega_{12}D_2,R_B]
++[\omega_{13}D_3,Q_B]
++[\omega_{13}D_3,R_B]
+\pmod{\mathcal U_1}.
+\end{align}
+we have the following elementary results:
+
+(1). $[H_0,B] \in \mathcal G$;
+
+(2). All $[\omega_{12}D_2,R_B]$, $[\omega_{13}D_3,Q_B]$, and $[\omega_{13}D_3,R_B]$ contain operator $D_3$;
+
+(3). We have
+\begin{align}
+    &[\omega_{12}D_2,Q_B]
+    = (\omega_{12}\partial_2a_{22} - b_1a_{12}-2b_2a_{22})D_2^2 \\&
+    + (\omega_{12}\partial_2a_{11})D_1^2 + (\omega_{12}\partial_2a_{12} - 2b_1a_{11} - b_2a_{12})D_1D_2. \pmod{\mathcal U_1}
+\end{align}
+Similarily, $[H_1,B] \in \mathcal G$, all $[\omega_{21}D_1,R_B]$, $[\omega_{23}D_3,Q_B]$, and $[\omega_{13}D_3,Q_B]$ contain operator $D_3$, while
+\begin{align}
+&[\omega_{21}D_1,Q_B]
+=
+\left(
+-\omega_{12}\partial_1a_{11}
++2b_1a_{11}
++b_2a_{12}
+\right)D_1^2
+\\
+&-\omega_{12}\partial_1a_{22}\,D_2^2+
+\left(
+-\omega_{12}\partial_1a_{12}
++b_1a_{12}
++2b_2a_{22}
+\right)D_1D_2
+\pmod{\mathcal U_1}.
+\end{align}
+\end{theorem}
+
+\begin{tcolorbox}[
+  title={Proof of Theorem~\ref{Thm3.1}},
+  breakable
+]
+\begin{proof}
+We only prove the assertion for $H_0$. Put
+\(
+w=\omega_{12},
+u=\omega_{13}.
+\)
+Thus
+\[
+\omega_{21}=-w,
+\qquad
+\partial_1w=b_1,\qquad
+\partial_2w=b_2,\qquad
+\partial_3w=0.
+\]
+Moreover, since \(B\in\mathcal G\), Definition~\ref{def:G} gives
+\[
+a_{11},a_{12},a_{22}
+\in\operatorname{Span}_{\mathbb R}\{1,x_1,x_2\},
+\]
+and hence
+\[
+\partial_3a_{11}
+=\partial_3a_{12}
+=\partial_3a_{22}=0.
+\]
+
+\medskip
+\noindent\emph{Proof of the first assertion.}
+The order filtration satisfies
+\[
+[\mathcal U_r,\mathcal U_s]
+\subseteq\mathcal U_{r+s-1}.
+\]
+By construction, \(H_0,H_1\in E\cap\mathcal U_1\), while
+\(B\in E\cap\mathcal U_2\). Since \(E\) is a Lie algebra,
+\[
+[H_i,B]\in E\cap\mathcal U_2=\mathcal G,
+\qquad i=0,1.
+\]
+
+Furthermore, for some \(\phi_0,\phi_1\in\mathcal U_0\),
+\[
+H_0=wD_2+uD_3+\phi_0,
+\qquad
+H_1=-wD_1+vD_3+\phi_1.
+\]
+Since \(B=Q_B+R_B\pmod{\mathcal U_1}\), the filtration identities
+\[
+[\mathcal U_0,\mathcal U_2]\subseteq\mathcal U_1,
+\qquad
+[\mathcal U_1,\mathcal U_1]\subseteq\mathcal U_1
+\]
+give
+\[
+\begin{aligned}
+[H_0,B]
+&=
+[wD_2,Q_B]+[wD_2,R_B]\\
+&+[uD_3,Q_B]+[uD_3,R_B]
+\pmod{\mathcal U_1},
+\end{aligned}
+\]
+and similarly
+\[
+\begin{aligned}
+[H_1,B]
+&=
+[-wD_1,Q_B]+[-wD_1,R_B]\\
+&+[vD_3,Q_B]+[vD_3,R_B]
+\pmod{\mathcal U_1}.
+\end{aligned}
+\]
+
+\medskip
+For the remaining assertions, we use the elementary identity
+\begin{equation}\tag{*}
+\begin{aligned}
+[fD_\ell,aD_iD_j]
+=
+f(\partial_\ell a)D_iD_j
+-a(\partial_i f)D_\ell D_j
+-a(\partial_j f)D_iD_\ell
+\pmod{\mathcal U_1}.
+\end{aligned}
+\end{equation}
+
+\medskip
+\noindent\emph{Proof of the second assertion.}
+Define
+\[
+\mathcal I_3^{(2)}
+:=
+\left\{
+c_{13}D_1D_3+c_{23}D_2D_3+c_{33}D_3^2:
+c_{ij}\in C^\infty(\mathbb R^3)
+\right\}
++\mathcal U_1.
+\]
+Thus \(P\in\mathcal I_3^{(2)}\) precisely means that every monomial
+in the second-order part of \(P\) contains \(D_3\). Applying \((*)\)
+to \([wD_2,R_B]\), the only terms in which the \(D_3\)-factor could
+disappear are multiplied by \(\partial_3w=0\). Hence
+\[
+[wD_2,R_B]\in\mathcal I_3^{(2)}.
+\]
+
+For \([uD_3,Q_B]\), the transport term in \((*)\) vanishes because
+the coefficients of \(Q_B\) are independent of \(x_3\), while each
+remaining term contains \(D_3\). Therefore
+\[
+[uD_3,Q_B]\in\mathcal I_3^{(2)}.
+\]
+Finally, in \([uD_3,R_B]\), the transport term retains the original
+\(D_3\)-factor and each of the other terms introduces a \(D_3\)-factor.
+Consequently,
+\[
+[uD_3,R_B]\in\mathcal I_3^{(2)}.
+\]
+
+\medskip
+\noindent\emph{Proof of the third assertion.}
+Applying \((*)\) term by term gives
+\begin{align*}
+[wD_2,a_{11}D_1^2]
+&=
+(w\partial_2a_{11})D_1^2
+-2b_1a_{11}D_1D_2,\\
+[wD_2,a_{12}D_1D_2]
+&=
+-b_1a_{12}D_2^2
++(w\partial_2a_{12}-b_2a_{12})D_1D_2,\\
+[wD_2,a_{22}D_2^2]
+&=
+(w\partial_2a_{22}-2b_2a_{22})D_2^2
+\pmod{\mathcal U_1}.
+\end{align*}
+Adding these identities yields
+\[
+\begin{aligned}
+[wD_2,Q_B]
+\equiv{}&
+(w\partial_2a_{11})D_1^2\\
+&+(w\partial_2a_{22}-b_1a_{12}-2b_2a_{22})D_2^2\\
+&+(w\partial_2a_{12}-2b_1a_{11}-b_2a_{12})D_1D_2
+\pmod{\mathcal U_1}.
+\end{aligned}
+\]
+
+\end{proof}
+\end{tcolorbox}
+
+
+\subsection{\texorpdfstring{Classification of the $\mathcal G$ coefficients
+and final elimination of the slopes of $\omega_{12}$}
+{Classification of the G coefficients and final elimination of the slopes of omega12}}
+
+
+\begin{lemma}
+\label{lem:pure-head-Lie}
+Let \(C\in\mathcal G\).
+
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item If
+\(
+[D_1^2][C]=Ax_1+C_0,
+\)
+then \(A=0\).
+
+\item If
+\(
+[D_2^2][C]=Bx_2+C_0,
+\)
+then \(B=0\).
+\end{enumerate}
+\end{lemma}
+
+\begin{tcolorbox}[
+  enhanced,
+  breakable,
+  title={Proof of the pure-head Lie-growth lemma}
+]
+\begin{proof}
+Define
+\[
+\mathcal T_m^{(1)}
+:=
+\left\{
+\sum_{\substack{|\alpha|=m\\
+\alpha_2+\alpha_3\ge1}}
+r_\alpha(x)D^\alpha
+\right\}.
+\tag{2}
+\]
+Thus
+\(
+\mathcal U_{m-1}+\mathcal T_m^{(1)}
+\)
+contains every term of order at most \(m-1\) and every order-\(m\)
+monomial containing \(D_2\) or \(D_3\).
+
+Put
+\(
+u=Ax_1+C_0.
+\)
+Then
+\[
+\partial_1u=A,
+\qquad
+\partial_2u=\partial_3u=0.
+\tag{3}
+\]
+
+The second-order part of \(C\) has the decomposition
+\[
+C=uD_1^2+S
+\pmod{\mathcal U_1},
+\qquad
+S\in\mathcal T_2^{(1)}.
+\tag{4}
+\]
+
+Equations \((1)\)--\((4)\) give, for every \(m\ge1\),
+\[
+[\mathcal T_m^{(1)},uD_1^2]
+\subseteq
+\mathcal T_{m+1}^{(1)}+\mathcal U_m,
+\tag{5}
+\]
+\[
+[\mathcal T_m^{(1)},\mathcal T_2^{(1)}]
+\subseteq
+\mathcal T_{m+1}^{(1)}+\mathcal U_m,
+\tag{6}
+\]
+and, for every \(c\in\mathbb R\),
+\[
+[cD_1^m,\mathcal T_2^{(1)}]
+\subseteq
+\mathcal T_{m+1}^{(1)}+\mathcal U_m.
+\tag{7}
+\]
+
+Define the iteration constructure
+\[
+P_0=[L_0,C],
+\qquad
+P_{r+1}=[P_r,C],
+\tag{9}
+\]
+equations \((3)\)--\((7)\) give
+\[
+\begin{aligned}
+P_0
+&=
+\left[\frac12D_1^2,uD_1^2\right]
++R_0
+\pmod{\mathcal U_2}\\
+&=
+A D_1^3+R_0
+\pmod{\mathcal U_2},
+\qquad
+R_0\in\mathcal T_3^{(1)}.
+\end{aligned}
+\tag{11}
+\]
+
+Assume
+\[
+P_r
+=
+c_rD_1^{r+3}+R_r
+\pmod{\mathcal U_{r+2}},
+\qquad
+R_r\in\mathcal T_{r+3}^{(1)}.
+\tag{12}
+\]
+Then
+\[
+\begin{aligned}
+P_{r+1}
+={}&
+[c_rD_1^{r+3},uD_1^2]
++[c_rD_1^{r+3},S]\\
+&+[R_r,uD_1^2]
++[R_r,S]
+\pmod{\mathcal U_{r+3}}.
+\end{aligned}
+\tag{13}
+\]
+Equations \((5)\)--\((8)\) imply
+\[
+P_{r+1}
+=
+(r+3)Ac_rD_1^{r+4}
++R_{r+1}
+\pmod{\mathcal U_{r+3}},
+\tag{14}
+\]
+where
+\[
+R_{r+1}\in\mathcal T_{r+4}^{(1)}.
+\tag{15}
+\]
+Consequently,
+\[
+c_0=A,
+\qquad
+c_{r+1}=(r+3)Ac_r,
+\tag{16}
+\]
+and hence
+\[
+c_r
+=
+\frac{(r+2)!}{2}A^{r+1}.
+\tag{17}
+\]
+
+If \(A\ne0\), then the the following iterations $P_{r+1}$ have terms $D_1^{r+3}$ with nonzero coefficients, which is a contradiction to the finite-dimensionality of $E$. Therefore
+\(
+A=0.
+\)
+
+Similarily for the second assertion $B = 0$.
+\end{proof}
+\end{tcolorbox}
+
+
+
+\begin{theorem}\label{prop:G-parallel}
+If $(b_1,b_2)\ne(0,0)$, then for every $B\in\mathcal G$ there are real
+constants $\lambda,\mu,\gamma$ such that
+\begin{equation}
+a_{11}=\lambda\omega_{12}+c_1,
+\quad a_{22}=\mu\omega_{12}+c_2,
+\quad a_{12}=\gamma\omega_{12}+c_{12}.
+\label{eq:G-parallel}
+\end{equation}
+\end{theorem}
+
+\begin{tcolorbox}[
+  enhanced,
+  breakable,
+  title={Proof of Theorem~\ref{prop:G-parallel}}
+]
+\begin{proof}
+Put
+\[
+w:=\omega_{12}=b_1x_1+b_2x_2+b_0,
+\qquad
+(b_1,b_2)\ne(0,0).
+\tag{30}
+\]
+
+\emph{Step 1}: Write
+\(
+a_{11}
+=
+\alpha_1x_1+\alpha_2x_2+\alpha_0.
+\)
+For $B \in \mathcal G$, we define
+\(
+B_{11}
+:=
+[\mathsf H_0,B]-b_2B \in \mathcal G.
+\)
+Using \((35)\),
+\[
+\begin{aligned}
+[D_1^2][B_{11}]
+&=
+w\partial_2a_{11}-b_2a_{11}\\
+&=
+\alpha_2w
+-b_2(\alpha_1x_1+\alpha_2x_2+\alpha_0)\\
+&=
+(\alpha_2b_1-\alpha_1b_2)x_1
++
+(\alpha_2b_0-b_2\alpha_0).
+\end{aligned}
+\]
+Lemma~\ref{lem:pure-head-Lie}\textup{(i)} gives
+\[
+\alpha_2b_1-\alpha_1b_2=0.
+\]
+Therefore
+\(
+(\alpha_1,\alpha_2)
+=
+\lambda(b_1,b_2)
+\)
+for some \(\lambda\in\mathbb R\), and one obtains
+\[
+\begin{aligned}
+a_{11}
+&=
+\lambda b_1x_1+\lambda b_2x_2+\alpha_0\\
+&=
+\lambda w+(\alpha_0-\lambda b_0).
+\end{aligned}
+\]
+
+
+\emph{Step 2:} Write
+\(
+a_{22}
+=
+\beta_1x_1+\beta_2x_2+\beta_0.
+\)
+Define
+\(
+B_{22}
+:=
+[\mathsf H_1,B]+b_1B \in \mathcal G.
+\)
+Using \((36)\),
+\[
+\begin{aligned}
+[D_2^2][B_{22}]
+&=
+-w\partial_1a_{22}+b_1a_{22}\\
+&=
+-\beta_1w
++b_1(\beta_1x_1+\beta_2x_2+\beta_0)\\
+&=
+(b_1\beta_2-b_2\beta_1)x_2
++
+(b_1\beta_0-b_0\beta_1).
+\end{aligned}
+\]
+Lemma~\ref{lem:pure-head-Lie}\textup{(ii)} gives
+\[
+b_1\beta_2-b_2\beta_1=0.
+\]
+Therefore
+\(
+(\beta_1,\beta_2)
+=
+\mu(b_1,b_2)
+\)
+for some \(\mu\in\mathbb R\), and one obtains
+\[
+\begin{aligned}
+a_{22}
+&=
+\mu b_1x_1+\mu b_2x_2+\beta_0\\
+&=
+\mu w+(\beta_0-\mu b_0).
+\end{aligned}
+\]
+
+
+\emph{Step 3:} From \((47)\) and \((56)\),
+\[
+\partial_1a_{11}=\lambda b_1,
+\qquad
+\partial_2a_{22}=\mu b_2.
+\tag{57}
+\]
+
+If
+\(
+b_2\ne0,
+\)
+put
+\[
+C_1:=[\mathsf H_1,B]\in\mathcal G.
+\tag{59}
+\]
+Equation \((47)\), applied to \(C_1\), gives
+\[
+[D_1^2][C_1]=\Lambda w+C
+\tag{60}
+\]
+for some \(\Lambda,C\in\mathbb R\). Equations \((37)\), \((47)\), and
+\((57)\) give
+\[
+\begin{aligned}
+\Lambda w+C
+&=
+-w(\lambda b_1)
++2b_1(\lambda w+c_1)
++b_2a_{12}\\
+&=
+\lambda b_1w+2b_1c_1+b_2a_{12}.
+\end{aligned}
+\tag{61}
+\]
+Hence
+\[
+b_2a_{12}
+=
+(\Lambda-\lambda b_1)w
++
+(C-2b_1c_1),
+\tag{62}
+\]
+and therefore
+\[
+a_{12}
+=
+\frac{\Lambda-\lambda b_1}{b_2}\,w
++
+\frac{C-2b_1c_1}{b_2}.
+\tag{63}
+\]
+
+
+If
+\(
+b_1 \neq 0
+\)
+we do the same procedure and yield the same result.
+\end{proof}
+\end{tcolorbox}
+
+
+
+
+
+\begin{lemma}\label{lem:b-both}
+If $\omega_{12}$ is nonconstant, then $b_1b_2\ne 0$.
+\end{lemma}
+
+\begin{tcolorbox}[
+  title={Exclusion of the one-axis branches},
+  breakable
+]
+\begin{proof}
+Assume
+\(
+b_1=0,b_2\ne0,
+\)
+and take \(B=\mathsf Y_0\). By Theorem~\ref{prop:G-parallel} and lemma
+\(
+\mu b_2=0,
+\)
+hence \(\mu=0.\) $B$ can be formulated as:
+\begin{align}
+B
+&=
+(\lambda b_2x_2+c_1)D_1^2
++c_2D_2^2 + 
+(\gamma b_2x_2+c_{12})D_1D_2
++R_B
+\pmod{\mathcal U_1},
+\end{align}
+
+Set
+\(
+P_0=[L_0,B],
+P_{r+1}=[P_r,B],
+\)
+and define
+\(
+c_r:=[D_1^{r+1}D_2^2][P_r].
+\)
+For \(r=0\),
+\[
+\begin{aligned}
+c_0
+&=
+\partial_2a_{12}+\partial_1a_{22}\\
+&=
+\partial_2(\gamma b_2x_2+c_{12})
++\partial_1c_2\\
+&=
+\gamma b_2.
+\end{aligned}
+\]
+
+Suppose
+\[
+[D_1^{r+1}D_2^2][P_r]=c_r.
+\]
+Since
+\(
+[D_1^{r+1}D_2^2,x_2]
+=
+2D_1^{r+1}D_2,
+\)
+one has
+\[
+\begin{aligned}
+&[c_rD_1^{r+1}D_2^2,
+  \gamma b_2x_2D_1D_2]=
+2\gamma b_2c_rD_1^{r+2}D_2^2
+\pmod{\mathcal U_{r+3}}.
+\end{aligned}
+\]
+Hence
+\[
+c_{r+1}=2\gamma b_2c_r.
+\]
+
+The \(\lambda\)-term decreases the \(D_2\)-exponent, the constant terms
+produce no new highest-order term, and terms involving \(R_B\) retain a
+factor \(D_3\). Thus no other term contributes to the tracked slot.
+Therefore
+\[
+c_r
+=
+(2\gamma b_2)^rc_0
+=
+2^r(\gamma b_2)^{r+1},
+\]
+
+If \(\gamma\ne0\), then
+\(
+\operatorname{ord}(P_r)=r+3\to\infty,
+\)
+contradicting finite-dimensionality. Therefore
+\(
+\gamma=0.
+\)
+Thus the \(D_2^2\)- and \(D_1D_2\)-coefficients of \(\mathsf Y_0\) are
+constant.
+
+From
+\[
+[D_2^2][\mathsf Y_0]
+=
+-h_2\omega_{13}-2k_2\omega_{23}
++\frac12\eta_{122},
+\]
+differentiation by \(x_1\) gives
+\[
+0=-h_2k_1-2k_2h_1+\frac12\eta_{1122}.
+\]
+Using \(h_1=k_2\),
+\[
+\frac12\eta_{1122}=h_2k_1+2k_2^2.
+\]
+
+From
+\[
+[D_1D_2][\mathsf Y_0]
+=
+-4b_2\omega_{12}
+-(3k_2+h_1)\omega_{13}
+-2k_1\omega_{23}
++\eta_{112},
+\]
+differentiation by \(x_2\) gives
+\[
+0=-4b_2^2-(3k_2+h_1)k_2-2k_1h_2+\eta_{1122}.
+\]
+Again using \(h_1=k_2\),
+\[
+\eta_{1122}
+=
+4b_2^2+4k_2^2+2k_1h_2.
+\]
+
+Doubling the first identity and comparing yields
+\(
+4b_2^2=0,
+\)
+contrary to \(b_2\ne0\).
+
+The branch \(b_2=0,\ b_1\ne0\) follows similarily.
+\end{proof}
+\end{tcolorbox}
+
+
+\begin{theorem}
+\label{thm:w12-constant}
+Under the main assumptions,
+\[
+b_1=b_2=0,
+\qquad
+\omega_{12}=b_0.
+\]
+\end{theorem}
+
+\begin{tcolorbox}[
+  title={Proof of Theorem~\ref{thm:w12-constant}},
+  breakable
+]
+\begin{proof}
+Suppose, to the contrary, that \(\omega_{12}\) is nonconstant. By
+\cref{lem:b-both},
+\(
+b_1b_2\ne0.
+\)
+Let \(B\in\mathcal G\) be arbitrary. By
+\cref{prop:G-parallel}, write $\omega_{12} = w$:
+\[
+a_{11}=\lambda\omega+c_1,
+\qquad
+a_{22}=\mu\omega+c_2,
+\qquad
+a_{12}=\gamma\omega+c_{12}.
+\]
+For
+\(
+B'=[\mathsf H_0,B]-b_2B,
+\)
+\(
+[D_1^2][B']=-b_2c_1
+\)
+is a constant, hence $\lambda' = 0$.
+\[
+\partial_w\lambda=0,
+\qquad
+\partial_w\mu=-2\mu b_2-\gamma b_1,
+\qquad
+\partial_w\gamma=-2\lambda b_1-\gamma b_2.
+\]
+By lemma,
+\[
+\partial_w\mu = 0.
+\]
+If $\partial_w \gamma \neq 0$, then like above we can construct a sequence of iterations $P_r$ such that 
+\([D_1^{r+2}D_2][P_r]
+=
+b_1(\gamma')^{r+1}b_2^r,\) which is a contradiction to the finite-dimensionality. Therefore,
+\[
+2\mu b_2+\gamma b_1=0,
+\qquad
+2\lambda b_1+\gamma b_2=0.
+\]
+Since \(b_1b_2\ne0\), define
+\(
+\kappa:=\frac{\gamma}{2b_1b_2}.
+\)
+Then
+\[
+\gamma=2b_1b_2\kappa,
+\mu=-b_1^2\kappa,
+\lambda=-b_2^2\kappa.
+\]
+
+Now take \(B= Y_0\). The three visible coefficients in
+\eqref{eq:Y0-comp} give
+\begin{align}
+-3k_1\omega_{13}-3b_1\omega_{12}
++\frac12\eta_{111}
+&=\lambda\omega_{12}+c_1,
+\label{eq:rel1}\\
+b_1\omega_{12}-h_2\omega_{13}-2k_2\omega_{23}
++\frac12\eta_{122}
+&=\mu\omega_{12}+c_2,
+\label{eq:rel2}\\
+-4b_2\omega_{12}-(3k_2+h_1)\omega_{13}
+-2k_1\omega_{23}+\eta_{112}
+&=\gamma\omega_{12}+c_{12}.
+\label{eq:rel3}
+\end{align}
+Differentiate \eqref{eq:rel1} by \(\pd_2\),
+\eqref{eq:rel2} by \(\pd_1\), and \eqref{eq:rel3}
+by \(\pd_1\) and \(\pd_2\), respectively. This gives
+\begin{align}
+-3k_1k_2-3b_1b_2+\frac12\eta_{1112}
+&=-b_2^3\kappa,
+\label{eq:elim1}\\
+b_1^2-h_2k_1-2k_2h_1+\frac12\eta_{1122}
+&=-b_1^3\kappa,
+\label{eq:elim2}\\
+-4b_1b_2-(3k_2+h_1)k_1-2k_1h_1+\eta_{1112}
+&=2b_1^2b_2\kappa,
+\label{eq:elim3}\\
+-4b_2^2-(3k_2+h_1)k_2-2k_1h_2+\eta_{1122}
+&=2b_1b_2^2\kappa.
+\label{eq:elim4}
+\end{align}
+Using \(h_1=k_2\) and comparing the two pairs containing the same
+fourth-order derivatives gives
+\[
+\kappa=\frac{b_1}{b_1^2+b_2^2},
+\qquad
+\kappa=
+-\frac{b_1^2+2b_2^2}
+{b_1(b_1^2+b_2^2)}.
+\]
+Consequently,
+\(
+b_1^2+b_2^2=0,
+\)
+contradicting \(b_1b_2\ne0\). Therefore we prove
+\(
+b_1=b_2=0,
+\omega_{12}=b_0.
+\)
+\end{proof}
+\end{tcolorbox}
+
+
+\section{Proof of $k_3 = h_3 = 0$}
+\subsection{Necessary Lemmas}
+
+\begin{lemma}[Global smooth Euler equation]\label{lem:global-smooth-euler}
+Let $Q\in\mathbb C[s]\setminus\{0\}$ and let $A=t\partial_t$. Then
+\[
+ \ker_{C^\infty(\mathbb R;\mathbb C)}Q(A)
+ =\operatorname{span}_{\mathbb C}
+   \{t^n:n\in\mathbb N_0,\ Q(n)=0\}.
+\]
+In particular, every globally smooth solution of an Euler equation is a
+finite polynomial.
+\end{lemma}
+
+\begin{tcolorbox}[title={Proof of Lemma~\ref{lem:global-smooth-euler}},
+  breakable
+]
+\begin{proof}
+For $u\in C^\infty(\mathbb R;\mathbb C)$, the Leibniz rule gives
+\[
+ \bigl(Q(A)u\bigr)^{(n)}(0)=Q(n)u^{(n)}(0).
+\]
+Suppose that $Q(A)u=0$, and set
+\[
+ S=\{n\in\mathbb N_0:Q(n)=0\},
+ \qquad
+ p(t)=\sum_{n\in S}\frac{u^{(n)}(0)}{n!}t^n.
+\]
+The set $S$ is finite, $Q(A)p=0$, and $v=u-p$ satisfies $Q(A)v=0$ and is
+flat at $t=0$.
+
+We now rigorously exclude nonzero flat solutions. On $t>0$, set $t=e^s$
+and $V_+(s)=v(e^s)$; on $t<0$, set $t=-e^s$ and
+$V_-(s)=v(-e^s)$. On both half-lines, $A=\partial_s$, and hence
+\[
+ Q(\partial_s)V_\pm=0.
+\]
+By ODE theory, if the distinct complex roots of $Q$ are $\mu_j$, with multiplicities $m_j$, the solutions of this constant-coefficient equation are
+\[
+ V_\pm(s)=\sum_j e^{\mu_js}P_j^\pm(s),
+ \qquad \deg P_j^\pm<m_j.
+\]
+The function $v$ is flat at $t = 0$, and
+$v(t) = o(|t|^L)$ for any $L>0$,
+\[
+ \partial_s^kV_\pm(s)=o(e^{Ls})\qquad(s\to-\infty).
+\]
+If some $P_j^\pm\neq0$, then we can choose $L>\max_{j:P_j^\pm \neq 0}\operatorname{Re}\mu_j$ contradicts the estimate$O(e^{Ls})$. Hence $V_+=V_-=0$, and consequently $v=0$.
+\end{proof}
+\end{tcolorbox}
+
+\begin{lemma}[Finite-dimensional Euler decomposition]
+\label{lem:smooth-euler-module}
+Let $\mathfrak g$ be a finite-dimensional real Lie algebra of
+finite-order differential operators on $\mathbb R^2_y\times\mathbb R_t$,
+with globally smooth coefficients. Suppose that
+\[
+J_0=\lambda t\partial_t+r_0(y)\in\mathfrak g,
+\qquad
+\lambda\in\mathbb R\setminus\{0\},
+\qquad
+r_0\in C^\infty(\mathbb R^2).
+\]
+Every $P\in\mathfrak g$ has a unique normal form
+\[
+P=
+\sum_{\alpha\in\mathbb N_0^2,\ q\in\mathbb N_0}
+a_{\alpha q}(y,t)\,
+\partial_{y_1}^{\alpha_1}
+\partial_{y_2}^{\alpha_2}
+\partial_t^q.
+\]
+Then 
+\begin{itemize}
+\item every coefficient satisfies
+\[
+a_{\alpha q}(y,t)\in C^\infty(\mathbb R^2)[t].
+\]
+\item Write
+\[
+a_{\alpha q}(y,t)
+=
+\sum_{p\ge0}a_{\alpha qp}(y)t^p
+\]
+and define
+\[
+\operatorname{wt}
+\left(
+a_{\alpha qp}(y)t^p
+\partial_{y_1}^{\alpha_1}
+\partial_{y_2}^{\alpha_2}
+\partial_t^q
+\right)
+:=p-q.
+\]
+Then, only finitely many weights occur. If $P_w$ denotes the sum of all
+terms of $P$ having weight $w$, then there exists
+$\pi_w\in\mathbb R[s]$ such that
+\[
+P_w=\pi_w(\operatorname{ad}_{J_0})P\in\mathfrak g,
+\qquad
+\operatorname{ad}_{J_0}(P):=[J_0,P].
+\]
+Thus every weight component is obtained from actual iterated
+Lie brackets with $J_0$.
+\end{itemize}
+\end{lemma}
+
+\begin{tcolorbox}[
+  title={Proof of Lemma~\ref{lem:smooth-euler-module}},
+  breakable
+]
+Define
+\[
+T(P):=[J_0,P],
+\qquad
+D(P):=[\lambda t\partial_t,P],
+\qquad
+N(P):=[r_0(y),P].
+\]
+Thus
+\[
+T=D+N.
+\]
+Since $r_0$ is independent of $t$,
+\[
+[\lambda t\partial_t,r_0]=0.
+\]
+
+For a normal-form term
+\(
+a(y,t)\partial_y^\alpha\partial_t^q,
+\partial_y^\alpha
+=
+\partial_{y_1}^{\alpha_1}\partial_{y_2}^{\alpha_2},
+\)
+direct calculation gives
+\[
+D\left(a\partial_y^\alpha\partial_t^q\right)
+=
+\lambda(t\partial_t-q)a\,
+\partial_y^\alpha\partial_t^q
+\]
+Hence $D$ preserves the $y$-differential order, whereas every
+application of $N$ lowers it by at least one.
+
+Choose a finite basis of $\mathfrak g$. Let $K$ be the largest
+$y$-differential order appearing in that basis, then
+\[
+N^{K+1}P=0
+\qquad(P\in\mathfrak g).
+\]
+
+Because $J_0\in\mathfrak g$ and $\mathfrak g$ is a Lie algebra, $T = \operatorname{ad}_{J_0}$
+is a linear endomorphism of a finite-dimensional vector space.
+Let $\chi$ be its characteristic polynomial. By the
+Cayley--Hamilton theorem,
+\[
+\chi(T)P=0
+\qquad(P\in\mathfrak g).
+\]
+
+Since $D$ and $N$ commute by Jacobi identity, there is a polynomial $R$ in two
+commuting variables such that
+\[
+\chi(D+N)=\chi(D)+NR(D,N).
+\]
+All operators in this identity commute. Hence
+\[
+\chi(D)^{K+1}P
+=
+\bigl(\chi(T)-NR(D,N)\bigr)^{K+1}P= 0.
+\]
+Indeed, every binomial term containing $\chi(T)$ can be rearranged
+so that $\chi(T)$ acts directly on $P$ and therefore vanishes.
+The remaining term contains $N^{K+1}$ and also vanishes.
+
+Now write
+\[
+P=\sum_{\alpha,q}
+a_{\alpha q}(y,t)\partial_y^\alpha\partial_t^q.
+\]
+The operator $D$ does not mix different pairs $(\alpha,q)$.
+By uniqueness of normal form,
+\[
+\left[
+\chi\!\left(\lambda(t\partial_t-q)\right)
+\right]^{K+1}
+a_{\alpha q}(y,t)=0.
+\]
+For fixed $y$, this is an Euler equation in $t$. The global smooth
+Euler lemma therefore gives
+\[
+a_{\alpha q}(y,t)
+=
+\sum_{\substack{p\in\mathbb N_0\\
+\chi(\lambda(p-q))=0}}
+\frac{\partial_t^pa_{\alpha q}(y,0)}{p!}\,t^p \in C^\infty (\mathbb R^2)[t].
+\]
+Thus $P$ has finite sum
+\[P = \sum_{w \in \mathbb Z,\chi(\lambda w) = 0}\sum_{p - q = w} P_w,\]
+
+Note that
+\[
+D(P_w)=\lambda wP_w.
+\]
+Moreover, $N$ preserves the weight. Consequently,
+\[
+(T-\lambda w)^{K+1}P_w=N^{K+1}P_w=0.
+\]
+
+The polynomials
+\[
+(s-\lambda w)^{K+1},
+\qquad w\in \{\chi(\lambda w) = 0\},
+\]
+are pairwise coprime. By the Chinese remainder theorem, for every
+$w\in W$ there exists $\pi_w\in\mathbb R[s]$ such that
+\[
+\pi_w\equiv1\pmod{(s-\lambda w)^{K+1}},
+\]
+and
+\[
+\pi_w\equiv0\pmod{(s-\lambda v)^{K+1}}
+\qquad(v\in \{w:\chi(\lambda w) = 0\},\ v\ne w).
+\]
+It follows that
+\[
+\pi_w(T)P=P_w.
+\]
+Since $T(P)=[J_0,P]$ preserves $\mathfrak g$,
+\[
+P_w
+=
+\pi_w(\operatorname{ad}_{J_0})P
+\in\mathfrak g.
+\]
+\end{tcolorbox}
+
+
+
+
+\subsection{Proof of $k_3 = h_3 = 0$.}
+
+
+\begin{theorem}\label{thm:sector-I-smooth}
+Under the main theorem's assumptions, we have $k_3=h_3=0$.
+\end{theorem}
+
+\begin{tcolorbox}[
+  title={Proof of Theorem~\ref{thm:sector-I-smooth}},
+  breakable
+]
+Suppose $(k_3,h_3)\neq 0$.
+Define the Poincar\'e representative \(f^{\mathrm P}\) by
+\begin{align}
+f_1^{\mathrm P}&=0,\\
+f_2^{\mathrm P}&=b_0x_1,\\
+f_3^{\mathrm P}
+&=\frac{k_1}{2}x_1^2+k_2x_1x_2+k_3x_1x_3+k_0x_1
+ +\frac{h_2}{2}x_2^2+h_3x_2x_3+h_0x_2.
+\end{align}
+Direct differentiation gives that \(f^{\mathrm P}\) and \(f\) have the same Wong
+matrix. The Poincar\'e lemma gives
+\(\Phi\in C^\infty(\mathbb R^3)\) such that
+\[
+f^{\mathrm P}-f=\nabla\Phi.
+\]
+
+Define
+\[
+\mathcal G_\Phi(P):=e^\Phi Pe^{-\Phi},
+\qquad
+E^{\mathrm P}:=\mathcal G_\Phi(E),
+\]
+we have
+\[
+D_i^P
+:=\mathcal G_\Phi(D_i)
+=\partial_i-f_i^{\mathrm P}.
+\]
+Furthermore,
+\[
+L_0^{\mathrm P}
+:=\mathcal G_\Phi(L_0)
+=\frac12\sum_{i=1}^3(D_i^{\mathrm P})^2
+ -\frac12\eta.
+\]
+
+The map \(\mathcal G_\Phi\) is a Lie-algebra isomorphism. In particular,
+\(D_1^{\mathrm P},D_2^{\mathrm P},L_0^{\mathrm P}\in E^{\mathrm P}\),
+and the correspondingly transformed \(H_0^{\mathrm P},H_1^{\mathrm P}\)
+belong to \(E^{\mathrm P}\). 
+
+From now on we drop the superscript \({\mathrm P}\) and again write
+\(E,D_i,L_0,H_i,\eta\).
+
+
+Set
+\[
+\alpha=\frac{k_3k_1+h_3k_2}{\mu},
+\qquad
+\beta=\frac{k_3k_2+h_3h_2}{\mu},
+\qquad
+\delta=\frac{k_3k_0+h_3h_0}{\mu},
+\]
+and
+\[
+t:=\frac{k_3\omega_{13}+h_3\omega_{23}}{\mu}
+=x_3+\alpha x_1+\beta x_2+\delta.
+\]
+Let
+\[
+\nabla_1:=\partial_1-\alpha \partial_3,
+\qquad
+\nabla_2:=\partial_2-\beta \partial_3.
+\]
+Then
+\[
+\nabla_1t=\nabla_2t=0,
+\qquad
+[\nabla_1,\nabla_2]=[\nabla_i,\partial_3]=0.
+\]
+All normal forms and weights below are taken with respect to this commuting
+frame.
+
+The formulas for \(H_0,H_1\) give the genuine element
+\[
+\begin{aligned}
+J
+&:=
+\frac{k_3(H_0-b_0D_2)+h_3(H_1+b_0D_1)}{\mu}\\
+&=
+tD_3+\frac{k_3\eta_1+h_3\eta_2}{2\mu}+\frac12
+=t\partial_3+r(x_1,x_2,t)
+\in E
+\end{aligned}
+\]
+for some smooth function \(r\).
+Since \(r-r_0\) vanishes on \(t=0\), Hadamard's lemma gives a smooth
+function \(\Lambda\) satisfying
+\(
+\partial_3\Lambda=\frac{r-r_0}{t}.
+\)
+For
+\[
+\widehat E:=e^\Lambda Ee^{-\Lambda},
+\]
+we therefore have
+\[
+\widehat J
+=e^\Lambda Je^{-\Lambda}
+=t\partial_3+r_0(x_1,x_2).
+\]
+
+We now apply the smooth Euler finite-module lemma. Since
+\[
+\widehat D_1
+=\nabla_1+\alpha \partial_3-\partial_1\Lambda,
+\qquad
+\widehat D_2
+=\nabla_2+\beta \partial_3-b_0x_1-\partial_2\Lambda,
+\]
+the Euler finite-module lemma shows that \(\partial_1\Lambda\) and \(\partial_2\Lambda\)
+are in $C^\infty[x_1,x_2](t)$.
+Every positive-weight component of either function is a multiplication
+element of \(\widehat E\). But
+\[
+\widehat E\cap C^\infty(\mathbb R^3)
+=\Span_{\mathbb R}\{1,x_1,x_2\}
+\]
+has only weight zero. Hence \(\partial_1\Lambda\) and
+\(\partial_2\Lambda\) are independent of \(t\). Consequently,
+\[
+\partial_i(\partial_3\Lambda)=\partial_3(\partial_i\Lambda)=0,
+\qquad i=1,2,
+\]
+and therefore
+\[
+\partial_3\Lambda=\rho(x_3)
+\]
+for some \(\rho\in C^\infty(\mathbb R)\).
+
+The Poincar\'e formula for \(f_3\), after substituting
+\(
+x_3=t-\alpha x_1-\beta x_2-\delta,
+\)
+has the form
+\[
+f_3=(k_3x_1+h_3x_2)t+F_0(x_1,x_2).
+\]
+Direct normal ordering of \(\widehat L_0\) now gives
+\begin{align}
+\widehat L_0
+&=
+\frac12\Bigl(
+(\nabla_1+\alpha \partial_3)^2
++(\nabla_2+\beta \partial_3)^2
++\partial_3^2
+\Bigr)\notag\\
+&+a_1(x_1,x_2)\nabla_1+a_2(x_1,x_2)\nabla_2\notag\\
+&-\Bigl[
+(k_3x_1+h_3x_2)t
++\rho(t-\alpha x_1-\beta x_2-\delta)
++b(x_1,x_2)
+\Bigr]\partial_3\notag\\
+&+u(x_1,x_2,t),
+\label{eq:Lhat-short}
+\end{align}
+for some smooth \(a_1,a_2,b,u\).
+
+A second application of the Euler finite-module lemma shows that every
+coefficient in \eqref{eq:Lhat-short} is polynomial in \(t\). In particular,
+setting \(x_1=x_2=0\) in the coefficient of \(\partial_3\) gives
+\[
+\rho(t-\delta)+b(0,0)\in\mathbb R[t].
+\]
+Thus \(\rho\) is a one-variable polynomial.
+
+The second-order part of \(\widehat L_0\) is
+\[
+\frac12\nabla_1^2+\frac12\nabla_2^2
++\alpha\nabla_1\partial_3+\beta\nabla_2\partial_3
++\frac{1+\alpha^2+\beta^2}{2}\partial_3^2.
+\]
+Its weights are \(0,0,-1,-1,-2\), respectively. Every first-order term
+in \eqref{eq:Lhat-short} has weight no smaller than \(-1\), and every term of
+\(u\) has nonnegative weight. Hence by the Euler projection lemma
+\[
+\partial_3^2\in\widehat E.
+\]
+
+It remains to obtain unbounded differential order.
+
+(i) If $\deg \rho \ge 2$,
+\[
+\rho(s)=a_ds^d+\cdots,
+\qquad d\ge2,\qquad a_d\neq0.
+\]
+Then
+\(T:
+=p_{d-1}(\operatorname{ad}_{\widehat J})(\widehat L_0) = a_dt^d\partial_3 + q(x_1,x_2,t)
+\in\widehat E.\)
+
+Assume inductively that \(P_m\in\widehat E\) satisfies
+\[
+P_m
+=
+\partial_3^m
+\pmod{\mathcal U_{m-1}}.
+\]
+Set
+\[
+R_m:=[P_m,[T,P_m]] =
+m^2a_d\,d(d-1)t^{d-2}\partial_3^{2m-1}\pmod{\mathcal U_{2m-2}},
+\]
+we obtain
+\[
+\begin{aligned}
+\operatorname{ad}_{\partial_3^2}^{\,d-2}(R_m)
+={}&
+2^{d-2}(d-2)!
+m^2a_d\,d(d-1)\,
+\partial_3^{2m+d-3}\pmod{\mathcal U_{2m+d-4}}.
+\end{aligned}
+\]
+The displayed coefficient is nonzero, which contradicts to the finite-dimentionality.
+
+(ii) If $\deg \rho = 1$, the weight-zero component of
+\(\widehat L_0\) is
+\[
+\begin{aligned}
+L^{[0]}:=\Pi_0(\widehat L_0)
+={}&
+\frac12(\nabla_1^2+\nabla_2^2)
++a_1\nabla_1+a_2\nabla_2\\
+&-(k_3x_1+h_3x_2+c)t\partial_3+u_0(x_1,x_2).
+\end{aligned}
+\]
+Assume \(\partial_3^m\in\widehat E\). Then
+\[
+X_m
+:=
+\frac{[L^{[0]},\partial_3^m]-mc\partial_3^m}{m}
+=
+(k_3x_1+h_3x_2)\partial_3^m
+\in\widehat E.
+\]
+A direct calculation gives
+\[
+[L^{[0]},X_m]
+=
+\bigl(
+k_3\nabla_1+h_3\nabla_2+M_m(x_1,x_2)
+\bigr)\partial_3^m,
+\]
+where
+\[
+\begin{aligned}
+M_m
+=
+k_3a_1+h_3a_2+
+m(k_3x_1+h_3x_2+c)(k_3x_1+h_3x_2)
+\end{aligned}
+\]
+is a multiplication operator. Hence \(M_m\partial_3^m\) commutes with \(X_m\), and
+\[
+\begin{aligned}
+[X_m,[L^{[0]},X_m]]
+&=
+[k_3x_1+h_3x_2,k_3\nabla_1+h_3\nabla_2]\partial_3^{2m}\\
+&=
+-(k_3^2+h_3^2)\partial_3^{2m}\\
+&=
+-\mu \partial_3^{2m}.
+\end{aligned}
+\]
+Since \(\mu>0\), we can derive iteratively $\partial_3^{2m} \in \widehat E$, which contradicts to the finite-dimentionality.
+\end{tcolorbox}
+
+
+\section{Proof of $k_1 = k_2 = h_2 = 0$}
+
+
+\begin{proof}
+Suppose, to the contrary, that
+\[
+M=
+\begin{pmatrix}
+k_1&k_2\\
+k_2&h_2
+\end{pmatrix}
+\ne0.
+\]
+Since \(M\) is real symmetric, an orthogonal change of the visible
+variables diagonalizes it. After interchanging the two visible axes if
+necessary, and then translating \(x_1\), we may assume
+\[
+k_2=0,\qquad k:=k_1\ne0,\qquad k_0=0.
+\]
+Write \(h=h_2\). 
+
+After rechoosing the Poincar\'e representative, we have
+\[
+f_1=0,\qquad f_2=b_0x_1,\qquad
+f_3=F(x_1,x_2),
+\]
+where
+\[
+F(x_1,x_2)
+=\frac{k}{2}x_1^2+\frac{h}{2}x_2^2+h_0x_2.
+\]
+Thus
+\[
+D_1=\partial_1,\qquad
+D_2=\partial_2-b_0x_1,\qquad
+D_3=\partial_3-F.
+\]
+All coordinate changes and gauge conjugations used below are Lie-algebra
+isomorphisms and therefore preserve finite-dimensionality.
+
+\medskip
+\noindent\emph{Step 1: the only possible \(x_3\)-dependence of \(\eta\).}
+
+In the present normal form,
+\[
+H_0=[L_0,D_1]
+=b_0D_2+kx_1D_3+\frac12\eta_1,
+\]
+and
+\[
+H_1=[L_0,D_2]
+=-b_0D_1+(hx_2+h_0)D_3+\frac12\eta_2.
+\]
+Direct normal ordering gives
+\begin{align*}
+[D_1,[D_1,H_0]]
+ &=\frac12\partial_1^3(\eta-F^2),\\
+[D_2,[D_1,H_0]]
+ &=\frac12\partial_1^2\partial_2(\eta-F^2),\\
+[D_2,[D_2,H_0]]
+ &=\frac12\partial_1\partial_2^2(\eta-F^2),\\
+[D_2,[D_2,H_1]]
+ &=\frac12\partial_2^3(\eta-F^2).
+\end{align*}
+The four left-hand sides are multiplication operators in \(E\). Since
+\[
+E\cap C^\infty(\mathbb R^3)
+=\operatorname{span}_{\mathbb R}\{1,x_1,x_2\},
+\]
+they are independent of \(x_3\). Consequently, for arbitrary \(s,t\),
+the function
+\[
+\eta(x_1,x_2,s)-\eta(x_1,x_2,t)
+\]
+is a polynomial of degree at most two in \(x_1,x_2\). Therefore. $\eta$ can be written as
+\[
+\eta
+=\eta_0(x_1,x_2)
++(x_1,x_2)^TQ(x_3)(x_1,x_2)+\ell(x_3)\cdot (x_1,x_2)+e(x_3),
+\]
+where \(Q(x_3)\) is symmetric, \(\ell(x_3)\in\mathbb R^2\), and
+\(\eta_0\) is smooth.
+
+Now \([D_2,H_0]\) is a function element, so the off-diagonal entry of
+\(Q\) is constant. Moreover,
+\[
+h[D_1,H_0]-k[D_2,H_1]
+\]
+is a function element because its \(D_3\)-coefficient is zero. It follows
+that
+\[
+hQ_{11}-kQ_{22}
+\]
+is constant. Absorbing the constant quadratic terms into \(\eta_0\), we
+may therefore write
+\[
+Q(x_3)
+=\varepsilon(x_3)
+\begin{pmatrix}
+k&0\\
+0&h
+\end{pmatrix}
+\]
+for some smooth function \(\varepsilon\).
+
+The genuine Lie element
+\[
+T:=\frac1k[D_1,H_0]
+\]
+then has the form
+\[
+T=D_3+\varphi(x_1,x_2)+\varepsilon(x_3).
+\]
+A further direct calculation gives
+\[
+[T,H_0-b_0D_2]=\frac12\ell_1'(x_3)
+\]
+and
+\[
+[T,H_1+b_0D_1]
+=\frac12\bigl(\ell_2'(x_3)-2h_0\varepsilon'(x_3)\bigr).
+\]
+Both sides are function elements depending only on \(x_3\), and hence
+are constants. Thus
+\[
+\ell(x_3)
+=2h_0\varepsilon(x_3)
+\begin{pmatrix}0\\1\end{pmatrix}
++a+x_3a'
+\]
+for some constant vectors \(a,a'\in\mathbb R^2\). We have proved
+\begin{equation}
+\eta
+=\eta_0(x_1,x_2)
++2\varepsilon(x_3)F(x_1,x_2)
++e(x_3)
++(a+x_3a')\cdot y.
+\label{eq:sectorII-eta}
+\end{equation}
+
+\medskip
+\noindent\emph{Step 2: a hidden gauge and polynomiality.}
+
+Choose a smooth univariate function \(\Lambda\) satisfying
+\[
+\Lambda'=\varepsilon
+\]
+and set
+\[
+\widetilde E=e^\Lambda Ee^{-\Lambda}.
+\]
+This conjugation fixes multiplication operators and sends
+\[
+D_3=\partial_3-F
+\quad\text{to}\quad
+\partial_3-(F+\varepsilon).
+\]
+It also sends \(T\) to
+\[
+\widetilde T=\partial_3+g(x_1,x_2)
+\]
+for some smooth function \(g\).
+
+Set
+\[
+r(x_3):=e(x_3)-\varepsilon(x_3)^2.
+\]
+Expanding the conjugated \(L_0\) and using
+\eqref{eq:sectorII-eta}, the terms
+\(2\varepsilon F+\varepsilon^2\) cancel. Hence
+\begin{align}
+\widetilde L_0={}&
+\frac12\bigl(\partial_1^2+\partial_2^2+\partial_3^2\bigr)
+-b_0x_1\partial_2-(F+\varepsilon)\partial_3\notag\\
+&+V_0(x_1,x_2)+x_3V_1(x_1,x_2)
+-\frac12\bigl(\varepsilon'(x_3)+r(x_3)\bigr),
+\label{eq:sectorII-L}
+\end{align}
+where the precise forms of the visible functions \(V_0,V_1\) will not
+be needed.
+
+The coefficient of \(\partial_3\) in
+\[
+[\widetilde L_0,\widetilde T]
+\]
+is \(\varepsilon'(x_3)\). If this commutator has order one, the theorem
+on polynomial highest-order coefficients, transported through the gauge
+conjugation, shows that \(\varepsilon'\) is a polynomial. If it has order
+zero, then \(\varepsilon'=0\). Thus
+\[
+\varepsilon\in\mathbb R[x_3].
+\]
+
+Let \(d=\deg\varepsilon\), with \(d=0\) when \(\varepsilon=0\), and put
+\[
+m=\max\{2,d\},
+\qquad
+c=\varepsilon^{(m)}.
+\]
+Then \(c\) is a real constant. Since
+\[
+\widetilde T=\partial_3+g(x_1,x_2),
+\qquad
+[\partial_3,g]=0,
+\]
+and every commutator with the multiplication operator \(g\) lowers
+differential order, direct expansion gives
+\[
+\operatorname{ad}_{\widetilde T}^{\,m}(\widetilde L_0)
++c\widetilde T
+\]
+as a multiplication operator. Its only \(x_3\)-dependent part is
+\[
+-\frac12r^{(m)}(x_3).
+\]
+It belongs to
+\[
+\widetilde E\cap C^\infty(\mathbb R^3)
+=\operatorname{span}_{\mathbb R}\{1,x_1,x_2\},
+\]
+so \(r^{(m)}\) is constant. Therefore
+\[
+r\in\mathbb R[x_3],
+\qquad
+\deg r\le\max\{2,\deg\varepsilon\}.
+\]
+
+\medskip
+\noindent\emph{Step 3: a weighted Lie ladder.}
+
+Every coefficient in \eqref{eq:sectorII-L} is now polynomial in \(x_3\).
+For a normally ordered monomial define
+\[
+\nu\!\left(
+a(x_1,x_2)x_3^p
+\partial_1^{q_1}\partial_2^{q_2}\partial_3^{q_3}
+\right)
+:=p+q_1+q_2+2q_3.
+\]
+The visible coefficient \(a(x_1,x_2)\) is not counted. The weight of an
+operator is the largest weight of its monomials.
+
+A direct application of the Leibniz rule gives the only estimates needed:
+
+\begin{itemize}
+\item the constant second-order part and \(-F\partial_3\) raise the
+weight by at most \(1\);
+\item \(-c_sx_3^s\partial_3\) raises it by at most \(s-1\);
+\item multiplication by a polynomial of degree \(D\) raises it by at
+most \(D-3\);
+\item all remaining terms in \eqref{eq:sectorII-L} raise it by at most
+\(0\).
+\end{itemize}
+
+Consider
+\[
+S_n
+:=\bigl(\operatorname{ad}_{\widetilde L_0}\bigr)^n(\partial_1) \in \widetilde E\]
+(i) If $\deg \eps \ge 3$:
+
+Write
+\[
+\varepsilon(x_3)
+=ax_3^d+\text{lower powers},
+\qquad a\ne0.
+\]
+Since \(\deg r\le d\), the unique term that can raise the weight by
+\(d-1\) is
+\[
+-ax_3^d\partial_3.
+\]
+Moreover,
+\[
+S_1
+=kx_1\partial_3+\text{terms of weight at most \(1\)}
+\]
+and
+\[
+[-ax_3^d\partial_3,\,
+  x_1x_3^q\partial_3]
+=
+a(d-q)x_1x_3^{q+d-1}\partial_3.
+\]
+It follows inductively that the highest-weight term of \(S_{n+1}\) is
+\[
+ka^n
+\prod_{j=0}^{n-1}\bigl(d-j(d-1)\bigr)
+x_1x_3^{n(d-1)}\partial_3.
+\]
+with $d - j(d-1) \neq 0$ for $d \ge 3$ as an integer. This derives contradiction.
+
+(ii): \(\deg\varepsilon\le2\), including
+\(\varepsilon=0\).
+
+Let \(a\) be the coefficient of \(x_3^2\) in \(\varepsilon\), allowing
+\(a=0\). Every bracket with \(\widetilde L_0\) now raises the weight by
+at most \(1\).
+
+Let \(\xi,\zeta\) be the graded symbols of
+\(\partial_1,\partial_3\). Starting from \(\xi\), the part that raises
+the weight by exactly \(1\) is the derivation
+\[
+\mathcal D
+=
+\xi\partial_{x_1}
++(\zeta-ax_3^2)\partial_{x_3}
++kx_1\zeta\,\partial_\xi
++2ax_3\zeta\,\partial_\zeta.
+\]
+The terms containing \(h\) and \(h_0\) act only on the
+\((x_2,\partial_2)\)-variables and therefore never enter
+\(\mathcal D^n\xi\).
+
+We claim that
+\[
+\mathcal D^n\xi\ne0
+\qquad(n\ge0).
+\]
+Otherwise, suppose that \(\mathcal D^N\xi=0\). Along every local integral
+curve of \(\mathcal D\), both \(\xi(\tau)\) and \(x_1(\tau)\) would then
+be polynomials. The relevant equations are
+\[
+\dot x_1=\xi,\qquad
+\dot\xi=kx_1\zeta,\qquad
+\dot x_3=\zeta-ax_3^2,\qquad
+\dot\zeta=2ax_3\zeta.
+\]
+Choose
+\[
+x_3(0)=0,\qquad \zeta(0)=1.
+\]
+For this fixed hidden trajectory, the two initial conditions
+\[
+(x_1(0),\xi(0))=(1,0),
+\qquad
+(x_1(0),\xi(0))=(0,1)
+\]
+give two polynomial solutions \(p,q\) of
+\[
+u''=k\zeta(\tau)u.
+\]
+Their Wronskian is the constant \(1\).
+
+Two polynomials with a nonzero constant Wronskian span a nonzero constant
+polynomial: after making their degrees unequal by a constant change of
+basis, the degree of their Wronskian is the sum of their degrees minus
+one. Hence those degrees must be \(0\) and \(1\). The equation therefore
+has a nonzero constant solution \(u\), which would imply
+\[
+0=k\zeta(\tau)u.
+\]
+This contradicts \(k\ne0\) and \(\zeta(0)=1\). Thus
+\[
+\mathcal D^n\xi\ne0
+\qquad(n\ge0).
+\]
+Consequently, the highest-weight term of \(S_n\) is
+\(\mathcal D^n\xi\), and
+\[
+\nu(S_n)=n+1\longrightarrow\infty.
+\]
+
+
+Therefore \(M=0\). Returning to the original visible coordinates gives
+\[
+k_1=k_2=h_2=0.
+\]
+The proof divides only by \(k\ne0\), so it includes the rank-one case
+\(h=0\) and allows arbitrary \(h_0\).
+\end{proof}
+
+
+\section{Conclusion}
+
+Every unbounded sequence in the proof consists of actual Lie words.  The
+proof for the visible entry uses only the function-element space and the
+affine Wong structure.  In Sector I, the spectral projections are introduced
+only after Cayley--Hamilton and the global smooth Euler equation have produced
+a finite spectrum, and they are then realized by the Chinese remainder
+theorem.  Sector II is treated inside
+$C^\infty(\R^2)[x_3]\langle\pd_1,\pd_2,\pd_3\rangle$.  Thus we never treat
+the Lie algebra as a module over functions, nor do we use analytic
+continuation, maximal rank, or an a priori polynomial $\eta$.
+
+Jiao's Theorem~5.4 also derives, from the structure of $\eta$, polynomiality
+of the pre-gauge term $r$.  The smooth Euler lemma in the present paper
+additionally controls the post-gauge zeroth-order slot $U$, so the final
+argument remains strictly within the smooth assumptions of the original
+problem.
+
+\begin{thebibliography}{99}
+
+\bibitem{Ocone1981}
+D. L. Ocone,
+\newblock Finite dimensional estimation algebras in nonlinear filtering,
+\newblock in M. Hazewinkel and J. C. Willems (eds.),
+\emph{Stochastic Systems: The Mathematics of Filtering and Identification
+and Applications}, D. Reidel, Dordrecht, 1981, pp. 629--636,
+\href{https://doi.org/10.1007/978-94-009-8546-9_35}
+{doi:10.1007/978-94-009-8546-9\_35}.
+
+\bibitem{ShiYau2017}
+J. Shi and S. S.-T. Yau,
+\newblock Finite dimensional estimation algebras with state dimension 3
+and rank 2, I: linear structure of Wong matrix,
+\newblock \emph{SIAM Journal on Control and Optimization}
+55 (2017), no. 6, 4227--4246,
+\href{https://doi.org/10.1137/16M1065471}{doi:10.1137/16M1065471}.
+
+\bibitem{ShiYau2020}
+J. Shi and S. S.-T. Yau,
+\newblock Finite dimensional estimation algebras with state dimension 3
+and rank 2, Mitter conjecture,
+\newblock \emph{International Journal of Control}
+93 (2020), no. 9, 2177--2186,
+\href{https://doi.org/10.1080/00207179.2018.1550268}
+{doi:10.1080/00207179.2018.1550268}.
+
+\bibitem{Jiao2022}
+Xiaopei Jiao,
+\newblock \emph{The Classification of Finite Dimensional Estimation Algebra
+and New Classes of Finite Dimensional Filters},
+\newblock Ph.D. thesis in Mathematics, Tsinghua University, 2022
+(in Chinese).
+
+\end{thebibliography}
+
+\end{document}
+ 
