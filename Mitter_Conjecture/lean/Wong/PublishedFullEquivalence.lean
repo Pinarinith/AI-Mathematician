@@ -6,8 +6,9 @@ import Wong.PublishedHypothesisEquivalence
 
 Both adapted-coordinate hypotheses and polynomial conclusions are
 converted in both directions. This equivalence itself uses no external
-mathematical input; it identifies exactly which published proposition the
-sole authorized external declaration represents.
+mathematical input; it identifies the published proposition proved internally
+in `PublishedAffineInput`. It does not assert quadratic-freeness; that follows
+from the separately proved Shi–Yau 2020 function-element theorem.
 -/
 
 noncomputable section

@@ -17,15 +17,58 @@ paper/
   tCON2e.cls         — journal class file (IEEE Trans. Control)
 
 lean/
-  Wong/              — Lean 4 proof modules (~90 files)
-  Wong.lean          — top-level import
-  MainStatement.lean — formal statement of the main claim
-  MainProof.lean     — proof assembly
-  PublishedFullEquivalence.lean — equivalence to the published Shi–Yau formulation
-  AxiomAudit.lean    — #print axioms for every theorem
-  lakefile.toml      — Lake build configuration
-  lean-toolchain     — Lean version (leanprover/lean4:v4.35.0-rc2)
+  Wong/                        — Lean 4 proof modules (164 files)
+  Wong.lean                    — top-level import
+  Wong/MainStatement.lean      — formal statement of the main claim
+  Wong/MainProof.lean          — proof assembly
+  Wong/ShiYau2020MainProof.lean — internal proof of the Shi–Yau 2020
+                                 function-element affineness theorem
+  Wong/PublishedAffineInput.lean — internal proof of the Shi–Yau 2017
+                                 affine structure theorem
+  Wong/UnconditionalMainProof.lean — compatibility name for the main theorem
+  AxiomAudit.lean              — #print axioms for every theorem
+  ProofRouteAudit.lean         — expands the public statements and traces
+                                 the actual proof terms (no circularity)
+  verification/                — acceptance certificates and per-module logs
+  reports/                     — correspondence and audit reports
+  lakefile.toml                — Lake build configuration
+  lean-toolchain               — Lean version (leanprover/lean4:v4.35.0-rc2)
 ```
+
+The Shi–Yau 2017 and 2020 structural results are verified **within this same
+package**, not in a separate tree: their proofs share the model layer and the
+affine/Euler machinery with the main proof, and the dependency closure of
+`Wong/ShiYau2020MainProof.lean` and `Wong/PublishedAffineInput.lean` spans 157
+of the 164 modules. `verification/acceptance.json` records a single acceptance
+run covering all of them.
+
+## What the main claim says
+
+In `lean/Wong/MainStatement.lean`:
+
+```lean
+def mainClaim : Prop :=
+  ∀ (m : ℕ) (f : Fin 3 → Smooth) (h : Fin m → Smooth),
+    FiniteDimensional ℝ (estimationAlgebra f h) →
+    linearRank (estimationAlgebra f h) = 2 → WongConstant f
+```
+
+This matches the paper's main theorem exactly: state dimension 3, linear rank 2,
+finite-dimensional estimation algebra → Wong matrix is constant. **There is no
+quadratic-freeness premise.**
+
+`QuadraticFree` is not assumed; it is *derived*. The chain is:
+
+1. `shiYau2020_mitter_theorem` (`Wong/ShiYau2020MainProof.lean`) independently
+   proves that every function element is affine, from finite-dimensionality and
+   rank two alone.
+2. `quadraticFree_of_finiteDimensional_rank_two` (`Wong/MainProof.lean`) turns
+   affineness of function elements into `QuadraticFree`.
+3. `main_theorem` applies slope elimination to conclude constancy.
+
+The quadratic-free statement is retained separately as `QuadraticFreeMainClaim`
+(`quadraticFree_main_theorem`), an intermediate used only within slope
+elimination. It is not the public result.
 
 ## How to verify the Lean proof
 
@@ -37,7 +80,8 @@ Install `elan` (the Lean version manager):
 curl https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -sSf | sh
 ```
 
-The `lean-toolchain` file pins the exact Lean version. `elan` will download it automatically on first build.
+The `lean-toolchain` file pins the exact Lean version. `elan` will download it
+automatically on first build.
 
 ### Build
 
@@ -51,53 +95,39 @@ A clean build with no errors means the formal proof is accepted by the Lean kern
 
 ### Check for sorry
 
-The proof must contain no `sorry` (unverified axiom placeholders):
-
 ```sh
-grep -r "sorry" lean/Wong/ lean/Wong.lean lean/MainProof.lean
+grep -rn "sorry" lean/Wong/ lean/Wong.lean
 ```
 
-This should return no output. You can also run the included audit script:
-
-```sh
-cd lean/
-python3 audit_sources.py
-```
+This should return no output.
 
 ### Verify the axiom base
 
-To confirm the proof rests only on standard Lean/Mathlib axioms (`propext`, `funext`, `Classical.choice`, `Quot.sound`), compile `AxiomAudit.lean` and inspect the output:
-
 ```sh
+cd lean/
 lake env lean AxiomAudit.lean 2>&1 | grep -v "^#"
 ```
 
-Every theorem should list only those four axioms.
+Every theorem should list only the standard axioms `propext`,
+`Classical.choice`, and `Quot.sound`.
 
-### Check published equivalence
-
-`PublishedFullEquivalence.lean` proves that the Lean main claim is logically equivalent to the statement as published in Shi–Yau (2017/2020). Build it with:
+### Full audit
 
 ```sh
-lake env lean lean/Wong/PublishedFullEquivalence.lean
+cd lean/
+./check.sh --clean --jobs 4
 ```
 
-No output means the equivalence proof compiles cleanly.
+This rebuilds every module from source, checks the transitive axiom
+dependencies of all local theorems and lemmas, and traces the actual proof
+terms of the public statements. Acceptance evidence is in `verification/`.
 
-### What the main claim says
+### Scope
 
-In `lean/Wong/MainStatement.lean`:
-
-```lean
-def mainClaim : Prop :=
-  ∀ (m : ℕ) (f : Fin 3 → Smooth) (h : Fin m → Smooth),
-    FiniteDimensional ℝ (estimationAlgebra f h) →
-    linearRank (estimationAlgebra f h) = 2 →
-    QuadraticFree (estimationAlgebra f h) →
-    WongConstant f
-```
-
-This matches the paper's main theorem exactly: state dimension 3, linear rank 2, finite-dimensional estimation algebra, quadratic-free (non-maximal rank) → Wong matrix is constant.
+The formalization covers the Shi–Yau 2017 Theorems 3.4 and 3.10 and the
+Shi–Yau 2020 Theorems 1.1, 1.2, 3.7, and 3.10 together with the structural
+results those depend on. It does **not** cover the numerical experiments or
+the filter implementations in either paper.
 
 ## References
 

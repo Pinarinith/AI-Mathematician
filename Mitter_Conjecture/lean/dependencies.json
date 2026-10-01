@@ -1,0 +1,53 @@
+{
+  "lean": "leanprover/lean4:v4.35.0-rc2",
+  "vendor": "/Users/rinithpina/Documents/Research/Mitter_Conjecture/vendor",
+  "repositories": {
+    "mathlib4": {
+      "commit": "067a2c89ad91a79c38006b1d0e8137533fadb81b",
+      "dirty": false
+    }
+  },
+  "mathlib_manifest_sha256": "87a66cd9524871ecee488615262236e366330c8db26ee62965d92aa9a7d88fa7",
+  "manifest_dependency_pins": {
+    "plausible": {
+      "url": "https://github.com/leanprover-community/plausible",
+      "rev": "e50948299c4dc4a4c21b1c34b6a6a4fddc19f912",
+      "archive_sha256": "011ef1ac8700d813512a67f6612e2667ae2179b5f25f940cc8e6bb40e52f72db"
+    },
+    "LeanSearchClient": {
+      "url": "https://github.com/leanprover-community/LeanSearchClient",
+      "rev": "95e037bfdc31d3916ac615446847fb01960e2719",
+      "archive_sha256": "f41d4a39d986d497644e8b55fd5284220be3e86052ea7132bf15974bb07da489"
+    },
+    "importGraph": {
+      "url": "https://github.com/leanprover-community/import-graph",
+      "rev": "10930f8138f0462dbd744a91fc03a16fae0e046f",
+      "archive_sha256": "9fda795152d9f98d7f2fd85e304334f206b59db0196ac472369da988bf65cfc7"
+    },
+    "proofwidgets": {
+      "url": "https://github.com/leanprover-community/ProofWidgets4",
+      "rev": "4c70ac059693669e5756e32a7a94b57ee1e99dc5",
+      "archive_sha256": "00a6511c54743a74ae8377e1deea88a4d6936254f4e87c29971fa014b9becd3c"
+    },
+    "aesop": {
+      "url": "https://github.com/leanprover-community/aesop",
+      "rev": "75d936c7af167cc93fac0d31237682fc2204591d",
+      "archive_sha256": "f0b2c7e22e94645cbb6b36c3ae6b92a1c18b6562361c95b9e192c778e3e99dfa"
+    },
+    "Qq": {
+      "url": "https://github.com/leanprover-community/quote4",
+      "rev": "786b7acdca7eb4e9c76c5d1d5bd810e7e5c56334",
+      "archive_sha256": "f36cbed16038369332a93fb2f97cf3c5db6c56e2abce7be7d9b5c007b7427051"
+    },
+    "batteries": {
+      "url": "https://github.com/leanprover-community/batteries",
+      "rev": "ed9b316aabe389fec1ef43c3326ab48c7e59be42",
+      "archive_sha256": "b2b7d466bfc2c822ecca50a1919ac0b4014197f09b7a800fb6b7ee7725bdb2bc"
+    },
+    "Cli": {
+      "url": "https://github.com/leanprover/lean4-cli",
+      "rev": "2842b9871b04862f944c032e34052cb9448ccb71",
+      "archive_sha256": "478d392c9206223c7158526924c1bac0b5075fa7e68db2a8b202efb59e310bdb"
+    }
+  }
+}

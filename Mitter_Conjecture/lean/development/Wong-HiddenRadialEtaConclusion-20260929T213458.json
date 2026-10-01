@@ -1,0 +1,11 @@
+{
+  "module": "Wong.HiddenRadialEtaConclusion",
+  "passed": true,
+  "exit_code": 0,
+  "source_changed": false,
+  "source_sha256": "31feb1049d68aa0d2151137a4a8d17222540273bece451b2a06f2ddf0d20dd28",
+  "seconds": 127.255,
+  "log": "development/Wong-HiddenRadialEtaConclusion-20260929T213458.log",
+  "status": "development_only_not_certified",
+  "artifact_sha256": "01ea7dd877172346855c5698527d743ee0c5e2aaeee53abfcb36181fa1dfe0a7"
+}

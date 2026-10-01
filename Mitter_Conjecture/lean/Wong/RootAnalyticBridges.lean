@@ -804,7 +804,8 @@ def AdaptedConstancyClaim : Prop :=
     multiplication (linearFunction (coordinateVector 1)) ∈ estimationAlgebra f h →
     WongConstant f
 
-theorem mainClaim_iff_adaptedConstancyClaim : mainClaim ↔ AdaptedConstancyClaim := by
+theorem quadraticFreeMainClaim_iff_adaptedConstancyClaim :
+    QuadraticFreeMainClaim ↔ AdaptedConstancyClaim := by
   constructor
   · intro H m f h hFD hrank hq _hx₀ _hx₁
     exact H m f h hFD hrank hq

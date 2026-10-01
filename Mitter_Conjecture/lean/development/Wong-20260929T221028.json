@@ -1,0 +1,11 @@
+{
+  "module": "Wong",
+  "passed": true,
+  "exit_code": 0,
+  "source_changed": false,
+  "source_sha256": "10bb1e069ed401caead1d0acbfe3ab4dcb76d1dcb31d6475075867265108afae",
+  "seconds": 108.787,
+  "log": "development/Wong-20260929T221028.log",
+  "status": "development_only_not_certified",
+  "artifact_sha256": "ee09d3660d02a7fb0ba811c3b8209d1a81e9a60c431b77c97617c4368dc3322c"
+}

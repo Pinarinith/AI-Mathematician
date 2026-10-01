@@ -178,12 +178,20 @@ def WongConstant (f : Fin 3 → Smooth) : Prop :=
   ∃ Ω : Fin 3 → Fin 3 → ℝ,
     ∀ (i j : Fin 3) (x : State), (wong f i j).1 x = Ω i j
 
-/-- The exact smooth rank-two, quadratic-rank-zero claim under review.
-    THIS IS ONLY A PROPOSITION DEFINITION; NO PROOF IS SUPPLIED OR ASSUMED. -/
-def mainClaim : Prop :=
+/-- The conditional intermediate used by the slope-elimination proof.
+    Quadratic-freeness is derived separately before applying this result. -/
+def QuadraticFreeMainClaim : Prop :=
   ∀ (m : ℕ) (f : Fin 3 → Smooth) (h : Fin m → Smooth),
     FiniteDimensional ℝ (estimationAlgebra f h) →
     linearRank (estimationAlgebra f h) = 2 →
     QuadraticFree (estimationAlgebra f h) → WongConstant f
+
+/-- The paper's main claim for the actual smooth filtering model:
+    finite-dimensionality and linear rank two imply a constant Wong matrix.
+    There is no quadratic-freeness hypothesis. -/
+def mainClaim : Prop :=
+  ∀ (m : ℕ) (f : Fin 3 → Smooth) (h : Fin m → Smooth),
+    FiniteDimensional ℝ (estimationAlgebra f h) →
+    linearRank (estimationAlgebra f h) = 2 → WongConstant f
 
 end Wong.SmoothModel

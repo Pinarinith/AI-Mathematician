@@ -1,0 +1,11 @@
+{
+  "module": "Wong.HiddenQuadraticBranchConstancy",
+  "passed": true,
+  "exit_code": 0,
+  "source_changed": false,
+  "source_sha256": "a34e04882038a6e9a51c314e1a9cf1510ee9f5527b9f1f9045aedf268fcdbb57",
+  "seconds": 135.37,
+  "log": "development/Wong-HiddenQuadraticBranchConstancy-20260929T212426.log",
+  "status": "development_only_not_certified",
+  "artifact_sha256": "9d313629f786a9b2c9ff7920e4e7d0368e83e7fca8dd0dddc78189ab7f4b78ff"
+}

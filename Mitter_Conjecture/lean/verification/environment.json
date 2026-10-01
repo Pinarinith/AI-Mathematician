@@ -1,0 +1,77 @@
+{
+  "passed": true,
+  "fingerprint": "aba0afea3f5d3d403c6b46d0a016212ef64e70a40f9f64efa48af1ff387584e1",
+  "checked_at_utc": "2026-10-01T06:15:09.976516+00:00",
+  "environment": {
+    "compiler": "Lean (version 4.35.0-rc2, arm64-apple-darwin24.6.0, commit 11acb17ec6b07a8f9e9173e6845197929540936b, Release)",
+    "compiler_path": "/Users/rinithpina/.elan/toolchains/leanprover--lean4---v4.35.0-rc2/bin/lean",
+    "compiler_binary_sha256": "d1d9c26a539f54fe839d2aa7760bf1ac1dd76a30b26e2c9684bebf2900038fcf",
+    "lean_toolchain_sha256": "8dc8d6f560141069d9073e370611716ef77ada0da8ffa37e2149f44b2e63ac7a",
+    "vendor_path": "/Users/rinithpina/Documents/Research/Mitter_Conjecture/vendor",
+    "dependencies_file_sha256": "06c830c7b31cce6134431a0a8937f0bd8e2f9ceae3e11f81f9232f0d279b2bd1",
+    "mathlib": {
+      "commit": "067a2c89ad91a79c38006b1d0e8137533fadb81b",
+      "dirty": false,
+      "manifest_sha256": "87a66cd9524871ecee488615262236e366330c8db26ee62965d92aa9a7d88fa7"
+    },
+    "dependencies": {
+      "Cli": {
+        "mode": "archive_and_installed_sources",
+        "revision": "2842b9871b04862f944c032e34052cb9448ccb71",
+        "archive_sha256": "478d392c9206223c7158526924c1bac0b5075fa7e68db2a8b202efb59e310bdb",
+        "verified_file_count": 12,
+        "installed_source_inventory_sha256": "82b82785975cb6172a416e286ec7837038a1db75c8065dd358b5a850a8c9e0e2"
+      },
+      "LeanSearchClient": {
+        "mode": "archive_and_installed_sources",
+        "revision": "95e037bfdc31d3916ac615446847fb01960e2719",
+        "archive_sha256": "f41d4a39d986d497644e8b55fd5284220be3e86052ea7132bf15974bb07da489",
+        "verified_file_count": 15,
+        "installed_source_inventory_sha256": "2092107dc9b7a5d42977b7dc0b18cb6a0f12491080a81906935ccb2c601b9836"
+      },
+      "Qq": {
+        "mode": "archive_and_installed_sources",
+        "revision": "786b7acdca7eb4e9c76c5d1d5bd810e7e5c56334",
+        "archive_sha256": "f36cbed16038369332a93fb2f97cf3c5db6c56e2abce7be7d9b5c007b7427051",
+        "verified_file_count": 35,
+        "installed_source_inventory_sha256": "2955f1240945ff81d4a9c42398cf51e5450b484c2f19f3528677fb6abf83ec9e"
+      },
+      "aesop": {
+        "mode": "archive_and_installed_sources",
+        "revision": "75d936c7af167cc93fac0d31237682fc2204591d",
+        "archive_sha256": "f0b2c7e22e94645cbb6b36c3ae6b92a1c18b6562361c95b9e192c778e3e99dfa",
+        "verified_file_count": 258,
+        "installed_source_inventory_sha256": "ba9440f7a593e30a1e224abea6507817da51fba826861ce993d7aa36355c5900"
+      },
+      "batteries": {
+        "mode": "archive_and_installed_sources",
+        "revision": "ed9b316aabe389fec1ef43c3326ab48c7e59be42",
+        "archive_sha256": "b2b7d466bfc2c822ecca50a1919ac0b4014197f09b7a800fb6b7ee7725bdb2bc",
+        "verified_file_count": 290,
+        "installed_source_inventory_sha256": "05eb1fdf65e017748480085cf517e83251ba797ab6b28348757e2f616f2438af"
+      },
+      "importGraph": {
+        "mode": "archive_and_installed_sources",
+        "revision": "10930f8138f0462dbd744a91fc03a16fae0e046f",
+        "archive_sha256": "9fda795152d9f98d7f2fd85e304334f206b59db0196ac472369da988bf65cfc7",
+        "verified_file_count": 73,
+        "installed_source_inventory_sha256": "630e5711969db48498020459294ce884758ee37343214cbf1883a680c9ddb3b0"
+      },
+      "plausible": {
+        "mode": "archive_and_installed_sources",
+        "revision": "e50948299c4dc4a4c21b1c34b6a6a4fddc19f912",
+        "archive_sha256": "011ef1ac8700d813512a67f6612e2667ae2179b5f25f940cc8e6bb40e52f72db",
+        "verified_file_count": 35,
+        "installed_source_inventory_sha256": "e71f4a457daa3ef6e4f606b685b7d628d2fecc7ade7f141381225a44bcf25189"
+      },
+      "proofwidgets": {
+        "mode": "archive_and_installed_sources",
+        "revision": "4c70ac059693669e5756e32a7a94b57ee1e99dc5",
+        "archive_sha256": "00a6511c54743a74ae8377e1deea88a4d6936254f4e87c29971fa014b9becd3c",
+        "verified_file_count": 111,
+        "installed_source_inventory_sha256": "4c5fcb8009ab69bb3258d2f59aa2f51e71c43e112455ac60b88862b1411334d7"
+      }
+    },
+    "third_party_cache_trust": "Installed compiled caches are trusted to correspond to the checked pinned source trees; they are not rebuilt or exhaustively hashed."
+  }
+}

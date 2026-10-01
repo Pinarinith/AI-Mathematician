@@ -1,0 +1,7 @@
+{
+  "passed": true,
+  "lean_exit_code": 0,
+  "audit_source_sha256": "ed18a23ce93f2b506cb664da61308e76f74a04c57e174ec317944ed8138d81fa",
+  "fresh_build_sha256": "d6ed7b45b33b1de6f26a60c6ef2860778ee8cf1ac24981fb2f695b43e689b99f",
+  "diagnostics_log": "proof-routes.log"
+}

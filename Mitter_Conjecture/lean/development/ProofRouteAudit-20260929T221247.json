@@ -1,0 +1,11 @@
+{
+  "module": "ProofRouteAudit",
+  "passed": true,
+  "exit_code": 0,
+  "source_changed": false,
+  "source_sha256": "85747eb92d8fa60b92d88b3e3d0c0ecf60fa0a3d6d29c09e9ce3627e70733396",
+  "seconds": 120.15,
+  "log": "development/ProofRouteAudit-20260929T221247.log",
+  "status": "development_only_not_certified",
+  "artifact_sha256": "908bdfbf6c3ca1f9fc167a6a3c1b6f6907c69c3f2e16da3a240b30d157d0ccbe"
+}

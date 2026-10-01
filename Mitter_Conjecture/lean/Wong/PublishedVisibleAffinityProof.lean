@@ -6,7 +6,7 @@ import Wong.PublishedAffineStatement
 The published 2017 Theorem 3.4 assumes finite dimensionality and adapted
 linear rank two, but does not assume quadratic-freeness. The theorem below
 is deliberately named and stated with the additional `QuadraticFree`
-hypothesis of the original `mainClaim`. It is sufficient for that main claim
+hypothesis of `QuadraticFreeMainClaim`. It is sufficient for that conditional claim
 and is not presented as a proof of the stronger published theorem.
 
 Its proof uses only the internally proved Ocone function-element theorem,

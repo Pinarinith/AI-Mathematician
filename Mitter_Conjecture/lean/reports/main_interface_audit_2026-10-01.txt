@@ -1,0 +1,39 @@
+主接口修改与 Shi–Yau 形式化审计（2026-10-01）
+
+结果：通过。公开主定理与论文之间的 QuadraticFree 假设差异已消除。
+
+1. 公开声明
+mainClaim / main_theorem 只接受实际估计代数有限维和 linearRank=2。
+原条件性命题改名 QuadraticFreeMainClaim；原条件性证明改名 quadraticFree_main_theorem。
+quadraticFree_of_finiteDimensional_rank_two 从独立的 shiYau2020_mitter_theorem 得出所需中间条件：
+有限维且秩二 -> 全部函数元素仿射 -> QuadraticFree -> WongConstant。
+ProofRouteAudit 同时检查命题定义的展开类型、main_theorem 的完整类型以及推导 QuadraticFree 的完整类型，没有增加替代假设。
+
+2. 模型及原文对应
+核对了 MainStatement 的全局光滑函数、D_i、eta、实际 Lie 生成元及齐次线性秩定义。
+Shi–Yau 2017 Theorems 3.4/3.10 的仿射 Wong 结论在 PublishedAffineInput 内部证明，没有 QuadraticFree 前提。
+PublishedFullEquivalence 只处理 2017 命题的等价表述；它不承担推出 QuadraticFree 的任务。
+Shi–Yau 2020 Theorems 1.2/3.10 的函数元素仿射定理仅需有限维和秩二。
+QuadraticFunctionCaseSplit 从实际二次函数元素推出五种穷尽情形；分支限制均由证明产生，不是额外主定理假设。
+在核对的上述结构定理及其依赖中，未发现模型替换、缺失分支或未证明的额外假设。
+
+3. 循环依赖
+公开主定理使用 2020 定理；2020 定理不使用公开主定理、原条件性恒定定理或新增的 QuadraticFree 推导定理。
+ProofRouteAudit 已对实际证明项执行 required/forbidden 依赖检查，七个检查根全部通过。
+独立源码审阅和全量编译均确认 165 模块的 import 图无循环，重命名引用完整。
+
+4. 本次机械验证
+165 个本地 Lean 模块全部从源码重新编译，模式为 full_source_rebuild，未复用本地历史构建基线。
+1,661 个本地 theorem/lemma 的传递公理检查通过；sorry 为零，无额外数学公理。
+允许的基础公理仅为 propext、Classical.choice、Quot.sound。
+公开主定理的字面类型检查和实际证明路线检查全部通过。
+验证开始：2026-10-01T06:15:08.768461+00:00。
+验证完成：2026-10-01T07:49:16.253363+00:00。
+机械证据：verification/acceptance.json、fresh-build.json、axioms.json、proof-routes.json 及对应日志。
+
+5. 范围与说明
+审计范围是 2017 仿射结构与 2020 Theorems 1.1/1.2/3.7/3.10 及其依赖，不包括数值实验、滤波器实现或完整随机过程理论。
+2020 Theorems 1.1/3.7 的条件性二次函数命题由函数元素仿射性排除其前提后推出，逻辑成立，但不是原文证明顺序的逐行翻译。
+模型为 R^3 上的全局光滑模型；没有把这些结论宣称为任意局部定义域上的结论。
+Lean 编译器与 Mathlib 版本固定；本地模块全部重编，第三方库使用已安装的固定版本编译缓存，本次没有重建整个编译器或全部第三方库。
+已纠正旧注释中仍称已证明定理为外部数学声明的说明。历史审计记录不代替本次验收。

@@ -1,0 +1,21 @@
+{
+  "checked_at_utc": "2026-09-18T07:08:11.752968+00:00",
+  "requested_type": "Wong.SmoothModel.mainClaim",
+  "candidate_declaration": "Wong.SmoothModel.main_theorem",
+  "main_claim_proved": true,
+  "proof_scope": "foundations_only",
+  "original_statement_sha256": "e9f51310ade6a4539e43c3074a1b35ed35e34bd85946761d53c93183d842a5cc",
+  "build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d",
+  "fresh_build_sha256": "b3b4908944a4cf6c220006b611303ff9ede7e356a65167bd722e9615452d8f13",
+  "fresh_axioms_sha256": "d2b8446b2ce7817340d58cfd9864d25fe8f43014a36c27290ccfafbb17d776e3",
+  "last_check_stage": "exact_type_and_axioms",
+  "lean_exit_code": 0,
+  "published_input_used": false,
+  "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "unexpected_axioms": [],
+  "diagnostics": "'verifiedOriginalMainClaim' depends on axioms: [propext, Classical.choice, Quot.sound]\n"
+}

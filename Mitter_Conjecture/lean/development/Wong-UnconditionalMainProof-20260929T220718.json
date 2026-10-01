@@ -1,0 +1,11 @@
+{
+  "module": "Wong.UnconditionalMainProof",
+  "passed": true,
+  "exit_code": 0,
+  "source_changed": false,
+  "source_sha256": "b517048ef5a3cb883270b35a99fe4f15754709f8467b95fbb17d052bfdd38c75",
+  "seconds": 108.11,
+  "log": "development/Wong-UnconditionalMainProof-20260929T220718.log",
+  "status": "development_only_not_certified",
+  "artifact_sha256": "b9edffe6d7992aed2e66dfcf5a3456a29c6ae002765fad916feaef5e094850c2"
+}

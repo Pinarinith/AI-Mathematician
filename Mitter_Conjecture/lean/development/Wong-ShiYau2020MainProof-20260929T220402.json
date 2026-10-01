@@ -1,0 +1,11 @@
+{
+  "module": "Wong.ShiYau2020MainProof",
+  "passed": true,
+  "exit_code": 0,
+  "source_changed": false,
+  "source_sha256": "e57306d3ad18964e67cce958caa16e4c104f259ec9f7aa7da377acc5cc2e2d5b",
+  "seconds": 124.811,
+  "log": "development/Wong-ShiYau2020MainProof-20260929T220402.log",
+  "status": "development_only_not_certified",
+  "artifact_sha256": "0554acb61ff4db0629ad4b712bd3d7cf242e28a3246ade6a1b818f7f7b384ce6"
+}

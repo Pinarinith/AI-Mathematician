@@ -1,0 +1,11 @@
+{
+  "source_root": "/Users/rinithpina/Documents/Research/Mitter_Conjecture/lean_wong_main_verified_2026-09-18",
+  "audit_root": "/Users/rinithpina/Documents/Research/Mitter_Conjecture/audit_unconditional_core_2026-09-18",
+  "build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d",
+  "build_report_sha256": "b3b4908944a4cf6c220006b611303ff9ede7e356a65167bd722e9615452d8f13",
+  "verified_modules": 122,
+  "changed_modules_requiring_recompile": [
+    "Wong.VisibleHeadContradiction"
+  ],
+  "all_historical_sources_and_artifacts_match": true
+}

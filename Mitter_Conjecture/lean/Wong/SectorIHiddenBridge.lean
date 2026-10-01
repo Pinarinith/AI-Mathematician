@@ -340,9 +340,9 @@ def RemainingVisibleAffineSlopesClaim : Prop :=
       p.b₁ = 0 → p.b₂ = 0 → p.k₃ = 0 → p.h₃ = 0 →
       p.k₁ = 0 ∧ p.k₂ = 0 ∧ p.h₂ = 0
 
-theorem mainClaim_of_remaining_visible_affine_slopes
-    (H : RemainingVisibleAffineSlopesClaim) : mainClaim := by
-  apply mainClaim_iff_adaptedConstancyClaim.mpr
+theorem quadraticFreeMainClaim_of_remaining_visible_affine_slopes
+    (H : RemainingVisibleAffineSlopesClaim) : QuadraticFreeMainClaim := by
+  apply quadraticFreeMainClaim_iff_adaptedConstancyClaim.mpr
   intro m f h hFD hrank hq hx₀ hx₁
   letI := hFD
   obtain ⟨p,hform⟩ := shi_yau_affine_structure f h hrank hx₀ hx₁

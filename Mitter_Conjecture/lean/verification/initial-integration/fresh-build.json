@@ -1,0 +1,1594 @@
+{
+  "passed": true,
+  "prepare_only": false,
+  "started_utc": "2026-09-28T19:54:03.816084+00:00",
+  "compiler": "Lean (version 4.35.0-rc2, arm64-apple-darwin24.6.0, commit 11acb17ec6b07a8f9e9173e6845197929540936b, Release)",
+  "modules": {
+    "Wong.MainStatement": {
+      "source_sha256": "e9f51310ade6a4539e43c3074a1b35ed35e34bd85946761d53c93183d842a5cc",
+      "artifact_sha256": "26f1cc6fa4f8bda2c3cdb53085b31f86c376a919eeda18d59e4af328bfabb9b7",
+      "dependency_artifacts": {},
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.SmoothBrackets": {
+      "source_sha256": "0958ba29fac1ce2cc11fb26124286ff70470113395a54851298b68e1a82b68c1",
+      "artifact_sha256": "a16b1aa9f37ee49852c6e62d2a0557133be46906f99701c5428532054fe999fa",
+      "dependency_artifacts": {
+        "Wong.MainStatement": "26f1cc6fa4f8bda2c3cdb53085b31f86c376a919eeda18d59e4af328bfabb9b7"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.Gauge": {
+      "source_sha256": "f2183ed496d826190a8bf08ac9cb6e1453d1580302b4e4ad54ce6d2f270f4f71",
+      "artifact_sha256": "8617f5e14a1d0a9ef7ade11757fc831f263c0deea7cb1fe6676c1408839396fe",
+      "dependency_artifacts": {
+        "Wong.SmoothBrackets": "a16b1aa9f37ee49852c6e62d2a0557133be46906f99701c5428532054fe999fa"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.DifferentialOrder": {
+      "source_sha256": "bd52805042231a408f0ee4fded91cb7bdefe59e289a28d27577bb78c1bb137ae",
+      "artifact_sha256": "99d64593abbbccf8df104a78de4782ae3b0d862821c2e216f08f7021ab8ceeb6",
+      "dependency_artifacts": {
+        "Wong.SmoothBrackets": "a16b1aa9f37ee49852c6e62d2a0557133be46906f99701c5428532054fe999fa"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.AdjointIteration": {
+      "source_sha256": "8625ae5b3580d996f3d16feefa91bbe360af530c6fceb295e0ceaeb3d0e8aa0a",
+      "artifact_sha256": "3e4b8ddaa18f27efe3dbcd7306f18974409a501be3e05e94dec1205f886d8d95",
+      "dependency_artifacts": {},
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.DirectionalExtraction": {
+      "source_sha256": "eb8a446f97d97ef8d79088ec038aa12e98b1e4d7dd633794c76573a81fb212e0",
+      "artifact_sha256": "448730faa4608dbf74ad53c92e4c0257e79495dece2261855e9aa0bb2ba905c4",
+      "dependency_artifacts": {
+        "Wong.DifferentialOrder": "99d64593abbbccf8df104a78de4782ae3b0d862821c2e216f08f7021ab8ceeb6",
+        "Wong.AdjointIteration": "3e4b8ddaa18f27efe3dbcd7306f18974409a501be3e05e94dec1205f886d8d95"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.PrincipalExtraction": {
+      "source_sha256": "61405bbffe0534736eedaf63d2bf0eaf21dcc5358bcd42faf58411c83bd6cfb2",
+      "artifact_sha256": "dfc369861cfc1695e735ba3cddf8efeb5a4afeb89dfba2672c1dc473f2e2b530",
+      "dependency_artifacts": {
+        "Wong.AdjointIteration": "3e4b8ddaa18f27efe3dbcd7306f18974409a501be3e05e94dec1205f886d8d95"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.FirstOrderExtraction": {
+      "source_sha256": "ca9a745f63fc225d09ff39c596ee56fe83bf076d6cf0e8342173fab7599573a1",
+      "artifact_sha256": "da9540241cdcd8522988728348bc35bc196a1557098d2b47dc3e6b72819a6274",
+      "dependency_artifacts": {
+        "Wong.DirectionalExtraction": "448730faa4608dbf74ad53c92e4c0257e79495dece2261855e9aa0bb2ba905c4",
+        "Wong.PrincipalExtraction": "dfc369861cfc1695e735ba3cddf8efeb5a4afeb89dfba2672c1dc473f2e2b530"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.GeneratorCommutator": {
+      "source_sha256": "50d9600188d31b2624a42582ddb5dfabf55841daa2d2c7af789b7ab637c46eb8",
+      "artifact_sha256": "8360247accdd5f93f5ae294c04bb90e75eeb15cd91e46214f8544cb481a15da2",
+      "dependency_artifacts": {
+        "Wong.FirstOrderExtraction": "da9540241cdcd8522988728348bc35bc196a1557098d2b47dc3e6b72819a6274"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.CovariantWords": {
+      "source_sha256": "942406092bdcd35815ed4d8ecb1d9ac305d5ccbb5728587acea8311d679f07a6",
+      "artifact_sha256": "9448a8a89c2452816df77f9ebdbf10e05199d415dce522c7e2ecf60967b96fb9",
+      "dependency_artifacts": {
+        "Wong.GeneratorCommutator": "8360247accdd5f93f5ae294c04bb90e75eeb15cd91e46214f8544cb481a15da2",
+        "Wong.FirstOrderExtraction": "da9540241cdcd8522988728348bc35bc196a1557098d2b47dc3e6b72819a6274"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.GlobalGauge": {
+      "source_sha256": "26211b0f71800eda2d06471cd9c2f18d9c128594274eaf1b8aa6bbf49e12acff",
+      "artifact_sha256": "7a3f3ca05579501af76623e3dd9f0b05201aa173dd0e5f0898d20b06a9a23f0d",
+      "dependency_artifacts": {
+        "Wong.Gauge": "8617f5e14a1d0a9ef7ade11757fc831f263c0deea7cb1fe6676c1408839396fe",
+        "Wong.CovariantWords": "9448a8a89c2452816df77f9ebdbf10e05199d415dce522c7e2ecf60967b96fb9"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.PolynomialGradient": {
+      "source_sha256": "262a1e02840737a9198d901927a929dd9d265e2238e7227c787e9f033bac604f",
+      "artifact_sha256": "e88e13d911c4285288b0d81261e839b6376dba1209ea5664f30419736d79f0fb",
+      "dependency_artifacts": {},
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.PolynomialSmooth": {
+      "source_sha256": "f42507202c76f4b225fc6263fb8bf3a3197546931bcb10e43e10578a98d6156a",
+      "artifact_sha256": "81b1ec74e1805750d2427cf0abf9b2348f9e06a5b2df6207e984a09f01df2d7f",
+      "dependency_artifacts": {
+        "Wong.DirectionalExtraction": "448730faa4608dbf74ad53c92e4c0257e79495dece2261855e9aa0bb2ba905c4",
+        "Wong.PolynomialGradient": "e88e13d911c4285288b0d81261e839b6376dba1209ea5664f30419736d79f0fb"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.PolynomialAffinity": {
+      "source_sha256": "95b1f7a6ee6d110efad8c2b839276a103ccb56e25440d074bee3b8862f4fa2ad",
+      "artifact_sha256": "c7947858701a275280c748ad176dfd3eae2ebdcdf56689cb2edb5aeb1811eac8",
+      "dependency_artifacts": {
+        "Wong.MainStatement": "26f1cc6fa4f8bda2c3cdb53085b31f86c376a919eeda18d59e4af328bfabb9b7"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.Affine": {
+      "source_sha256": "a8bafc72c8b01a20a3d51edd4ff69f22a7a0fb6813d7cf8a79c7b84a3f17ce92",
+      "artifact_sha256": "bbfe16e4fd0270400ee265d30335eb3b3f84743ccd6f156ca37f952f0e405c73",
+      "dependency_artifacts": {},
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.SmoothGeometry": {
+      "source_sha256": "2cacd656c482d902e8ccc535fbf9ad5ae5683e96f80d6fa12f9444f6ebb85b00",
+      "artifact_sha256": "1101c442f3697e790202ac0f09708f6e1e3ac18bed2a4d3ccd13d432e024437a",
+      "dependency_artifacts": {
+        "Wong.SmoothBrackets": "a16b1aa9f37ee49852c6e62d2a0557133be46906f99701c5428532054fe999fa",
+        "Wong.Affine": "bbfe16e4fd0270400ee265d30335eb3b3f84743ccd6f156ca37f952f0e405c73"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.FunctionElements": {
+      "source_sha256": "38bc246381d1487e90d5199cab4dd2a4457fee11433ca46abc5d9277927ec71e",
+      "artifact_sha256": "95ba3677444ebd8f9b4f386f3b7245d20236b5b1100377aaa239a1ec162aa988",
+      "dependency_artifacts": {
+        "Wong.DirectionalExtraction": "448730faa4608dbf74ad53c92e4c0257e79495dece2261855e9aa0bb2ba905c4"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.Ocone": {
+      "source_sha256": "462990cc9d056562e7802536e09721c5d86717591abefdc195f010b74ba2c21d",
+      "artifact_sha256": "84c5cbc9675951b8f5adcdeb5bfc1a209f46aed7fc257454e4ee255e3695bf50",
+      "dependency_artifacts": {
+        "Wong.FunctionElements": "95ba3677444ebd8f9b4f386f3b7245d20236b5b1100377aaa239a1ec162aa988",
+        "Wong.PolynomialGradient": "e88e13d911c4285288b0d81261e839b6376dba1209ea5664f30419736d79f0fb",
+        "Wong.PolynomialSmooth": "81b1ec74e1805750d2427cf0abf9b2348f9e06a5b2df6207e984a09f01df2d7f",
+        "Wong.PolynomialAffinity": "c7947858701a275280c748ad176dfd3eae2ebdcdf56689cb2edb5aeb1811eac8"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.RankStructure": {
+      "source_sha256": "542eb8d293394e3d93239970564ae3746eb3bc7ef3d992a502ec5bb72c54e8c6",
+      "artifact_sha256": "4996025f753c8e90289de24353012e9a902012a0cd8cb9efdee37bf27dfd6f67",
+      "dependency_artifacts": {
+        "Wong.Ocone": "84c5cbc9675951b8f5adcdeb5bfc1a209f46aed7fc257454e4ee255e3695bf50",
+        "Wong.DirectionalExtraction": "448730faa4608dbf74ad53c92e4c0257e79495dece2261855e9aa0bb2ba905c4"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.PublishedAffineStatement": {
+      "source_sha256": "b7d5517fe0e5290253854b84b28bd5a8cfbb33cb5db0568ec33acf3eda9a3044",
+      "artifact_sha256": "a94204d4cde345d13ae308c16afee89e5aea97dd86bc03e028034a91de3e22f5",
+      "dependency_artifacts": {
+        "Wong.PolynomialSmooth": "81b1ec74e1805750d2427cf0abf9b2348f9e06a5b2df6207e984a09f01df2d7f",
+        "Wong.PolynomialAffinity": "c7947858701a275280c748ad176dfd3eae2ebdcdf56689cb2edb5aeb1811eac8",
+        "Wong.SmoothGeometry": "1101c442f3697e790202ac0f09708f6e1e3ac18bed2a4d3ccd13d432e024437a",
+        "Wong.RankStructure": "4996025f753c8e90289de24353012e9a902012a0cd8cb9efdee37bf27dfd6f67"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.AffineGaugeRepresentative": {
+      "source_sha256": "869dc000d2795fcfe035b4c952c950a59e6316943a78c2aac07a8a5a99425c14",
+      "artifact_sha256": "8c36c4024f8fd785310ae089c216c1ac905126ad19f17486906517d38c37a760",
+      "dependency_artifacts": {
+        "Wong.PublishedAffineStatement": "a94204d4cde345d13ae308c16afee89e5aea97dd86bc03e028034a91de3e22f5"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.FiniteSupport": {
+      "source_sha256": "916f85e70eb3b472333d5de11734f2cdf21b717f64934609b2ab6d4c18ea7f11",
+      "artifact_sha256": "66f111aaefea72a4476d6266f036672d99dacf104022fd8bf1abe6581c7354d1",
+      "dependency_artifacts": {},
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.NormalForm": {
+      "source_sha256": "f7b23da159df94f74c6c358cf8c5b0f44d988cc850169d50d3c0e8f11dd1fb1e",
+      "artifact_sha256": "4b8785e43cffe7721a7203d9fb7cf658d3f1287fba704d6d24944ea26bd795b0",
+      "dependency_artifacts": {
+        "Wong.DirectionalExtraction": "448730faa4608dbf74ad53c92e4c0257e79495dece2261855e9aa0bb2ba905c4",
+        "Wong.FiniteSupport": "66f111aaefea72a4476d6266f036672d99dacf104022fd8bf1abe6581c7354d1"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.NormalFormAlgebra": {
+      "source_sha256": "73e2a6985aa113d4c2960aac6712f8863a2b855809a858cd80fb7aaebc53b4ff",
+      "artifact_sha256": "a173a0b762e7f6870dc6b29304d94a7a3a09ad65c20c7644429a5c0ea49cabf9",
+      "dependency_artifacts": {
+        "Wong.NormalForm": "4b8785e43cffe7721a7203d9fb7cf658d3f1287fba704d6d24944ea26bd795b0"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.ParameterCoefficient": {
+      "source_sha256": "78065ced12015e116f65cfaad2baf8a4482fd94e12e0027f7b332b82921aed5c",
+      "artifact_sha256": "1eb02282b8f22f323cc154f8c5497235566366e246216acca1953507303429c3",
+      "dependency_artifacts": {
+        "Wong.FunctionElements": "95ba3677444ebd8f9b4f386f3b7245d20236b5b1100377aaa239a1ec162aa988"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.FirstOrderPolynomial": {
+      "source_sha256": "553167c37223ba5cbea4776eca8562eae4c78b96e362f3a4718929c0c11d826a",
+      "artifact_sha256": "72dd82837ee334b5b3c9efefc887f4e4391ff5188ce6822487a0968216cc6a78",
+      "dependency_artifacts": {
+        "Wong.ParameterCoefficient": "1eb02282b8f22f323cc154f8c5497235566366e246216acca1953507303429c3",
+        "Wong.FirstOrderExtraction": "da9540241cdcd8522988728348bc35bc196a1557098d2b47dc3e6b72819a6274"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.AdaptedGauge": {
+      "source_sha256": "93079dbbc734d3783b4957ade75a9f12fd7d4159d1f00641dc44689d204a4b98",
+      "artifact_sha256": "f291319e676959dbd42a97d4c888bfc2a4294333440c09814f97a6cda7f7467a",
+      "dependency_artifacts": {
+        "Wong.GlobalGauge": "7a3f3ca05579501af76623e3dd9f0b05201aa173dd0e5f0898d20b06a9a23f0d",
+        "Wong.AffineGaugeRepresentative": "8c36c4024f8fd785310ae089c216c1ac905126ad19f17486906517d38c37a760",
+        "Wong.NormalFormAlgebra": "a173a0b762e7f6870dc6b29304d94a7a3a09ad65c20c7644429a5c0ea49cabf9",
+        "Wong.FirstOrderPolynomial": "72dd82837ee334b5b3c9efefc887f4e4391ff5188ce6822487a0968216cc6a78"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.OrthogonalCoordinates": {
+      "source_sha256": "da1c00ce08a208519b62f63042a889a602f31b5d178f96539323723249ab6f49",
+      "artifact_sha256": "8c9d2afaa729eef017779a68de609b3526844ac57a93032abdbd3eb2eeb348bd",
+      "dependency_artifacts": {
+        "Wong.FirstOrderExtraction": "da9540241cdcd8522988728348bc35bc196a1557098d2b47dc3e6b72819a6274",
+        "Wong.SmoothGeometry": "1101c442f3697e790202ac0f09708f6e1e3ac18bed2a4d3ccd13d432e024437a"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.AffineFrame": {
+      "source_sha256": "0571c20dfd55653ee2e4e64ab28e2e8c8d8ac1326b224f45ef5aa39a0e02c42b",
+      "artifact_sha256": "91d2f41fa9db96f3aca8887a95a04440381445d513a53720e228f306e88eb9f0",
+      "dependency_artifacts": {
+        "Wong.OrthogonalCoordinates": "8c9d2afaa729eef017779a68de609b3526844ac57a93032abdbd3eb2eeb348bd",
+        "Wong.NormalFormAlgebra": "a173a0b762e7f6870dc6b29304d94a7a3a09ad65c20c7644429a5c0ea49cabf9",
+        "Wong.DifferentialOrder": "99d64593abbbccf8df104a78de4782ae3b0d862821c2e216f08f7021ab8ceeb6"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.AffineFrameAlgebra": {
+      "source_sha256": "92243b2c6429d5c776f25f728e36cb02f1fefe0f6b01d1a45d2ac86a5cf7878e",
+      "artifact_sha256": "f76dbe3aa77c2961b1d8431b35f2d9a59327c2734509088b73293a358c25f50e",
+      "dependency_artifacts": {
+        "Wong.AffineFrame": "91d2f41fa9db96f3aca8887a95a04440381445d513a53720e228f306e88eb9f0",
+        "Wong.AdaptedGauge": "f291319e676959dbd42a97d4c888bfc2a4294333440c09814f97a6cda7f7467a"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.CoordinateGenerators": {
+      "source_sha256": "eaa80e5931e7f04ee587c81516bc0818e31492b21289c114c358a801a940885c",
+      "artifact_sha256": "db3a5ccca970ebe2ea4affb5168cd008967e29a105687a9945546774ffcfd14a",
+      "dependency_artifacts": {
+        "Wong.OrthogonalCoordinates": "8c9d2afaa729eef017779a68de609b3526844ac57a93032abdbd3eb2eeb348bd",
+        "Wong.Ocone": "84c5cbc9675951b8f5adcdeb5bfc1a209f46aed7fc257454e4ee255e3695bf50"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.EmptyObservation": {
+      "source_sha256": "cd3574e56822ceea14351bccb8b498df49a68694b609f740766bc75e03a4e55f",
+      "artifact_sha256": "e2ec9b15f68e2ea5473aaa845068d2c9d70e587df03cdb0a8fbfdd30f9c711ed",
+      "dependency_artifacts": {
+        "Wong.RankStructure": "4996025f753c8e90289de24353012e9a902012a0cd8cb9efdee37bf27dfd6f67"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.EulerAlgebra": {
+      "source_sha256": "17e992ada153fed1bd041e90a95bbeffb488639932a6f3d9803fccb9a1e1d3e7",
+      "artifact_sha256": "21b02963cebea8c1215037c1f20f5c429e4f9f8d44fb6efe09f8450cccf55988",
+      "dependency_artifacts": {},
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.EulerSystem": {
+      "source_sha256": "9d1171639644e511d34f8f6c48b484e87d5e60e1f4aaaf86a83053fc42cf340e",
+      "artifact_sha256": "e4961014871ccfe3957257dc7fc2a0f91cfcc52b7af8a40af90e5ca17ae954dd",
+      "dependency_artifacts": {},
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.EulerSmooth": {
+      "source_sha256": "8f0041bed8b8ae0254a43506676d0077c74011b1fef60273fe59100bf3e63cd5",
+      "artifact_sha256": "249f2a7d381ebd6da039341f77e4417636029e6199f03278274b1db9ecd2cca1",
+      "dependency_artifacts": {
+        "Wong.EulerSystem": "e4961014871ccfe3957257dc7fc2a0f91cfcc52b7af8a40af90e5ca17ae954dd",
+        "Wong.FunctionElements": "95ba3677444ebd8f9b4f386f3b7245d20236b5b1100377aaa239a1ec162aa988"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.EulerFiniteModule": {
+      "source_sha256": "918bc45a5d4060db475a555abff64eb461e28cfb1ba9e3cb4b2b48f3519bb020",
+      "artifact_sha256": "aa3a2049f6e4f3c7a4f45334c2f9d02ca0af2abbf148c325a33b4ae1d8c235ef",
+      "dependency_artifacts": {
+        "Wong.NormalFormAlgebra": "a173a0b762e7f6870dc6b29304d94a7a3a09ad65c20c7644429a5c0ea49cabf9",
+        "Wong.EulerAlgebra": "21b02963cebea8c1215037c1f20f5c429e4f9f8d44fb6efe09f8450cccf55988",
+        "Wong.EulerSmooth": "249f2a7d381ebd6da039341f77e4417636029e6199f03278274b1db9ecd2cca1"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.EulerNormalCoefficients": {
+      "source_sha256": "324457525de740397965fd61e0f19972cf0a4d2d67e95d50400c95b796d29abe",
+      "artifact_sha256": "9f33d538fb84490659726e3c532d01b59c199178be5bca1b8ae0fe869941b8a1",
+      "dependency_artifacts": {
+        "Wong.EulerFiniteModule": "aa3a2049f6e4f3c7a4f45334c2f9d02ca0af2abbf148c325a33b4ae1d8c235ef"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.EulerFalling": {
+      "source_sha256": "a61fd92700f7db035e3d30c7e6eea4a0f6775d94ee981b6026c785c8b09fdc88",
+      "artifact_sha256": "77df27a45c125b81fb0d86b7f3e2b593d0cf8359b9fc2822de802efdaa603098",
+      "dependency_artifacts": {
+        "Wong.EulerNormalCoefficients": "9f33d538fb84490659726e3c532d01b59c199178be5bca1b8ae0fe869941b8a1"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.HiddenPolynomialFiltration": {
+      "source_sha256": "2750e4cc0ab4d90cc622fff97e5d6646c43e9af1eaa4854393a332b26e291c42",
+      "artifact_sha256": "aa6a2519d5735d76d535c7d160775aedba8eddb27269fc3baf7cac22f060af45",
+      "dependency_artifacts": {
+        "Wong.NormalForm": "4b8785e43cffe7721a7203d9fb7cf658d3f1287fba704d6d24944ea26bd795b0"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.EulerHiddenPolynomial": {
+      "source_sha256": "a0d2455c39a60cb102dca4caa14aba99a442010a9f79cd781703f5611ea37dd5",
+      "artifact_sha256": "c401a3a32a3bd5b4300f4e1b7381284b858024c060b282be9c471912c03e6584",
+      "dependency_artifacts": {
+        "Wong.EulerNormalCoefficients": "9f33d538fb84490659726e3c532d01b59c199178be5bca1b8ae0fe869941b8a1",
+        "Wong.HiddenPolynomialFiltration": "aa6a2519d5735d76d535c7d160775aedba8eddb27269fc3baf7cac22f060af45",
+        "Wong.EulerSmooth": "249f2a7d381ebd6da039341f77e4417636029e6199f03278274b1db9ecd2cca1"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.EulerFunctionSpace": {
+      "source_sha256": "8c0ac3a0736139323bfb0b2f2991059fd419c08dd5e206b626bd4e22caba9e1d",
+      "artifact_sha256": "b0007a0e7447055fa6b572505879788128338ac75be2a69afc56efe8385f482b",
+      "dependency_artifacts": {
+        "Wong.EulerFalling": "77df27a45c125b81fb0d86b7f3e2b593d0cf8359b9fc2822de802efdaa603098",
+        "Wong.EulerHiddenPolynomial": "c401a3a32a3bd5b4300f4e1b7381284b858024c060b282be9c471912c03e6584",
+        "Wong.AdaptedGauge": "f291319e676959dbd42a97d4c888bfc2a4294333440c09814f97a6cda7f7467a"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.EulerGeneralFinite": {
+      "source_sha256": "231b8e745661a0fa4880f5cac4de545bdc27f264531a73714351f1d9c4ca2d91",
+      "artifact_sha256": "e4e6fe7ea3b749ca34474033c63a6540dbf0559f98aed3f0098dedfabff59372",
+      "dependency_artifacts": {
+        "Wong.EulerHiddenPolynomial": "c401a3a32a3bd5b4300f4e1b7381284b858024c060b282be9c471912c03e6584"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.EulerSpectral": {
+      "source_sha256": "66277f9edca447b61518f035572f5b212081e331ec303ca695ff93c15a220e0c",
+      "artifact_sha256": "e0ccf323482f535d61509ac07cf5ca4384e9c8b3e3c39e504f404709212354b2",
+      "dependency_artifacts": {
+        "Wong.EulerFalling": "77df27a45c125b81fb0d86b7f3e2b593d0cf8359b9fc2822de802efdaa603098",
+        "Wong.EulerGeneralFinite": "e4e6fe7ea3b749ca34474033c63a6540dbf0559f98aed3f0098dedfabff59372"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.EulerHeadExtraction": {
+      "source_sha256": "c0492e599a9fb28b23d7bd96fe34518ce008ba30b48c578b7e6d6adaa882e77d",
+      "artifact_sha256": "f81bac1fb3b688bd21ff8c994b510d86159196f547c6a67d5a7caa0198b85d4c",
+      "dependency_artifacts": {
+        "Wong.EulerSpectral": "e0ccf323482f535d61509ac07cf5ca4384e9c8b3e3c39e504f404709212354b2"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.NormalSymbolsRing": {
+      "source_sha256": "3bc1b123e5cc96fcbfd942c51a873710ab0438826ffaa0cdba7b4c9be7ae8181",
+      "artifact_sha256": "583763609cbf21ff93ddaaa214a827ea028ac752f6c66d1c7129b719abe0fa31",
+      "dependency_artifacts": {
+        "Wong.NormalFormAlgebra": "a173a0b762e7f6870dc6b29304d94a7a3a09ad65c20c7644429a5c0ea49cabf9"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.NormalSymbols": {
+      "source_sha256": "15a4d569b5188f5157a316f4bce8aea7b44f700fe549954924ba5b01dbb582d7",
+      "artifact_sha256": "051faed292c604c30f03fbf697d6234e20ea53352ae4a8348fc04a3abadd9d1a",
+      "dependency_artifacts": {
+        "Wong.NormalSymbolsRing": "583763609cbf21ff93ddaaa214a827ea028ac752f6c66d1c7129b719abe0fa31"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.NormalSymbolsOrder": {
+      "source_sha256": "0b59d40b2d46c05d1f00294ddb3a7ca17e7feef51be6b63928fbdcf8f284ee3d",
+      "artifact_sha256": "33f9cb20e6d6f322202ff0058f3d91e18cf9f702b1e56bcf8e794a4206bba2b9",
+      "dependency_artifacts": {
+        "Wong.NormalSymbols": "051faed292c604c30f03fbf697d6234e20ea53352ae4a8348fc04a3abadd9d1a"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.NormalSymbolsComposition": {
+      "source_sha256": "4e5a8024778b476762620d9e09cf2f3a9b23caf8625eff5a88ee70ab13b60634",
+      "artifact_sha256": "b5a820c3e2729671b113c899e318feb191c8ab1fd8d542d8eaa00a5facf876e7",
+      "dependency_artifacts": {
+        "Wong.NormalSymbolsOrder": "33f9cb20e6d6f322202ff0058f3d91e18cf9f702b1e56bcf8e794a4206bba2b9"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.NormalSymbolsProduct": {
+      "source_sha256": "cc01cc80e4e6aac063d764d355f69278e90270b185cf00196d9719fdf5c7c7f0",
+      "artifact_sha256": "815ba6fa269f9992f0a5f5e5cd603dad30bd462c71a3ca2026997da999b4aa7e",
+      "dependency_artifacts": {
+        "Wong.NormalSymbolsComposition": "b5a820c3e2729671b113c899e318feb191c8ab1fd8d542d8eaa00a5facf876e7"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.NormalSymbolsBracket": {
+      "source_sha256": "0e02a3692ae43bbe929970380f69cf505a82d26529dcfccfdcebcbb6e66abd58",
+      "artifact_sha256": "632dfdba7a2d6049f5e1aa5de711190e19076841655bed7f8eedb4425b0c7f42",
+      "dependency_artifacts": {
+        "Wong.NormalSymbolsProduct": "815ba6fa269f9992f0a5f5e5cd603dad30bd462c71a3ca2026997da999b4aa7e"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.SharpDifferentialOrder": {
+      "source_sha256": "ea050b628557052acc40a546aaa7a49a9996de9871fe6b84400b53ba3dc42a70",
+      "artifact_sha256": "1ecc58b272354c8bd9bacd29033f2c85fdf338a3409084ca9fdb6ef72f9ded5e",
+      "dependency_artifacts": {
+        "Wong.DirectionalExtraction": "448730faa4608dbf74ad53c92e4c0257e79495dece2261855e9aa0bb2ba905c4"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.NormalSymbolsOrderBridge": {
+      "source_sha256": "feb6d762f1c393f8ecde7e180e0cba520518214defd0e04053747e13ebe1efd4",
+      "artifact_sha256": "26f18c9e0350f7d4053a85fa65eb77388165ac23a2a1775e042a311324329849",
+      "dependency_artifacts": {
+        "Wong.NormalSymbolsComposition": "b5a820c3e2729671b113c899e318feb191c8ab1fd8d542d8eaa00a5facf876e7",
+        "Wong.SharpDifferentialOrder": "1ecc58b272354c8bd9bacd29033f2c85fdf338a3409084ca9fdb6ef72f9ded5e"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.NormalSymbolsPrincipal": {
+      "source_sha256": "81ce4cd684f1752a333dcbc992f47cd5f3cecd3262758d767e8a80ff1732a308",
+      "artifact_sha256": "efc2e9be622254bf6cf5f64d5d22f50e460c49b0549954d717f843f706853d65",
+      "dependency_artifacts": {
+        "Wong.NormalSymbolsBracket": "632dfdba7a2d6049f5e1aa5de711190e19076841655bed7f8eedb4425b0c7f42",
+        "Wong.NormalSymbolsOrderBridge": "26f18c9e0350f7d4053a85fa65eb77388165ac23a2a1775e042a311324329849"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.PureHiddenSymbols": {
+      "source_sha256": "49f1c016527fc047911681b135facdaaa200450b45a830cc6f3f60b6626b8691",
+      "artifact_sha256": "23831299bbf14f3b4ce7028cd4e695beb02ab622856ae369ff1d951da0bb5c3b",
+      "dependency_artifacts": {
+        "Wong.EulerHeadExtraction": "f81bac1fb3b688bd21ff8c994b510d86159196f547c6a67d5a7caa0198b85d4c",
+        "Wong.NormalSymbolsBracket": "632dfdba7a2d6049f5e1aa5de711190e19076841655bed7f8eedb4425b0c7f42",
+        "Wong.NormalSymbolsOrderBridge": "26f18c9e0350f7d4053a85fa65eb77388165ac23a2a1775e042a311324329849",
+        "Wong.NormalSymbolsPrincipal": "efc2e9be622254bf6cf5f64d5d22f50e460c49b0549954d717f843f706853d65",
+        "Wong.SharpDifferentialOrder": "1ecc58b272354c8bd9bacd29033f2c85fdf338a3409084ca9fdb6ef72f9ded5e"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.EulerHighDegreeLadder": {
+      "source_sha256": "1e7d543a5b3ebcedc92af812760d0583ecc3361cdfa58a9729753eb78f12c414",
+      "artifact_sha256": "ce3e2c074730512b36eb611b08b1d2cb956d64dece0ea515c0b3145cbf8cb298",
+      "dependency_artifacts": {
+        "Wong.PureHiddenSymbols": "23831299bbf14f3b4ce7028cd4e695beb02ab622856ae369ff1d951da0bb5c3b"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.EulerLinearLadder": {
+      "source_sha256": "e1ac70fa1969bbdec32631cccde72513c2cbdd93916cb1fa2483c7eab93c7935",
+      "artifact_sha256": "8b78bf77fb7f1fb91849e3f5a0858a5e5e875365f8bf21ffe15ea7bccd62d72d",
+      "dependency_artifacts": {
+        "Wong.EulerHeadExtraction": "f81bac1fb3b688bd21ff8c994b510d86159196f547c6a67d5a7caa0198b85d4c",
+        "Wong.NormalSymbolsOrderBridge": "26f18c9e0350f7d4053a85fa65eb77388165ac23a2a1775e042a311324329849"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.EulerLinearCanonical": {
+      "source_sha256": "6408c5bc03cc5ec3a17950a3eb8ca85e74543d332ea8ab37100166a786836477",
+      "artifact_sha256": "33502a2edc2f1243f7154f80c10eedca7c9a125a17812b2ee353c2b28c2a63ab",
+      "dependency_artifacts": {
+        "Wong.EulerLinearLadder": "8b78bf77fb7f1fb91849e3f5a0858a5e5e875365f8bf21ffe15ea7bccd62d72d"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.NormalSymbolsQuotient": {
+      "source_sha256": "84b650a39b1ba82f8ceb3294f313e66cb86219ad450d89748929089b68cb081f",
+      "artifact_sha256": "cd56335c6ed3bf0729f1a652f968e65a9c505aa8aa5ca709e7976b2c0813f989",
+      "dependency_artifacts": {
+        "Wong.NormalSymbolsBracket": "632dfdba7a2d6049f5e1aa5de711190e19076841655bed7f8eedb4425b0c7f42"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.NormalSymbolsHeads": {
+      "source_sha256": "8b42670c671af60cc305a8c9a16a1a8250ec2d36537b62970c61b81e910c97e5",
+      "artifact_sha256": "3d8ff50c0834d3bc007b6a4d69fe0400fb27afb903aa854ea58946452fde2097",
+      "dependency_artifacts": {
+        "Wong.NormalSymbolsPrincipal": "efc2e9be622254bf6cf5f64d5d22f50e460c49b0549954d717f843f706853d65",
+        "Wong.NormalSymbolsQuotient": "cd56335c6ed3bf0729f1a652f968e65a9c505aa8aa5ca709e7976b2c0813f989"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.HiddenEulerElement": {
+      "source_sha256": "40b770b2807df378da895f40fc2b091599e5b7bbde9755bb19f4105b9b044cb4",
+      "artifact_sha256": "3114bb0b803f230867ca93025c36a419a0b98f568719b6b3018359ad9b4b1714",
+      "dependency_artifacts": {
+        "Wong.AffineFrame": "91d2f41fa9db96f3aca8887a95a04440381445d513a53720e228f306e88eb9f0",
+        "Wong.AdaptedGauge": "f291319e676959dbd42a97d4c888bfc2a4294333440c09814f97a6cda7f7467a",
+        "Wong.EulerFiniteModule": "aa3a2049f6e4f3c7a4f45334c2f9d02ca0af2abbf148c325a33b4ae1d8c235ef"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.GaugeNormalForm": {
+      "source_sha256": "a6b3a1809624c79dcd7534b4c42e092cf1c7470dc374e661ce3a6f9135441fa8",
+      "artifact_sha256": "800b5dd3395a15a981cf8b274c58d3c87ab3814d6ffddc134412166c6e73f565",
+      "dependency_artifacts": {
+        "Wong.Gauge": "8617f5e14a1d0a9ef7ade11757fc831f263c0deea7cb1fe6676c1408839396fe",
+        "Wong.NormalFormAlgebra": "a173a0b762e7f6870dc6b29304d94a7a3a09ad65c20c7644429a5c0ea49cabf9",
+        "Wong.DifferentialOrder": "99d64593abbbccf8df104a78de4782ae3b0d862821c2e216f08f7021ab8ceeb6"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.ParametricSmoothIntegral": {
+      "source_sha256": "0b15af8c20e4134166396781b2400173477d0b1c3b42498541cf1ffabb6c2a8e",
+      "artifact_sha256": "6f141a022f32263f8b5e7c3cf51fe37af68ce4e1cb07e120557e58ab37ef1260",
+      "dependency_artifacts": {},
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.SmoothHiddenPrimitive": {
+      "source_sha256": "df3f5239306d997eccd052cdd57ce170a476c1a005ce18e948bd7d5e04543dcf",
+      "artifact_sha256": "76083a948f1f17dd2f0fa11ce251df6ce014a4e3132f6b275ddd4430552d5168",
+      "dependency_artifacts": {
+        "Wong.ParametricSmoothIntegral": "6f141a022f32263f8b5e7c3cf51fe37af68ce4e1cb07e120557e58ab37ef1260",
+        "Wong.FunctionElements": "95ba3677444ebd8f9b4f386f3b7245d20236b5b1100377aaa239a1ec162aa988",
+        "Wong.Gauge": "8617f5e14a1d0a9ef7ade11757fc831f263c0deea7cb1fe6676c1408839396fe",
+        "Wong.EulerFiniteModule": "aa3a2049f6e4f3c7a4f45334c2f9d02ca0af2abbf148c325a33b4ae1d8c235ef"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.HiddenProfiles": {
+      "source_sha256": "5328e1784310cb1d2f42190c4391d20743d20761f09a2906d6004dacc63f9521",
+      "artifact_sha256": "9f4b17336c3f8e240fd417988de9613f2d13b592cf8c7b51debf0f2cffc7a460",
+      "dependency_artifacts": {
+        "Wong.FunctionElements": "95ba3677444ebd8f9b4f386f3b7245d20236b5b1100377aaa239a1ec162aa988",
+        "Wong.AffineFrame": "91d2f41fa9db96f3aca8887a95a04440381445d513a53720e228f306e88eb9f0"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.HiddenEulerNormalization": {
+      "source_sha256": "10f7ef347aba6de92643f42a8faee0578ff97d88d704eb1b8910155547918871",
+      "artifact_sha256": "3a0150d237d127bf5c57726558e205cfc870e8f092652990d08aa43904b8ebc8",
+      "dependency_artifacts": {
+        "Wong.HiddenEulerElement": "3114bb0b803f230867ca93025c36a419a0b98f568719b6b3018359ad9b4b1714",
+        "Wong.AffineFrameAlgebra": "f76dbe3aa77c2961b1d8431b35f2d9a59327c2734509088b73293a358c25f50e",
+        "Wong.GaugeNormalForm": "800b5dd3395a15a981cf8b274c58d3c87ab3814d6ffddc134412166c6e73f565",
+        "Wong.SmoothHiddenPrimitive": "76083a948f1f17dd2f0fa11ce251df6ce014a4e3132f6b275ddd4430552d5168",
+        "Wong.EulerFunctionSpace": "b0007a0e7447055fa6b572505879788128338ac75be2a69afc56efe8385f482b",
+        "Wong.HiddenProfiles": "9f4b17336c3f8e240fd417988de9613f2d13b592cf8c7b51debf0f2cffc7a460"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.EulerNormalizedDiffusion": {
+      "source_sha256": "8ae8b21c22c0603513ded7a605b07fd01a74d855055679217db5604a6b6d1d6e",
+      "artifact_sha256": "1dd6305614a8a9e7497285dd332804a4dbf18121b6f2b202912bea3878412b6a",
+      "dependency_artifacts": {
+        "Wong.EulerHeadExtraction": "f81bac1fb3b688bd21ff8c994b510d86159196f547c6a67d5a7caa0198b85d4c",
+        "Wong.NormalSymbolsHeads": "3d8ff50c0834d3bc007b6a4d69fe0400fb27afb903aa854ea58946452fde2097",
+        "Wong.HiddenEulerElement": "3114bb0b803f230867ca93025c36a419a0b98f568719b6b3018359ad9b4b1714",
+        "Wong.AffineFrameAlgebra": "f76dbe3aa77c2961b1d8431b35f2d9a59327c2734509088b73293a358c25f50e",
+        "Wong.GaugeNormalForm": "800b5dd3395a15a981cf8b274c58d3c87ab3814d6ffddc134412166c6e73f565",
+        "Wong.HiddenEulerNormalization": "3a0150d237d127bf5c57726558e205cfc870e8f092652990d08aa43904b8ebc8"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.HiddenPrimitiveProfiles": {
+      "source_sha256": "76d0cf0ec73699bf04451c77e97331324235fcca13a03f6e0e857492c7401e4e",
+      "artifact_sha256": "06ffcaf39fbb6ae8fc760f3f683de2e6c3533d2d40523feabf4dc56459a2a01b",
+      "dependency_artifacts": {
+        "Wong.HiddenProfiles": "9f4b17336c3f8e240fd417988de9613f2d13b592cf8c7b51debf0f2cffc7a460",
+        "Wong.SmoothHiddenPrimitive": "76083a948f1f17dd2f0fa11ce251df6ce014a4e3132f6b275ddd4430552d5168"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.IntrinsicWongPolynomial": {
+      "source_sha256": "e1691f5ac261cb4ed86a7f6906f73fc42fcd283c3d9ec9a55319f3ded0cc402c",
+      "artifact_sha256": "c7bff104714242cfb125e54e484ab4ddad2f8c6dfdc699bf497a84989ff8cb01",
+      "dependency_artifacts": {
+        "Wong.GeneratorCommutator": "8360247accdd5f93f5ae294c04bb90e75eeb15cd91e46214f8544cb481a15da2",
+        "Wong.FirstOrderPolynomial": "72dd82837ee334b5b3c9efefc887f4e4391ff5188ce6822487a0968216cc6a78",
+        "Wong.RankStructure": "4996025f753c8e90289de24353012e9a902012a0cd8cb9efdee37bf27dfd6f67",
+        "Wong.SmoothGeometry": "1101c442f3697e790202ac0f09708f6e1e3ac18bed2a4d3ccd13d432e024437a"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.RootAnalyticBridges": {
+      "source_sha256": "51baa8cd572798029ca11b25d6dafb35d8ef97458305b3163cbfb88562e02be1",
+      "artifact_sha256": "317d414d8331972e5a412ff4789d824e9203091488e09985e7dadc41e49b3248",
+      "dependency_artifacts": {
+        "Wong.AffineFrameAlgebra": "f76dbe3aa77c2961b1d8431b35f2d9a59327c2734509088b73293a358c25f50e",
+        "Wong.CoordinateGenerators": "db3a5ccca970ebe2ea4affb5168cd008967e29a105687a9945546774ffcfd14a",
+        "Wong.HiddenEulerNormalization": "3a0150d237d127bf5c57726558e205cfc870e8f092652990d08aa43904b8ebc8",
+        "Wong.HiddenProfiles": "9f4b17336c3f8e240fd417988de9613f2d13b592cf8c7b51debf0f2cffc7a460",
+        "Wong.EulerGeneralFinite": "e4e6fe7ea3b749ca34474033c63a6540dbf0559f98aed3f0098dedfabff59372",
+        "Wong.EulerSpectral": "e0ccf323482f535d61509ac07cf5ca4384e9c8b3e3c39e504f404709212354b2",
+        "Wong.EulerFunctionSpace": "b0007a0e7447055fa6b572505879788128338ac75be2a69afc56efe8385f482b",
+        "Wong.NormalSymbolsOrderBridge": "26f18c9e0350f7d4053a85fa65eb77388165ac23a2a1775e042a311324329849",
+        "Wong.AffineGaugeRepresentative": "8c36c4024f8fd785310ae089c216c1ac905126ad19f17486906517d38c37a760",
+        "Wong.NormalFormAlgebra": "a173a0b762e7f6870dc6b29304d94a7a3a09ad65c20c7644429a5c0ea49cabf9",
+        "Wong.FirstOrderPolynomial": "72dd82837ee334b5b3c9efefc887f4e4391ff5188ce6822487a0968216cc6a78",
+        "Wong.PolynomialSmooth": "81b1ec74e1805750d2427cf0abf9b2348f9e06a5b2df6207e984a09f01df2d7f",
+        "Wong.EulerNormalizedDiffusion": "1dd6305614a8a9e7497285dd332804a4dbf18121b6f2b202912bea3878412b6a",
+        "Wong.EulerLinearCanonical": "33502a2edc2f1243f7154f80c10eedca7c9a125a17812b2ee353c2b28c2a63ab"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.VisibleHeadCalculus": {
+      "source_sha256": "ef68611491a3c2412309b067428d1c1cdcb74926ee56b59dc64bfe7ad8eb7a02",
+      "artifact_sha256": "b6c808c321e1b1cf4eeead85f8cb6a9a2ab5b35bcced0c5218bbc4a0195827c9",
+      "dependency_artifacts": {
+        "Wong.CovariantWords": "9448a8a89c2452816df77f9ebdbf10e05199d415dce522c7e2ecf60967b96fb9",
+        "Wong.SharpDifferentialOrder": "1ecc58b272354c8bd9bacd29033f2c85fdf338a3409084ca9fdb6ef72f9ded5e",
+        "Wong.PublishedAffineStatement": "a94204d4cde345d13ae308c16afee89e5aea97dd86bc03e028034a91de3e22f5"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.Visible": {
+      "source_sha256": "b8f013d3587ac89765fa64c8850816c0d25609b54d33cff24b7ea9693f264032",
+      "artifact_sha256": "5fae8781997ba7b7efa5ae9516151be89bd33bbb1afd79c8fbd2885cd53c2e55",
+      "dependency_artifacts": {},
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.VisibleRotation": {
+      "source_sha256": "885b3532f34d579e8190e64723aff0d14d032c2f220dd932ed3712ed52a0ae47",
+      "artifact_sha256": "1c6bb83fc1fc9c7eec86b623a72a8e7a66479d9eb1f57b9f9ddd4691840d1b19",
+      "dependency_artifacts": {
+        "Wong.CoordinateGenerators": "db3a5ccca970ebe2ea4affb5168cd008967e29a105687a9945546774ffcfd14a",
+        "Wong.VisibleHeadCalculus": "b6c808c321e1b1cf4eeead85f8cb6a9a2ab5b35bcced0c5218bbc4a0195827c9",
+        "Wong.Visible": "5fae8781997ba7b7efa5ae9516151be89bd33bbb1afd79c8fbd2885cd53c2e55"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.VisibleGeneratorHeads": {
+      "source_sha256": "183002e4e691e338b74a594d3e61254daa484fcd32d46443982815f3189e3231",
+      "artifact_sha256": "568e7933aa5229e5b2decc9122c47feba6e37820bad1b77a2d87e89e21945c83",
+      "dependency_artifacts": {
+        "Wong.VisibleHeadCalculus": "b6c808c321e1b1cf4eeead85f8cb6a9a2ab5b35bcced0c5218bbc4a0195827c9"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.PureHead": {
+      "source_sha256": "187270a51968dc5d388e80dc2caab859f6121b53b405735d81ddd60a81bbcbcb",
+      "artifact_sha256": "57a04b0972686e27e38ad41ff0a3eeb94d1c589c118e9eba1d545c48bbf6ad5b",
+      "dependency_artifacts": {
+        "Wong.SharpDifferentialOrder": "1ecc58b272354c8bd9bacd29033f2c85fdf338a3409084ca9fdb6ef72f9ded5e"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.VisibleHeadConstraints": {
+      "source_sha256": "ff2104bd527b21a924fbef5e613dd3157e7765cc7393145d45452ba08480aa66",
+      "artifact_sha256": "9ec24384527430802834ba91f04d2fcdde0b46291d1938076bd64317ecd7bcdf",
+      "dependency_artifacts": {
+        "Wong.VisibleGeneratorHeads": "568e7933aa5229e5b2decc9122c47feba6e37820bad1b77a2d87e89e21945c83",
+        "Wong.PureHead": "57a04b0972686e27e38ad41ff0a3eeb94d1c589c118e9eba1d545c48bbf6ad5b"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.VisibleSymbolReconstruction": {
+      "source_sha256": "70d22ed5ed113d20e081fdb1c7e395e7bc55e23acced7a666ae753f4b42633b4",
+      "artifact_sha256": "fb445ff09db99a3a2d384c4cc62cf4d5dc43296045f13fb2481745eb831a0ae9",
+      "dependency_artifacts": {
+        "Wong.VisibleHeadConstraints": "9ec24384527430802834ba91f04d2fcdde0b46291d1938076bd64317ecd7bcdf",
+        "Wong.NormalSymbolsHeads": "3d8ff50c0834d3bc007b6a4d69fe0400fb27afb903aa854ea58946452fde2097"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.VisibleHeadContradiction": {
+      "source_sha256": "42e454a2956cae1fc022f29071b9cd83846956f69874c8b010c859e6dbc743aa",
+      "artifact_sha256": "482432f9482cfed0d530dff222ba8b33be61306c428281d3db345fb9befbd86d",
+      "dependency_artifacts": {
+        "Wong.JacobiVisible": "2aa16894ad22123f10c987e176182111a9b6bb026ed73878657235c371757340"
+      },
+      "seconds": 101.601,
+      "exit_code": 0,
+      "log": "Wong-VisibleHeadContradiction.log"
+    },
+    "Wong.NormalSymbolsVisibleAlgebra": {
+      "source_sha256": "38bb18e77eba6800f7f30f716c057c31149c2a7fcbd6c8bf6a6b8fb8f51476f0",
+      "artifact_sha256": "d478d8f160c8fa98f1b24ebbff106a00e2a9ebba71b150121ba6640825c819ea",
+      "dependency_artifacts": {
+        "Wong.NormalSymbolsQuotient": "cd56335c6ed3bf0729f1a652f968e65a9c505aa8aa5ca709e7976b2c0813f989",
+        "Wong.Visible": "5fae8781997ba7b7efa5ae9516151be89bd33bbb1afd79c8fbd2885cd53c2e55"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.NormalSymbolsVisible": {
+      "source_sha256": "d6f4ac877a87a40b735d85a4aa1c5973542c0515386333d2b4b9ba0d5f326421",
+      "artifact_sha256": "a9ffcf363b4d68b9d66e83f1f6dcdb3723a2fa52563167148b8bca532e0c1288",
+      "dependency_artifacts": {
+        "Wong.NormalSymbolsVisibleAlgebra": "d478d8f160c8fa98f1b24ebbff106a00e2a9ebba71b150121ba6640825c819ea",
+        "Wong.NormalSymbolsPrincipal": "efc2e9be622254bf6cf5f64d5d22f50e460c49b0549954d717f843f706853d65"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.VisibleElimination": {
+      "source_sha256": "f574a7fd48837b2691b60f7390bf61cdd1c03cb309232ba4c2c18b35ea5b23db",
+      "artifact_sha256": "ad947fa745d38688d237034474d3ab7081affda0a2ee44533aad7ac0087541be",
+      "dependency_artifacts": {
+        "Wong.VisibleRotation": "1c6bb83fc1fc9c7eec86b623a72a8e7a66479d9eb1f57b9f9ddd4691840d1b19",
+        "Wong.VisibleSymbolReconstruction": "fb445ff09db99a3a2d384c4cc62cf4d5dc43296045f13fb2481745eb831a0ae9",
+        "Wong.VisibleHeadContradiction": "482432f9482cfed0d530dff222ba8b33be61306c428281d3db345fb9befbd86d",
+        "Wong.NormalSymbolsVisible": "a9ffcf363b4d68b9d66e83f1f6dcdb3723a2fa52563167148b8bca532e0c1288"
+      },
+      "seconds": 115.667,
+      "exit_code": 0,
+      "log": "Wong-VisibleElimination.log"
+    },
+    "Wong.FunctionQuadraticRankConstraints": {
+      "source_sha256": "6fbc7e3ccc516f7a0ec8843360bf873e430d1d264d4f755f8349d4b905e164b3",
+      "artifact_sha256": "fbd1c6a2efff1ac47cd7a494d64afc842e3eb377d1b0ae3c5e8c398e9f70e1c4",
+      "dependency_artifacts": {
+        "Wong.RankStructure": "4996025f753c8e90289de24353012e9a902012a0cd8cb9efdee37bf27dfd6f67"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.QuadraticFunctionWongConstraints": {
+      "source_sha256": "775cca88ba6371b19b705381523f3aa68f4b852c0dadbbef97bfa0313589bfb8",
+      "artifact_sha256": "d94685194553519c98298520d8fe099fc101d63dfc479b144bf8e5db4b93384d",
+      "dependency_artifacts": {
+        "Wong.CovariantWords": "9448a8a89c2452816df77f9ebdbf10e05199d415dce522c7e2ecf60967b96fb9",
+        "Wong.RankStructure": "4996025f753c8e90289de24353012e9a902012a0cd8cb9efdee37bf27dfd6f67"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.RankTwoFunctionCurvature": {
+      "source_sha256": "ed528256adcaf2e898a501e8400085077ddb01e1af51d2d8fa7840197485c7e4",
+      "artifact_sha256": "268e4fae825f356ded5e8ef6195d64731850bc3014692f4eed08f51dc9a40536",
+      "dependency_artifacts": {
+        "Wong.FunctionQuadraticRankConstraints": "fbd1c6a2efff1ac47cd7a494d64afc842e3eb377d1b0ae3c5e8c398e9f70e1c4",
+        "Wong.QuadraticFunctionWongConstraints": "d94685194553519c98298520d8fe099fc101d63dfc479b144bf8e5db4b93384d"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.PolynomialVisibleExtraction": {
+      "source_sha256": "6e90208caa513aa2322a40109ff34ae2ec3029df6caf4fa2721cae3a2e70e2f0",
+      "artifact_sha256": "86a0fd894a8f75dee69c18fdc9eeb36cc8c7a4a06637922dbd967f6a6c326c76",
+      "dependency_artifacts": {
+        "Wong.PolynomialSmooth": "81b1ec74e1805750d2427cf0abf9b2348f9e06a5b2df6207e984a09f01df2d7f"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.PolynomialVisibleProductRigidity": {
+      "source_sha256": "5e16d971aed702ef6a4488bb03ff2b5592dd08c88b1a7ab8abd10dd401d3c1b5",
+      "artifact_sha256": "ea9643b0a4d5f354e7d3777fe1edb05f06018ac13da826e72c91f45e47b61191",
+      "dependency_artifacts": {
+        "Wong.PolynomialVisibleExtraction": "86a0fd894a8f75dee69c18fdc9eeb36cc8c7a4a06637922dbd967f6a6c326c76"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.PolynomialHiddenSpecialization": {
+      "source_sha256": "164f48989f88a2b3dce32512638324794844f25a18ca08862fed9581379a5283",
+      "artifact_sha256": "1b683fd1117b37e4fcee993455fb158e9d456be190941131ee155917539b0ee7",
+      "dependency_artifacts": {
+        "Wong.PolynomialVisibleExtraction": "86a0fd894a8f75dee69c18fdc9eeb36cc8c7a4a06637922dbd967f6a6c326c76"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.PolynomialHiddenSpecializationBridge": {
+      "source_sha256": "0eb4d62fa2d000ef81c87256e5def91cabce976df15005d8a1c3d132f545fab7",
+      "artifact_sha256": "6e6f3c0c146b4c2fe80655e95bae438af7df56ef821806d0f1c407be061bbff4",
+      "dependency_artifacts": {
+        "Wong.PolynomialHiddenSpecialization": "1b683fd1117b37e4fcee993455fb158e9d456be190941131ee155917539b0ee7"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.PublishedVisibleComplete": {
+      "source_sha256": "bfd4726173a074c1ad6016ceb4cfe468d5d82e0d6a71142c7269df6fdb0ca8c1",
+      "artifact_sha256": "2bdaa7c70d8746a6316f9f1ba2c372cd7f69a4295adedf71824cfa5cc3bb9675",
+      "dependency_artifacts": {
+        "Wong.RankTwoFunctionCurvature": "268e4fae825f356ded5e8ef6195d64731850bc3014692f4eed08f51dc9a40536",
+        "Wong.PolynomialVisibleProductRigidity": "ea9643b0a4d5f354e7d3777fe1edb05f06018ac13da826e72c91f45e47b61191",
+        "Wong.PolynomialHiddenSpecializationBridge": "6e6f3c0c146b4c2fe80655e95bae438af7df56ef821806d0f1c407be061bbff4",
+        "Wong.IntrinsicWongPolynomial": "c7bff104714242cfb125e54e484ab4ddad2f8c6dfdc699bf497a84989ff8cb01",
+        "Wong.NormalSymbolsRing": "583763609cbf21ff93ddaaa214a827ea028ac752f6c66d1c7129b719abe0fa31",
+        "Wong.SmoothGeometry": "1101c442f3697e790202ac0f09708f6e1e3ac18bed2a4d3ccd13d432e024437a"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.PolynomialVisibleDerivativeBridge": {
+      "source_sha256": "30d008120c129724b4f1b3e819c66e9e8cedce37279ed175507c24856480bbf7",
+      "artifact_sha256": "db9fb0417a9e8737ba287dd2c71627aa1e2c70e10a1a77da0c6952370a30ff14",
+      "dependency_artifacts": {
+        "Wong.PolynomialVisibleExtraction": "86a0fd894a8f75dee69c18fdc9eeb36cc8c7a4a06637922dbd967f6a6c326c76"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.FirstOrderNormalBridge": {
+      "source_sha256": "ffb332b3857fd977ac831151541e50865861d1859f875e4284b4ed6e89c419f9",
+      "artifact_sha256": "c0f708f2b9b1c6f731fd88869a25ad4158939f9d57e09afab541ee0105fd3bae",
+      "dependency_artifacts": {
+        "Wong.CovariantWords": "9448a8a89c2452816df77f9ebdbf10e05199d415dce522c7e2ecf60967b96fb9",
+        "Wong.NormalSymbolsPrincipal": "efc2e9be622254bf6cf5f64d5d22f50e460c49b0549954d717f843f706853d65"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.PolynomialVisibleFirstOrderBridge": {
+      "source_sha256": "3717f2aba3e15473b9d30c4c8ae6655aeeb39ad2b55f6e462f71422da8b0a792",
+      "artifact_sha256": "5ef8fc49604cd734f948f0125fc2d3de52d9e0e59535f1e4da717aad6a9016a7",
+      "dependency_artifacts": {
+        "Wong.PolynomialVisibleDerivativeBridge": "db9fb0417a9e8737ba287dd2c71627aa1e2c70e10a1a77da0c6952370a30ff14",
+        "Wong.FirstOrderNormalBridge": "c0f708f2b9b1c6f731fd88869a25ad4158939f9d57e09afab541ee0105fd3bae"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.PolynomialVisibleDerivativeBounds": {
+      "source_sha256": "3ab3e1d24318d3be800dc06e7528e39feaf0ef51e79aee5bf2b64ddaf69bc833",
+      "artifact_sha256": "e8fd132e6dff367fc78814224bea05ec19014fbf596a084c9a81a8df67d43874",
+      "dependency_artifacts": {
+        "Wong.PolynomialVisibleDerivativeBridge": "db9fb0417a9e8737ba287dd2c71627aa1e2c70e10a1a77da0c6952370a30ff14"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.PolynomialTopRemainder": {
+      "source_sha256": "ba3bee3fb3d53508797152dce3d6d919c1a2243fd678a1ba60a1f32e08f75044",
+      "artifact_sha256": "65c6f6749642ee4e108046321429c5ed649a23585b5ba393dfb2a027a50c6eca",
+      "dependency_artifacts": {
+        "Wong.PolynomialSmooth": "81b1ec74e1805750d2427cf0abf9b2348f9e06a5b2df6207e984a09f01df2d7f"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.AffinePrincipalRigidity": {
+      "source_sha256": "aa6a004d529447dec46ee2e92d590eb0bd9d5a92851404a34aa855a8ef0f6bbf",
+      "artifact_sha256": "1dc9d26669c6b1ca35f0d5c5b35d933e7aeb1a245ea1f67a5d9188e22558ad65",
+      "dependency_artifacts": {
+        "Wong.PureHiddenSymbols": "23831299bbf14f3b4ce7028cd4e695beb02ab622856ae369ff1d951da0bb5c3b",
+        "Wong.NormalSymbolsHeads": "3d8ff50c0834d3bc007b6a4d69fe0400fb27afb903aa854ea58946452fde2097",
+        "Wong.PolynomialSmooth": "81b1ec74e1805750d2427cf0abf9b2348f9e06a5b2df6207e984a09f01df2d7f"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.QuadraticHiddenRigidity": {
+      "source_sha256": "91d17a1dbb89ce21fec261fe85b0f6bdab03ba7a8e87c220bc1930d7167c624b",
+      "artifact_sha256": "9d990aa24f646aa329d611db900d7b117c45651fa5da9046175a69344cdfd102",
+      "dependency_artifacts": {
+        "Wong.AffinePrincipalRigidity": "1dc9d26669c6b1ca35f0d5c5b35d933e7aeb1a245ea1f67a5d9188e22558ad65"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.SectorTwoDiagonalization": {
+      "source_sha256": "381ce998dcbbdb7cbed8cd481ca5a15dfbb3066924303580433ef5062f07c1a0",
+      "artifact_sha256": "7174645202ccef903928589a663abfecef59317d2479197d60e055b1713155ca",
+      "dependency_artifacts": {
+        "Wong.VisibleRotation": "1c6bb83fc1fc9c7eec86b623a72a8e7a66479d9eb1f57b9f9ddd4691840d1b19"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.HiddenAxisLadder": {
+      "source_sha256": "4871508c052465f9f17b24129ec7c115bb3d896d49fdacfd3aede3b75ff4bc28",
+      "artifact_sha256": "f423eef11970bb8ebf24c325d705941e8098bc92aa2d495f991757531e816b17",
+      "dependency_artifacts": {
+        "Wong.NormalSymbolsVisible": "a9ffcf363b4d68b9d66e83f1f6dcdb3723a2fa52563167148b8bca532e0c1288",
+        "Wong.SectorTwoDiagonalization": "7174645202ccef903928589a663abfecef59317d2479197d60e055b1713155ca"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.QuadraticVisibleRigidity": {
+      "source_sha256": "46e99239636bb11b14f3db3170d7be0927df2b3ad42f43d8e37fd90fa6dc9334",
+      "artifact_sha256": "6cc5ee916d53daabf6c34b7890e03263316106cb85c7073d0c20baf08779b089",
+      "dependency_artifacts": {
+        "Wong.HiddenAxisLadder": "f423eef11970bb8ebf24c325d705941e8098bc92aa2d495f991757531e816b17"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.SymmetricMatrixEigenvector": {
+      "source_sha256": "232a29eddb5dcb9716a3481b71f243c1c0ec1a83fb772d5d71b701591986c14b",
+      "artifact_sha256": "e5ca6cf7776a5fa4aa1b9738993ec5144de6ce0a84091caa5479423dd7d0ba6b",
+      "dependency_artifacts": {},
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.PolynomialQuadraticFirstOrderRigidity": {
+      "source_sha256": "a511ae518f13e33d26dedd4ad9424bea8959a15e136964add374d32bfd4dbf48",
+      "artifact_sha256": "155ccb8ea631330c46bca2787db1f071a34d6e45b752b39c9d22721b9d1ef9a7",
+      "dependency_artifacts": {
+        "Wong.FunctionQuadraticRankConstraints": "fbd1c6a2efff1ac47cd7a494d64afc842e3eb377d1b0ae3c5e8c398e9f70e1c4",
+        "Wong.QuadraticHiddenRigidity": "9d990aa24f646aa329d611db900d7b117c45651fa5da9046175a69344cdfd102",
+        "Wong.QuadraticVisibleRigidity": "6cc5ee916d53daabf6c34b7890e03263316106cb85c7073d0c20baf08779b089",
+        "Wong.SymmetricMatrixEigenvector": "e5ca6cf7776a5fa4aa1b9738993ec5144de6ce0a84091caa5479423dd7d0ba6b"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.MixedAffinityHighDegree": {
+      "source_sha256": "05dc763351dbb00aab56405221fa49afb1765bf5303507f1521c90c3eafa97b7",
+      "artifact_sha256": "a2427df67743ac1c6a521ee5f5497dc85ee57e810466224b826b545bfb3190eb",
+      "dependency_artifacts": {
+        "Wong.AffinePrincipalRigidity": "1dc9d26669c6b1ca35f0d5c5b35d933e7aeb1a245ea1f67a5d9188e22558ad65",
+        "Wong.EulerHighDegreeLadder": "ce3e2c074730512b36eb611b08b1d2cb956d64dece0ea515c0b3145cbf8cb298"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.PublishedVisibleAffinityProof": {
+      "source_sha256": "8f4620422c3d18720152931d52f21e53175efa3b7b283f98d07830838f05a824",
+      "artifact_sha256": "acab63760e2093554a286593a905ae2952680804d194a1168f6b366aa5dd86ea",
+      "dependency_artifacts": {
+        "Wong.PublishedAffineStatement": "a94204d4cde345d13ae308c16afee89e5aea97dd86bc03e028034a91de3e22f5"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.PublishedMixedAffinityProof": {
+      "source_sha256": "4f833257769904e549adcf63b3da0ef4971380efb7b5e94dbb48e11659684a7f",
+      "artifact_sha256": "0ffd878e7c06b95fd1dd128671077cdf8a2c199836bf1a00d5fc7a8be843c428",
+      "dependency_artifacts": {
+        "Wong.PolynomialVisibleFirstOrderBridge": "5ef8fc49604cd734f948f0125fc2d3de52d9e0e59535f1e4da717aad6a9016a7",
+        "Wong.PolynomialVisibleDerivativeBounds": "e8fd132e6dff367fc78814224bea05ec19014fbf596a084c9a81a8df67d43874",
+        "Wong.PolynomialTopRemainder": "65c6f6749642ee4e108046321429c5ed649a23585b5ba393dfb2a027a50c6eca",
+        "Wong.PolynomialQuadraticFirstOrderRigidity": "155ccb8ea631330c46bca2787db1f071a34d6e45b752b39c9d22721b9d1ef9a7",
+        "Wong.MixedAffinityHighDegree": "a2427df67743ac1c6a521ee5f5497dc85ee57e810466224b826b545bfb3190eb",
+        "Wong.PublishedVisibleAffinityProof": "acab63760e2093554a286593a905ae2952680804d194a1168f6b366aa5dd86ea",
+        "Wong.IntrinsicWongPolynomial": "c7bff104714242cfb125e54e484ab4ddad2f8c6dfdc699bf497a84989ff8cb01"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.PublishedAffineInput": {
+      "source_sha256": "9b40a9778b8a91b4a6d811068605a3b79da9eb1c746bd257920abff02e997311",
+      "artifact_sha256": "4f8448ca5d726da79fbd9fd65dd3536625a65f153dc3eab3261ec08d9485b2e0",
+      "dependency_artifacts": {
+        "Wong.PublishedAffineStatement": "a94204d4cde345d13ae308c16afee89e5aea97dd86bc03e028034a91de3e22f5",
+        "Wong.PublishedVisibleComplete": "2bdaa7c70d8746a6316f9f1ba2c372cd7f69a4295adedf71824cfa5cc3bb9675",
+        "Wong.PublishedMixedAffinityProof": "0ffd878e7c06b95fd1dd128671077cdf8a2c199836bf1a00d5fc7a8be843c428",
+        "Wong.EmptyObservation": "e2ec9b15f68e2ea5473aaa845068d2c9d70e587df03cdb0a8fbfdd30f9c711ed"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.SectorIHiddenBridge": {
+      "source_sha256": "3c4112f040da4e87920011081286e857e6506484f4c290e7af1e46a67e0f8603",
+      "artifact_sha256": "083b9ac0fb2acec5f3c67a46358fe436548c10f57c3f56ec94d504a68d71697d",
+      "dependency_artifacts": {
+        "Wong.RootAnalyticBridges": "317d414d8331972e5a412ff4789d824e9203091488e09985e7dadc41e49b3248",
+        "Wong.EulerHighDegreeLadder": "ce3e2c074730512b36eb611b08b1d2cb956d64dece0ea515c0b3145cbf8cb298",
+        "Wong.VisibleElimination": "ad947fa745d38688d237034474d3ab7081affda0a2ee44533aad7ac0087541be",
+        "Wong.PublishedAffineInput": "4f8448ca5d726da79fbd9fd65dd3536625a65f153dc3eab3261ec08d9485b2e0"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.SectorTwoCalculus": {
+      "source_sha256": "8c373f355717f74194f1ed791161633e84d61c9a46bc78cdd3e720bd2965a03f",
+      "artifact_sha256": "34bfc22d05d1cbf09edd8573f68214e521e51431efc405f63d69028e68fc75d3",
+      "dependency_artifacts": {
+        "Wong.AdaptedGauge": "f291319e676959dbd42a97d4c888bfc2a4294333440c09814f97a6cda7f7467a",
+        "Wong.NormalSymbolsRing": "583763609cbf21ff93ddaaa214a827ea028ac752f6c66d1c7129b719abe0fa31",
+        "Wong.HiddenProfiles": "9f4b17336c3f8e240fd417988de9613f2d13b592cf8c7b51debf0f2cffc7a460",
+        "Wong.HiddenPrimitiveProfiles": "06ffcaf39fbb6ae8fc760f3f683de2e6c3533d2d40523feabf4dc56459a2a01b",
+        "Wong.SmoothGeometry": "1101c442f3697e790202ac0f09708f6e1e3ac18bed2a4d3ccd13d432e024437a"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.WeightedNormalOrder": {
+      "source_sha256": "20cec98c06b0a33b7459f6239d33884b297d440b516b58e1f1acba06c5f0e9ba",
+      "artifact_sha256": "66de614441396a77d200a353755a30fe5a67217a524bbfe87574f4dc0b60bc3e",
+      "dependency_artifacts": {
+        "Wong.NormalSymbolsBracket": "632dfdba7a2d6049f5e1aa5de711190e19076841655bed7f8eedb4425b0c7f42",
+        "Wong.NormalSymbolsOrderBridge": "26f18c9e0350f7d4053a85fa65eb77388165ac23a2a1775e042a311324329849"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.WeightedSymbolsOrder": {
+      "source_sha256": "4ade70b43adcfe900fc3d1c594b12215fc4429e34e162104ba4928775afe216b",
+      "artifact_sha256": "9b3d5b037b1d449d993d3f615c0482622bce8dde9ec6811c8c9144fc6aa0bae7",
+      "dependency_artifacts": {
+        "Wong.WeightedNormalOrder": "66de614441396a77d200a353755a30fe5a67217a524bbfe87574f4dc0b60bc3e"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.WeightedSymbolBridgeCore": {
+      "source_sha256": "daaeacd5d3af6bc4c967b1536b50704c79f2bbd1cef69f5f547e3bafa189deda",
+      "artifact_sha256": "f3835d7c7cfb9bf1bb7858efc7318e6f82b3a22ffd7733086417fba3d04ef2d6",
+      "dependency_artifacts": {
+        "Wong.WeightedSymbolsOrder": "9b3d5b037b1d449d993d3f615c0482622bce8dde9ec6811c8c9144fc6aa0bae7",
+        "Wong.NormalSymbolsHeads": "3d8ff50c0834d3bc007b6a4d69fe0400fb27afb903aa854ea58946452fde2097"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.SectorTwoProfileBridge": {
+      "source_sha256": "cd6476dbec1ff1690ff5ed77d987d20d328791690585c1e1bba0561e527a42f5",
+      "artifact_sha256": "cc7a31eee6e06f2781834fdd4c73d8a1e7f05a61fdbcd2a41655fa38ef064c0c",
+      "dependency_artifacts": {
+        "Wong.SectorTwoCalculus": "34bfc22d05d1cbf09edd8573f68214e521e51431efc405f63d69028e68fc75d3",
+        "Wong.RootAnalyticBridges": "317d414d8331972e5a412ff4789d824e9203091488e09985e7dadc41e49b3248",
+        "Wong.SectorTwoDiagonalization": "7174645202ccef903928589a663abfecef59317d2479197d60e055b1713155ca",
+        "Wong.WeightedSymbolBridgeCore": "f3835d7c7cfb9bf1bb7858efc7318e6f82b3a22ffd7733086417fba3d04ef2d6"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.WeightedCanonicalBridge": {
+      "source_sha256": "42f47b9d7a7bf6e640e208ceba2d29f2af069cb25fd5ff8106387406e7c68ee7",
+      "artifact_sha256": "c62501b8b4e64007a9e2dae8485cf4488ed05c18138ebdf357107b0b44635c3f",
+      "dependency_artifacts": {
+        "Wong.WeightedSymbolBridgeCore": "f3835d7c7cfb9bf1bb7858efc7318e6f82b3a22ffd7733086417fba3d04ef2d6"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.SectorTwoDerivation": {
+      "source_sha256": "28b64a75cedc94f2671c04c10c51f7ffb6c2f23cedcff0c865565c6f0f9ebb91",
+      "artifact_sha256": "224264f6deeb920d88b432bad1a1f15bac96eca3adab631274d0263b88c8deab",
+      "dependency_artifacts": {},
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.SectorTwoSymbolLift": {
+      "source_sha256": "88c9deaab269bbc55fdeeb442798ae55cacaff9b536f584442aae51b5fe07811",
+      "artifact_sha256": "3aa1dab42d7a6fb171325cc19963ce205027661672b04f8a4c8dfd82c661afc6",
+      "dependency_artifacts": {
+        "Wong.SectorTwoDerivation": "224264f6deeb920d88b432bad1a1f15bac96eca3adab631274d0263b88c8deab",
+        "Wong.WeightedSymbolsOrder": "9b3d5b037b1d449d993d3f615c0482622bce8dde9ec6811c8c9144fc6aa0bae7",
+        "Wong.EulerFalling": "77df27a45c125b81fb0d86b7f3e2b593d0cf8359b9fc2822de802efdaa603098",
+        "Wong.EulerFunctionSpace": "b0007a0e7447055fa6b572505879788128338ac75be2a69afc56efe8385f482b"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.SectorTwoWeightedBridge": {
+      "source_sha256": "553e0f8f6229f50e06351d5ab92db4ef5726046e35a1e657372ef19f66743321",
+      "artifact_sha256": "ec20427bd48084ed00e1f5714a18152a71498c06dec9680878b14cf534eb3434",
+      "dependency_artifacts": {
+        "Wong.WeightedCanonicalBridge": "c62501b8b4e64007a9e2dae8485cf4488ed05c18138ebdf357107b0b44635c3f",
+        "Wong.SectorTwoSymbolLift": "3aa1dab42d7a6fb171325cc19963ce205027661672b04f8a4c8dfd82c661afc6"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.SectorTwoConclusion": {
+      "source_sha256": "bd59a5f031a7d1795e5c5a342d5c082d4e9843ae26b3bbb6edde8299ed73e894",
+      "artifact_sha256": "6b460cb6056c39f8604f295340c0639007523eb35a50b8a341742ccab498eab2",
+      "dependency_artifacts": {
+        "Wong.SectorTwoProfileBridge": "cc7a31eee6e06f2781834fdd4c73d8a1e7f05a61fdbcd2a41655fa38ef064c0c",
+        "Wong.SectorTwoWeightedBridge": "ec20427bd48084ed00e1f5714a18152a71498c06dec9680878b14cf534eb3434"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.MainProof": {
+      "source_sha256": "16d41c9049aacf320337631fc602d5b5bfdad4cef30e45e6bc4278b8eb7e1359",
+      "artifact_sha256": "0bca5ea54ca279816d59efdf4eb2b176d91d409411fbb78508480c9401124d0b",
+      "dependency_artifacts": {
+        "Wong.SectorIHiddenBridge": "083b9ac0fb2acec5f3c67a46358fe436548c10f57c3f56ec94d504a68d71697d",
+        "Wong.SectorTwoConclusion": "6b460cb6056c39f8604f295340c0639007523eb35a50b8a341742ccab498eab2"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.PoissonQuotient": {
+      "source_sha256": "05a1036fcf1f1491693a1968d36b5f55719bb0673c6b829f52affa54aeaf7620",
+      "artifact_sha256": "ae01214490ca3e64a4df75dbfac118a606a68863c71d8acd2777f0440062380f",
+      "dependency_artifacts": {},
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.PolynomialRigidity": {
+      "source_sha256": "9560d73113136d595680913f6d7943b58259fd62c9412dbe7668bbb739a5b8f7",
+      "artifact_sha256": "f4533007bb61f9eb3598297d8d6b0c506f918868fd1c6bdfe6db288fcf40592a",
+      "dependency_artifacts": {},
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.PublishedHypothesisEquivalence": {
+      "source_sha256": "18e34231908115e458fdf54ff59440a19edb9335aed913aa5423835c4322d0e8",
+      "artifact_sha256": "62ceb8cb09e054c3a93a988cf2248161c99a8e46edc51bca236b9e5828fe7fac",
+      "dependency_artifacts": {
+        "Wong.RankStructure": "4996025f753c8e90289de24353012e9a902012a0cd8cb9efdee37bf27dfd6f67"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.PublishedFullEquivalence": {
+      "source_sha256": "32997651aa3f40140f9dfccd0a5ce3a4a24c94c89cb283e777ae7d18610efc13",
+      "artifact_sha256": "86a355b4ef2ad2fceb3675b939418fb8d4763a1728a3c006c12ba5fd4f9dee75",
+      "dependency_artifacts": {
+        "Wong.PublishedAffineStatement": "a94204d4cde345d13ae308c16afee89e5aea97dd86bc03e028034a91de3e22f5",
+        "Wong.PublishedHypothesisEquivalence": "62ceb8cb09e054c3a93a988cf2248161c99a8e46edc51bca236b9e5828fe7fac"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong.WongPolynomial": {
+      "source_sha256": "98ae3c6e918cc561f256f9509e08bfda3a637fb8e9f207659fa0912afe94cfe5",
+      "artifact_sha256": "546f70976f339d977447f84e416128cc687d38e04cbadafcbcfe456fc392357c",
+      "dependency_artifacts": {
+        "Wong.GeneratorCommutator": "8360247accdd5f93f5ae294c04bb90e75eeb15cd91e46214f8544cb481a15da2",
+        "Wong.FirstOrderPolynomial": "72dd82837ee334b5b3c9efefc887f4e4391ff5188ce6822487a0968216cc6a78",
+        "Wong.RankStructure": "4996025f753c8e90289de24353012e9a902012a0cd8cb9efdee37bf27dfd6f67",
+        "Wong.SmoothGeometry": "1101c442f3697e790202ac0f09708f6e1e3ac18bed2a4d3ccd13d432e024437a"
+      },
+      "origin": "hash_verified_historical_full_build",
+      "historical_build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d"
+    },
+    "Wong": {
+      "source_sha256": "06095b5948ce5ad6f43c937cb4bb0edf420139c65a8bf14937dbc89984eede17",
+      "artifact_sha256": "eb192f170d829239a3804c2bc5eb34fc4e9ac8f7df39c6e8d3dc7e6f5d22a4d9",
+      "dependency_artifacts": {
+        "Wong.AdaptedGauge": "f291319e676959dbd42a97d4c888bfc2a4294333440c09814f97a6cda7f7467a",
+        "Wong.AdjointIteration": "3e4b8ddaa18f27efe3dbcd7306f18974409a501be3e05e94dec1205f886d8d95",
+        "Wong.Affine": "bbfe16e4fd0270400ee265d30335eb3b3f84743ccd6f156ca37f952f0e405c73",
+        "Wong.AffineFrame": "91d2f41fa9db96f3aca8887a95a04440381445d513a53720e228f306e88eb9f0",
+        "Wong.AffineFrameAlgebra": "f76dbe3aa77c2961b1d8431b35f2d9a59327c2734509088b73293a358c25f50e",
+        "Wong.AffineGaugeRepresentative": "8c36c4024f8fd785310ae089c216c1ac905126ad19f17486906517d38c37a760",
+        "Wong.CoordinateGenerators": "db3a5ccca970ebe2ea4affb5168cd008967e29a105687a9945546774ffcfd14a",
+        "Wong.CovariantWords": "9448a8a89c2452816df77f9ebdbf10e05199d415dce522c7e2ecf60967b96fb9",
+        "Wong.DifferentialOrder": "99d64593abbbccf8df104a78de4782ae3b0d862821c2e216f08f7021ab8ceeb6",
+        "Wong.DirectionalExtraction": "448730faa4608dbf74ad53c92e4c0257e79495dece2261855e9aa0bb2ba905c4",
+        "Wong.EmptyObservation": "e2ec9b15f68e2ea5473aaa845068d2c9d70e587df03cdb0a8fbfdd30f9c711ed",
+        "Wong.EulerAlgebra": "21b02963cebea8c1215037c1f20f5c429e4f9f8d44fb6efe09f8450cccf55988",
+        "Wong.EulerFalling": "77df27a45c125b81fb0d86b7f3e2b593d0cf8359b9fc2822de802efdaa603098",
+        "Wong.EulerFiniteModule": "aa3a2049f6e4f3c7a4f45334c2f9d02ca0af2abbf148c325a33b4ae1d8c235ef",
+        "Wong.EulerFunctionSpace": "b0007a0e7447055fa6b572505879788128338ac75be2a69afc56efe8385f482b",
+        "Wong.EulerGeneralFinite": "e4e6fe7ea3b749ca34474033c63a6540dbf0559f98aed3f0098dedfabff59372",
+        "Wong.EulerHeadExtraction": "f81bac1fb3b688bd21ff8c994b510d86159196f547c6a67d5a7caa0198b85d4c",
+        "Wong.EulerHiddenPolynomial": "c401a3a32a3bd5b4300f4e1b7381284b858024c060b282be9c471912c03e6584",
+        "Wong.EulerHighDegreeLadder": "ce3e2c074730512b36eb611b08b1d2cb956d64dece0ea515c0b3145cbf8cb298",
+        "Wong.EulerLinearCanonical": "33502a2edc2f1243f7154f80c10eedca7c9a125a17812b2ee353c2b28c2a63ab",
+        "Wong.EulerLinearLadder": "8b78bf77fb7f1fb91849e3f5a0858a5e5e875365f8bf21ffe15ea7bccd62d72d",
+        "Wong.EulerNormalCoefficients": "9f33d538fb84490659726e3c532d01b59c199178be5bca1b8ae0fe869941b8a1",
+        "Wong.EulerNormalizedDiffusion": "1dd6305614a8a9e7497285dd332804a4dbf18121b6f2b202912bea3878412b6a",
+        "Wong.EulerSmooth": "249f2a7d381ebd6da039341f77e4417636029e6199f03278274b1db9ecd2cca1",
+        "Wong.EulerSpectral": "e0ccf323482f535d61509ac07cf5ca4384e9c8b3e3c39e504f404709212354b2",
+        "Wong.EulerSystem": "e4961014871ccfe3957257dc7fc2a0f91cfcc52b7af8a40af90e5ca17ae954dd",
+        "Wong.FiniteSupport": "66f111aaefea72a4476d6266f036672d99dacf104022fd8bf1abe6581c7354d1",
+        "Wong.FirstOrderExtraction": "da9540241cdcd8522988728348bc35bc196a1557098d2b47dc3e6b72819a6274",
+        "Wong.FirstOrderPolynomial": "72dd82837ee334b5b3c9efefc887f4e4391ff5188ce6822487a0968216cc6a78",
+        "Wong.FunctionElements": "95ba3677444ebd8f9b4f386f3b7245d20236b5b1100377aaa239a1ec162aa988",
+        "Wong.Gauge": "8617f5e14a1d0a9ef7ade11757fc831f263c0deea7cb1fe6676c1408839396fe",
+        "Wong.GaugeNormalForm": "800b5dd3395a15a981cf8b274c58d3c87ab3814d6ffddc134412166c6e73f565",
+        "Wong.GeneratorCommutator": "8360247accdd5f93f5ae294c04bb90e75eeb15cd91e46214f8544cb481a15da2",
+        "Wong.GlobalGauge": "7a3f3ca05579501af76623e3dd9f0b05201aa173dd0e5f0898d20b06a9a23f0d",
+        "Wong.HiddenEulerElement": "3114bb0b803f230867ca93025c36a419a0b98f568719b6b3018359ad9b4b1714",
+        "Wong.HiddenEulerNormalization": "3a0150d237d127bf5c57726558e205cfc870e8f092652990d08aa43904b8ebc8",
+        "Wong.HiddenPolynomialFiltration": "aa6a2519d5735d76d535c7d160775aedba8eddb27269fc3baf7cac22f060af45",
+        "Wong.HiddenPrimitiveProfiles": "06ffcaf39fbb6ae8fc760f3f683de2e6c3533d2d40523feabf4dc56459a2a01b",
+        "Wong.HiddenProfiles": "9f4b17336c3f8e240fd417988de9613f2d13b592cf8c7b51debf0f2cffc7a460",
+        "Wong.IntrinsicWongPolynomial": "c7bff104714242cfb125e54e484ab4ddad2f8c6dfdc699bf497a84989ff8cb01",
+        "Wong.MainProof": "0bca5ea54ca279816d59efdf4eb2b176d91d409411fbb78508480c9401124d0b",
+        "Wong.MainStatement": "26f1cc6fa4f8bda2c3cdb53085b31f86c376a919eeda18d59e4af328bfabb9b7",
+        "Wong.NormalForm": "4b8785e43cffe7721a7203d9fb7cf658d3f1287fba704d6d24944ea26bd795b0",
+        "Wong.NormalFormAlgebra": "a173a0b762e7f6870dc6b29304d94a7a3a09ad65c20c7644429a5c0ea49cabf9",
+        "Wong.NormalSymbols": "051faed292c604c30f03fbf697d6234e20ea53352ae4a8348fc04a3abadd9d1a",
+        "Wong.NormalSymbolsBracket": "632dfdba7a2d6049f5e1aa5de711190e19076841655bed7f8eedb4425b0c7f42",
+        "Wong.NormalSymbolsComposition": "b5a820c3e2729671b113c899e318feb191c8ab1fd8d542d8eaa00a5facf876e7",
+        "Wong.NormalSymbolsHeads": "3d8ff50c0834d3bc007b6a4d69fe0400fb27afb903aa854ea58946452fde2097",
+        "Wong.NormalSymbolsOrder": "33f9cb20e6d6f322202ff0058f3d91e18cf9f702b1e56bcf8e794a4206bba2b9",
+        "Wong.NormalSymbolsOrderBridge": "26f18c9e0350f7d4053a85fa65eb77388165ac23a2a1775e042a311324329849",
+        "Wong.NormalSymbolsPrincipal": "efc2e9be622254bf6cf5f64d5d22f50e460c49b0549954d717f843f706853d65",
+        "Wong.NormalSymbolsProduct": "815ba6fa269f9992f0a5f5e5cd603dad30bd462c71a3ca2026997da999b4aa7e",
+        "Wong.NormalSymbolsQuotient": "cd56335c6ed3bf0729f1a652f968e65a9c505aa8aa5ca709e7976b2c0813f989",
+        "Wong.NormalSymbolsRing": "583763609cbf21ff93ddaaa214a827ea028ac752f6c66d1c7129b719abe0fa31",
+        "Wong.NormalSymbolsVisible": "a9ffcf363b4d68b9d66e83f1f6dcdb3723a2fa52563167148b8bca532e0c1288",
+        "Wong.NormalSymbolsVisibleAlgebra": "d478d8f160c8fa98f1b24ebbff106a00e2a9ebba71b150121ba6640825c819ea",
+        "Wong.Ocone": "84c5cbc9675951b8f5adcdeb5bfc1a209f46aed7fc257454e4ee255e3695bf50",
+        "Wong.OrthogonalCoordinates": "8c9d2afaa729eef017779a68de609b3526844ac57a93032abdbd3eb2eeb348bd",
+        "Wong.ParameterCoefficient": "1eb02282b8f22f323cc154f8c5497235566366e246216acca1953507303429c3",
+        "Wong.ParametricSmoothIntegral": "6f141a022f32263f8b5e7c3cf51fe37af68ce4e1cb07e120557e58ab37ef1260",
+        "Wong.PoissonQuotient": "ae01214490ca3e64a4df75dbfac118a606a68863c71d8acd2777f0440062380f",
+        "Wong.PolynomialAffinity": "c7947858701a275280c748ad176dfd3eae2ebdcdf56689cb2edb5aeb1811eac8",
+        "Wong.PolynomialGradient": "e88e13d911c4285288b0d81261e839b6376dba1209ea5664f30419736d79f0fb",
+        "Wong.PolynomialRigidity": "f4533007bb61f9eb3598297d8d6b0c506f918868fd1c6bdfe6db288fcf40592a",
+        "Wong.PolynomialSmooth": "81b1ec74e1805750d2427cf0abf9b2348f9e06a5b2df6207e984a09f01df2d7f",
+        "Wong.PrincipalExtraction": "dfc369861cfc1695e735ba3cddf8efeb5a4afeb89dfba2672c1dc473f2e2b530",
+        "Wong.PublishedAffineInput": "4f8448ca5d726da79fbd9fd65dd3536625a65f153dc3eab3261ec08d9485b2e0",
+        "Wong.PublishedAffineStatement": "a94204d4cde345d13ae308c16afee89e5aea97dd86bc03e028034a91de3e22f5",
+        "Wong.PublishedFullEquivalence": "86a355b4ef2ad2fceb3675b939418fb8d4763a1728a3c006c12ba5fd4f9dee75",
+        "Wong.PublishedHypothesisEquivalence": "62ceb8cb09e054c3a93a988cf2248161c99a8e46edc51bca236b9e5828fe7fac",
+        "Wong.PureHead": "57a04b0972686e27e38ad41ff0a3eeb94d1c589c118e9eba1d545c48bbf6ad5b",
+        "Wong.PureHiddenSymbols": "23831299bbf14f3b4ce7028cd4e695beb02ab622856ae369ff1d951da0bb5c3b",
+        "Wong.RankStructure": "4996025f753c8e90289de24353012e9a902012a0cd8cb9efdee37bf27dfd6f67",
+        "Wong.RootAnalyticBridges": "317d414d8331972e5a412ff4789d824e9203091488e09985e7dadc41e49b3248",
+        "Wong.SectorIHiddenBridge": "083b9ac0fb2acec5f3c67a46358fe436548c10f57c3f56ec94d504a68d71697d",
+        "Wong.SectorTwoCalculus": "34bfc22d05d1cbf09edd8573f68214e521e51431efc405f63d69028e68fc75d3",
+        "Wong.SectorTwoConclusion": "6b460cb6056c39f8604f295340c0639007523eb35a50b8a341742ccab498eab2",
+        "Wong.SectorTwoDerivation": "224264f6deeb920d88b432bad1a1f15bac96eca3adab631274d0263b88c8deab",
+        "Wong.SectorTwoDiagonalization": "7174645202ccef903928589a663abfecef59317d2479197d60e055b1713155ca",
+        "Wong.SectorTwoProfileBridge": "cc7a31eee6e06f2781834fdd4c73d8a1e7f05a61fdbcd2a41655fa38ef064c0c",
+        "Wong.SectorTwoSymbolLift": "3aa1dab42d7a6fb171325cc19963ce205027661672b04f8a4c8dfd82c661afc6",
+        "Wong.SectorTwoWeightedBridge": "ec20427bd48084ed00e1f5714a18152a71498c06dec9680878b14cf534eb3434",
+        "Wong.SharpDifferentialOrder": "1ecc58b272354c8bd9bacd29033f2c85fdf338a3409084ca9fdb6ef72f9ded5e",
+        "Wong.SmoothBrackets": "a16b1aa9f37ee49852c6e62d2a0557133be46906f99701c5428532054fe999fa",
+        "Wong.SmoothGeometry": "1101c442f3697e790202ac0f09708f6e1e3ac18bed2a4d3ccd13d432e024437a",
+        "Wong.SmoothHiddenPrimitive": "76083a948f1f17dd2f0fa11ce251df6ce014a4e3132f6b275ddd4430552d5168",
+        "Wong.Visible": "5fae8781997ba7b7efa5ae9516151be89bd33bbb1afd79c8fbd2885cd53c2e55",
+        "Wong.VisibleElimination": "ad947fa745d38688d237034474d3ab7081affda0a2ee44533aad7ac0087541be",
+        "Wong.VisibleGeneratorHeads": "568e7933aa5229e5b2decc9122c47feba6e37820bad1b77a2d87e89e21945c83",
+        "Wong.VisibleHeadCalculus": "b6c808c321e1b1cf4eeead85f8cb6a9a2ab5b35bcced0c5218bbc4a0195827c9",
+        "Wong.VisibleHeadConstraints": "9ec24384527430802834ba91f04d2fcdde0b46291d1938076bd64317ecd7bcdf",
+        "Wong.VisibleHeadContradiction": "482432f9482cfed0d530dff222ba8b33be61306c428281d3db345fb9befbd86d",
+        "Wong.VisibleRotation": "1c6bb83fc1fc9c7eec86b623a72a8e7a66479d9eb1f57b9f9ddd4691840d1b19",
+        "Wong.VisibleSymbolReconstruction": "fb445ff09db99a3a2d384c4cc62cf4d5dc43296045f13fb2481745eb831a0ae9",
+        "Wong.WeightedCanonicalBridge": "c62501b8b4e64007a9e2dae8485cf4488ed05c18138ebdf357107b0b44635c3f",
+        "Wong.WeightedNormalOrder": "66de614441396a77d200a353755a30fe5a67217a524bbfe87574f4dc0b60bc3e",
+        "Wong.WeightedSymbolBridgeCore": "f3835d7c7cfb9bf1bb7858efc7318e6f82b3a22ffd7733086417fba3d04ef2d6",
+        "Wong.WeightedSymbolsOrder": "9b3d5b037b1d449d993d3f615c0482622bce8dde9ec6811c8c9144fc6aa0bae7",
+        "Wong.WongPolynomial": "546f70976f339d977447f84e416128cc687d38e04cbadafcbcfe456fc392357c"
+      },
+      "seconds": 128.969,
+      "exit_code": 0,
+      "log": "Wong.log"
+    },
+    "Wong.JacobiVisible": {
+      "source_sha256": "3bbf9708b02028bd99a7cf54fa4b9c8668a9119b6702ce5968c26d39ad915ed1",
+      "artifact_sha256": "2aa16894ad22123f10c987e176182111a9b6bb026ed73878657235c371757340",
+      "dependency_artifacts": {
+        "Wong.VisibleGeneratorHeads": "568e7933aa5229e5b2decc9122c47feba6e37820bad1b77a2d87e89e21945c83"
+      },
+      "seconds": 126.737,
+      "exit_code": 0,
+      "log": "Wong-JacobiVisible.log"
+    }
+  },
+  "order": [
+    "Wong.MainStatement",
+    "Wong.SmoothBrackets",
+    "Wong.Gauge",
+    "Wong.DifferentialOrder",
+    "Wong.AdjointIteration",
+    "Wong.DirectionalExtraction",
+    "Wong.PrincipalExtraction",
+    "Wong.FirstOrderExtraction",
+    "Wong.GeneratorCommutator",
+    "Wong.CovariantWords",
+    "Wong.GlobalGauge",
+    "Wong.PolynomialGradient",
+    "Wong.PolynomialSmooth",
+    "Wong.PolynomialAffinity",
+    "Wong.Affine",
+    "Wong.SmoothGeometry",
+    "Wong.FunctionElements",
+    "Wong.Ocone",
+    "Wong.RankStructure",
+    "Wong.PublishedAffineStatement",
+    "Wong.AffineGaugeRepresentative",
+    "Wong.FiniteSupport",
+    "Wong.NormalForm",
+    "Wong.NormalFormAlgebra",
+    "Wong.ParameterCoefficient",
+    "Wong.FirstOrderPolynomial",
+    "Wong.AdaptedGauge",
+    "Wong.OrthogonalCoordinates",
+    "Wong.AffineFrame",
+    "Wong.AffineFrameAlgebra",
+    "Wong.CoordinateGenerators",
+    "Wong.EmptyObservation",
+    "Wong.EulerAlgebra",
+    "Wong.EulerSystem",
+    "Wong.EulerSmooth",
+    "Wong.EulerFiniteModule",
+    "Wong.EulerNormalCoefficients",
+    "Wong.EulerFalling",
+    "Wong.HiddenPolynomialFiltration",
+    "Wong.EulerHiddenPolynomial",
+    "Wong.EulerFunctionSpace",
+    "Wong.EulerGeneralFinite",
+    "Wong.EulerSpectral",
+    "Wong.EulerHeadExtraction",
+    "Wong.NormalSymbolsRing",
+    "Wong.NormalSymbols",
+    "Wong.NormalSymbolsOrder",
+    "Wong.NormalSymbolsComposition",
+    "Wong.NormalSymbolsProduct",
+    "Wong.NormalSymbolsBracket",
+    "Wong.SharpDifferentialOrder",
+    "Wong.NormalSymbolsOrderBridge",
+    "Wong.NormalSymbolsPrincipal",
+    "Wong.PureHiddenSymbols",
+    "Wong.EulerHighDegreeLadder",
+    "Wong.EulerLinearLadder",
+    "Wong.EulerLinearCanonical",
+    "Wong.NormalSymbolsQuotient",
+    "Wong.NormalSymbolsHeads",
+    "Wong.HiddenEulerElement",
+    "Wong.GaugeNormalForm",
+    "Wong.ParametricSmoothIntegral",
+    "Wong.SmoothHiddenPrimitive",
+    "Wong.HiddenProfiles",
+    "Wong.HiddenEulerNormalization",
+    "Wong.EulerNormalizedDiffusion",
+    "Wong.HiddenPrimitiveProfiles",
+    "Wong.IntrinsicWongPolynomial",
+    "Wong.RootAnalyticBridges",
+    "Wong.VisibleHeadCalculus",
+    "Wong.Visible",
+    "Wong.VisibleRotation",
+    "Wong.VisibleGeneratorHeads",
+    "Wong.PureHead",
+    "Wong.VisibleHeadConstraints",
+    "Wong.VisibleSymbolReconstruction",
+    "Wong.JacobiVisible",
+    "Wong.VisibleHeadContradiction",
+    "Wong.NormalSymbolsVisibleAlgebra",
+    "Wong.NormalSymbolsVisible",
+    "Wong.VisibleElimination",
+    "Wong.FunctionQuadraticRankConstraints",
+    "Wong.QuadraticFunctionWongConstraints",
+    "Wong.RankTwoFunctionCurvature",
+    "Wong.PolynomialVisibleExtraction",
+    "Wong.PolynomialVisibleProductRigidity",
+    "Wong.PolynomialHiddenSpecialization",
+    "Wong.PolynomialHiddenSpecializationBridge",
+    "Wong.PublishedVisibleComplete",
+    "Wong.PolynomialVisibleDerivativeBridge",
+    "Wong.FirstOrderNormalBridge",
+    "Wong.PolynomialVisibleFirstOrderBridge",
+    "Wong.PolynomialVisibleDerivativeBounds",
+    "Wong.PolynomialTopRemainder",
+    "Wong.AffinePrincipalRigidity",
+    "Wong.QuadraticHiddenRigidity",
+    "Wong.SectorTwoDiagonalization",
+    "Wong.HiddenAxisLadder",
+    "Wong.QuadraticVisibleRigidity",
+    "Wong.SymmetricMatrixEigenvector",
+    "Wong.PolynomialQuadraticFirstOrderRigidity",
+    "Wong.MixedAffinityHighDegree",
+    "Wong.PublishedVisibleAffinityProof",
+    "Wong.PublishedMixedAffinityProof",
+    "Wong.PublishedAffineInput",
+    "Wong.SectorIHiddenBridge",
+    "Wong.SectorTwoCalculus",
+    "Wong.WeightedNormalOrder",
+    "Wong.WeightedSymbolsOrder",
+    "Wong.WeightedSymbolBridgeCore",
+    "Wong.SectorTwoProfileBridge",
+    "Wong.WeightedCanonicalBridge",
+    "Wong.SectorTwoDerivation",
+    "Wong.SectorTwoSymbolLift",
+    "Wong.SectorTwoWeightedBridge",
+    "Wong.SectorTwoConclusion",
+    "Wong.MainProof",
+    "Wong.PoissonQuotient",
+    "Wong.PolynomialRigidity",
+    "Wong.PublishedHypothesisEquivalence",
+    "Wong.PublishedFullEquivalence",
+    "Wong.WongPolynomial",
+    "Wong"
+  ],
+  "skipped": [],
+  "verification_mode": "dependency_checked_incremental",
+  "historical_baseline": {
+    "source_root": "/Users/rinithpina/Documents/Research/Mitter_Conjecture/lean_wong_main_verified_2026-09-18",
+    "audit_root": "/Users/rinithpina/Documents/Research/Mitter_Conjecture/audit_unconditional_core_2026-09-18",
+    "build_id": "5c5f6d68-0e9c-45e9-9c05-312a01f2814d",
+    "build_report_sha256": "b3b4908944a4cf6c220006b611303ff9ede7e356a65167bd722e9615452d8f13",
+    "verified_modules": 122,
+    "changed_modules_requiring_recompile": [
+      "Wong.VisibleHeadContradiction"
+    ],
+    "all_historical_sources_and_artifacts_match": true
+  },
+  "recompiled_this_run": [
+    "Wong.JacobiVisible",
+    "Wong.VisibleHeadContradiction",
+    "Wong.VisibleElimination",
+    "Wong"
+  ],
+  "finished_utc": "2026-09-28T20:01:57.399350+00:00",
+  "source_inventory": {
+    "Wong.MainStatement": "e9f51310ade6a4539e43c3074a1b35ed35e34bd85946761d53c93183d842a5cc",
+    "Wong.SmoothBrackets": "0958ba29fac1ce2cc11fb26124286ff70470113395a54851298b68e1a82b68c1",
+    "Wong.Gauge": "f2183ed496d826190a8bf08ac9cb6e1453d1580302b4e4ad54ce6d2f270f4f71",
+    "Wong.DifferentialOrder": "bd52805042231a408f0ee4fded91cb7bdefe59e289a28d27577bb78c1bb137ae",
+    "Wong.AdjointIteration": "8625ae5b3580d996f3d16feefa91bbe360af530c6fceb295e0ceaeb3d0e8aa0a",
+    "Wong.DirectionalExtraction": "eb8a446f97d97ef8d79088ec038aa12e98b1e4d7dd633794c76573a81fb212e0",
+    "Wong.PrincipalExtraction": "61405bbffe0534736eedaf63d2bf0eaf21dcc5358bcd42faf58411c83bd6cfb2",
+    "Wong.FirstOrderExtraction": "ca9a745f63fc225d09ff39c596ee56fe83bf076d6cf0e8342173fab7599573a1",
+    "Wong.GeneratorCommutator": "50d9600188d31b2624a42582ddb5dfabf55841daa2d2c7af789b7ab637c46eb8",
+    "Wong.CovariantWords": "942406092bdcd35815ed4d8ecb1d9ac305d5ccbb5728587acea8311d679f07a6",
+    "Wong.GlobalGauge": "26211b0f71800eda2d06471cd9c2f18d9c128594274eaf1b8aa6bbf49e12acff",
+    "Wong.PolynomialGradient": "262a1e02840737a9198d901927a929dd9d265e2238e7227c787e9f033bac604f",
+    "Wong.PolynomialSmooth": "f42507202c76f4b225fc6263fb8bf3a3197546931bcb10e43e10578a98d6156a",
+    "Wong.PolynomialAffinity": "95b1f7a6ee6d110efad8c2b839276a103ccb56e25440d074bee3b8862f4fa2ad",
+    "Wong.Affine": "a8bafc72c8b01a20a3d51edd4ff69f22a7a0fb6813d7cf8a79c7b84a3f17ce92",
+    "Wong.SmoothGeometry": "2cacd656c482d902e8ccc535fbf9ad5ae5683e96f80d6fa12f9444f6ebb85b00",
+    "Wong.FunctionElements": "38bc246381d1487e90d5199cab4dd2a4457fee11433ca46abc5d9277927ec71e",
+    "Wong.Ocone": "462990cc9d056562e7802536e09721c5d86717591abefdc195f010b74ba2c21d",
+    "Wong.RankStructure": "542eb8d293394e3d93239970564ae3746eb3bc7ef3d992a502ec5bb72c54e8c6",
+    "Wong.PublishedAffineStatement": "b7d5517fe0e5290253854b84b28bd5a8cfbb33cb5db0568ec33acf3eda9a3044",
+    "Wong.AffineGaugeRepresentative": "869dc000d2795fcfe035b4c952c950a59e6316943a78c2aac07a8a5a99425c14",
+    "Wong.FiniteSupport": "916f85e70eb3b472333d5de11734f2cdf21b717f64934609b2ab6d4c18ea7f11",
+    "Wong.NormalForm": "f7b23da159df94f74c6c358cf8c5b0f44d988cc850169d50d3c0e8f11dd1fb1e",
+    "Wong.NormalFormAlgebra": "73e2a6985aa113d4c2960aac6712f8863a2b855809a858cd80fb7aaebc53b4ff",
+    "Wong.ParameterCoefficient": "78065ced12015e116f65cfaad2baf8a4482fd94e12e0027f7b332b82921aed5c",
+    "Wong.FirstOrderPolynomial": "553167c37223ba5cbea4776eca8562eae4c78b96e362f3a4718929c0c11d826a",
+    "Wong.AdaptedGauge": "93079dbbc734d3783b4957ade75a9f12fd7d4159d1f00641dc44689d204a4b98",
+    "Wong.OrthogonalCoordinates": "da1c00ce08a208519b62f63042a889a602f31b5d178f96539323723249ab6f49",
+    "Wong.AffineFrame": "0571c20dfd55653ee2e4e64ab28e2e8c8d8ac1326b224f45ef5aa39a0e02c42b",
+    "Wong.AffineFrameAlgebra": "92243b2c6429d5c776f25f728e36cb02f1fefe0f6b01d1a45d2ac86a5cf7878e",
+    "Wong.CoordinateGenerators": "eaa80e5931e7f04ee587c81516bc0818e31492b21289c114c358a801a940885c",
+    "Wong.EmptyObservation": "cd3574e56822ceea14351bccb8b498df49a68694b609f740766bc75e03a4e55f",
+    "Wong.EulerAlgebra": "17e992ada153fed1bd041e90a95bbeffb488639932a6f3d9803fccb9a1e1d3e7",
+    "Wong.EulerSystem": "9d1171639644e511d34f8f6c48b484e87d5e60e1f4aaaf86a83053fc42cf340e",
+    "Wong.EulerSmooth": "8f0041bed8b8ae0254a43506676d0077c74011b1fef60273fe59100bf3e63cd5",
+    "Wong.EulerFiniteModule": "918bc45a5d4060db475a555abff64eb461e28cfb1ba9e3cb4b2b48f3519bb020",
+    "Wong.EulerNormalCoefficients": "324457525de740397965fd61e0f19972cf0a4d2d67e95d50400c95b796d29abe",
+    "Wong.EulerFalling": "a61fd92700f7db035e3d30c7e6eea4a0f6775d94ee981b6026c785c8b09fdc88",
+    "Wong.HiddenPolynomialFiltration": "2750e4cc0ab4d90cc622fff97e5d6646c43e9af1eaa4854393a332b26e291c42",
+    "Wong.EulerHiddenPolynomial": "a0d2455c39a60cb102dca4caa14aba99a442010a9f79cd781703f5611ea37dd5",
+    "Wong.EulerFunctionSpace": "8c0ac3a0736139323bfb0b2f2991059fd419c08dd5e206b626bd4e22caba9e1d",
+    "Wong.EulerGeneralFinite": "231b8e745661a0fa4880f5cac4de545bdc27f264531a73714351f1d9c4ca2d91",
+    "Wong.EulerSpectral": "66277f9edca447b61518f035572f5b212081e331ec303ca695ff93c15a220e0c",
+    "Wong.EulerHeadExtraction": "c0492e599a9fb28b23d7bd96fe34518ce008ba30b48c578b7e6d6adaa882e77d",
+    "Wong.NormalSymbolsRing": "3bc1b123e5cc96fcbfd942c51a873710ab0438826ffaa0cdba7b4c9be7ae8181",
+    "Wong.NormalSymbols": "15a4d569b5188f5157a316f4bce8aea7b44f700fe549954924ba5b01dbb582d7",
+    "Wong.NormalSymbolsOrder": "0b59d40b2d46c05d1f00294ddb3a7ca17e7feef51be6b63928fbdcf8f284ee3d",
+    "Wong.NormalSymbolsComposition": "4e5a8024778b476762620d9e09cf2f3a9b23caf8625eff5a88ee70ab13b60634",
+    "Wong.NormalSymbolsProduct": "cc01cc80e4e6aac063d764d355f69278e90270b185cf00196d9719fdf5c7c7f0",
+    "Wong.NormalSymbolsBracket": "0e02a3692ae43bbe929970380f69cf505a82d26529dcfccfdcebcbb6e66abd58",
+    "Wong.SharpDifferentialOrder": "ea050b628557052acc40a546aaa7a49a9996de9871fe6b84400b53ba3dc42a70",
+    "Wong.NormalSymbolsOrderBridge": "feb6d762f1c393f8ecde7e180e0cba520518214defd0e04053747e13ebe1efd4",
+    "Wong.NormalSymbolsPrincipal": "81ce4cd684f1752a333dcbc992f47cd5f3cecd3262758d767e8a80ff1732a308",
+    "Wong.PureHiddenSymbols": "49f1c016527fc047911681b135facdaaa200450b45a830cc6f3f60b6626b8691",
+    "Wong.EulerHighDegreeLadder": "1e7d543a5b3ebcedc92af812760d0583ecc3361cdfa58a9729753eb78f12c414",
+    "Wong.EulerLinearLadder": "e1ac70fa1969bbdec32631cccde72513c2cbdd93916cb1fa2483c7eab93c7935",
+    "Wong.EulerLinearCanonical": "6408c5bc03cc5ec3a17950a3eb8ca85e74543d332ea8ab37100166a786836477",
+    "Wong.NormalSymbolsQuotient": "84b650a39b1ba82f8ceb3294f313e66cb86219ad450d89748929089b68cb081f",
+    "Wong.NormalSymbolsHeads": "8b42670c671af60cc305a8c9a16a1a8250ec2d36537b62970c61b81e910c97e5",
+    "Wong.HiddenEulerElement": "40b770b2807df378da895f40fc2b091599e5b7bbde9755bb19f4105b9b044cb4",
+    "Wong.GaugeNormalForm": "a6b3a1809624c79dcd7534b4c42e092cf1c7470dc374e661ce3a6f9135441fa8",
+    "Wong.ParametricSmoothIntegral": "0b15af8c20e4134166396781b2400173477d0b1c3b42498541cf1ffabb6c2a8e",
+    "Wong.SmoothHiddenPrimitive": "df3f5239306d997eccd052cdd57ce170a476c1a005ce18e948bd7d5e04543dcf",
+    "Wong.HiddenProfiles": "5328e1784310cb1d2f42190c4391d20743d20761f09a2906d6004dacc63f9521",
+    "Wong.HiddenEulerNormalization": "10f7ef347aba6de92643f42a8faee0578ff97d88d704eb1b8910155547918871",
+    "Wong.EulerNormalizedDiffusion": "8ae8b21c22c0603513ded7a605b07fd01a74d855055679217db5604a6b6d1d6e",
+    "Wong.HiddenPrimitiveProfiles": "76d0cf0ec73699bf04451c77e97331324235fcca13a03f6e0e857492c7401e4e",
+    "Wong.IntrinsicWongPolynomial": "e1691f5ac261cb4ed86a7f6906f73fc42fcd283c3d9ec9a55319f3ded0cc402c",
+    "Wong.RootAnalyticBridges": "51baa8cd572798029ca11b25d6dafb35d8ef97458305b3163cbfb88562e02be1",
+    "Wong.VisibleHeadCalculus": "ef68611491a3c2412309b067428d1c1cdcb74926ee56b59dc64bfe7ad8eb7a02",
+    "Wong.Visible": "b8f013d3587ac89765fa64c8850816c0d25609b54d33cff24b7ea9693f264032",
+    "Wong.VisibleRotation": "885b3532f34d579e8190e64723aff0d14d032c2f220dd932ed3712ed52a0ae47",
+    "Wong.VisibleGeneratorHeads": "183002e4e691e338b74a594d3e61254daa484fcd32d46443982815f3189e3231",
+    "Wong.PureHead": "187270a51968dc5d388e80dc2caab859f6121b53b405735d81ddd60a81bbcbcb",
+    "Wong.VisibleHeadConstraints": "ff2104bd527b21a924fbef5e613dd3157e7765cc7393145d45452ba08480aa66",
+    "Wong.VisibleSymbolReconstruction": "70d22ed5ed113d20e081fdb1c7e395e7bc55e23acced7a666ae753f4b42633b4",
+    "Wong.JacobiVisible": "3bbf9708b02028bd99a7cf54fa4b9c8668a9119b6702ce5968c26d39ad915ed1",
+    "Wong.VisibleHeadContradiction": "42e454a2956cae1fc022f29071b9cd83846956f69874c8b010c859e6dbc743aa",
+    "Wong.NormalSymbolsVisibleAlgebra": "38bb18e77eba6800f7f30f716c057c31149c2a7fcbd6c8bf6a6b8fb8f51476f0",
+    "Wong.NormalSymbolsVisible": "d6f4ac877a87a40b735d85a4aa1c5973542c0515386333d2b4b9ba0d5f326421",
+    "Wong.VisibleElimination": "f574a7fd48837b2691b60f7390bf61cdd1c03cb309232ba4c2c18b35ea5b23db",
+    "Wong.FunctionQuadraticRankConstraints": "6fbc7e3ccc516f7a0ec8843360bf873e430d1d264d4f755f8349d4b905e164b3",
+    "Wong.QuadraticFunctionWongConstraints": "775cca88ba6371b19b705381523f3aa68f4b852c0dadbbef97bfa0313589bfb8",
+    "Wong.RankTwoFunctionCurvature": "ed528256adcaf2e898a501e8400085077ddb01e1af51d2d8fa7840197485c7e4",
+    "Wong.PolynomialVisibleExtraction": "6e90208caa513aa2322a40109ff34ae2ec3029df6caf4fa2721cae3a2e70e2f0",
+    "Wong.PolynomialVisibleProductRigidity": "5e16d971aed702ef6a4488bb03ff2b5592dd08c88b1a7ab8abd10dd401d3c1b5",
+    "Wong.PolynomialHiddenSpecialization": "164f48989f88a2b3dce32512638324794844f25a18ca08862fed9581379a5283",
+    "Wong.PolynomialHiddenSpecializationBridge": "0eb4d62fa2d000ef81c87256e5def91cabce976df15005d8a1c3d132f545fab7",
+    "Wong.PublishedVisibleComplete": "bfd4726173a074c1ad6016ceb4cfe468d5d82e0d6a71142c7269df6fdb0ca8c1",
+    "Wong.PolynomialVisibleDerivativeBridge": "30d008120c129724b4f1b3e819c66e9e8cedce37279ed175507c24856480bbf7",
+    "Wong.FirstOrderNormalBridge": "ffb332b3857fd977ac831151541e50865861d1859f875e4284b4ed6e89c419f9",
+    "Wong.PolynomialVisibleFirstOrderBridge": "3717f2aba3e15473b9d30c4c8ae6655aeeb39ad2b55f6e462f71422da8b0a792",
+    "Wong.PolynomialVisibleDerivativeBounds": "3ab3e1d24318d3be800dc06e7528e39feaf0ef51e79aee5bf2b64ddaf69bc833",
+    "Wong.PolynomialTopRemainder": "ba3bee3fb3d53508797152dce3d6d919c1a2243fd678a1ba60a1f32e08f75044",
+    "Wong.AffinePrincipalRigidity": "aa6a004d529447dec46ee2e92d590eb0bd9d5a92851404a34aa855a8ef0f6bbf",
+    "Wong.QuadraticHiddenRigidity": "91d17a1dbb89ce21fec261fe85b0f6bdab03ba7a8e87c220bc1930d7167c624b",
+    "Wong.SectorTwoDiagonalization": "381ce998dcbbdb7cbed8cd481ca5a15dfbb3066924303580433ef5062f07c1a0",
+    "Wong.HiddenAxisLadder": "4871508c052465f9f17b24129ec7c115bb3d896d49fdacfd3aede3b75ff4bc28",
+    "Wong.QuadraticVisibleRigidity": "46e99239636bb11b14f3db3170d7be0927df2b3ad42f43d8e37fd90fa6dc9334",
+    "Wong.SymmetricMatrixEigenvector": "232a29eddb5dcb9716a3481b71f243c1c0ec1a83fb772d5d71b701591986c14b",
+    "Wong.PolynomialQuadraticFirstOrderRigidity": "a511ae518f13e33d26dedd4ad9424bea8959a15e136964add374d32bfd4dbf48",
+    "Wong.MixedAffinityHighDegree": "05dc763351dbb00aab56405221fa49afb1765bf5303507f1521c90c3eafa97b7",
+    "Wong.PublishedVisibleAffinityProof": "8f4620422c3d18720152931d52f21e53175efa3b7b283f98d07830838f05a824",
+    "Wong.PublishedMixedAffinityProof": "4f833257769904e549adcf63b3da0ef4971380efb7b5e94dbb48e11659684a7f",
+    "Wong.PublishedAffineInput": "9b40a9778b8a91b4a6d811068605a3b79da9eb1c746bd257920abff02e997311",
+    "Wong.SectorIHiddenBridge": "3c4112f040da4e87920011081286e857e6506484f4c290e7af1e46a67e0f8603",
+    "Wong.SectorTwoCalculus": "8c373f355717f74194f1ed791161633e84d61c9a46bc78cdd3e720bd2965a03f",
+    "Wong.WeightedNormalOrder": "20cec98c06b0a33b7459f6239d33884b297d440b516b58e1f1acba06c5f0e9ba",
+    "Wong.WeightedSymbolsOrder": "4ade70b43adcfe900fc3d1c594b12215fc4429e34e162104ba4928775afe216b",
+    "Wong.WeightedSymbolBridgeCore": "daaeacd5d3af6bc4c967b1536b50704c79f2bbd1cef69f5f547e3bafa189deda",
+    "Wong.SectorTwoProfileBridge": "cd6476dbec1ff1690ff5ed77d987d20d328791690585c1e1bba0561e527a42f5",
+    "Wong.WeightedCanonicalBridge": "42f47b9d7a7bf6e640e208ceba2d29f2af069cb25fd5ff8106387406e7c68ee7",
+    "Wong.SectorTwoDerivation": "28b64a75cedc94f2671c04c10c51f7ffb6c2f23cedcff0c865565c6f0f9ebb91",
+    "Wong.SectorTwoSymbolLift": "88c9deaab269bbc55fdeeb442798ae55cacaff9b536f584442aae51b5fe07811",
+    "Wong.SectorTwoWeightedBridge": "553e0f8f6229f50e06351d5ab92db4ef5726046e35a1e657372ef19f66743321",
+    "Wong.SectorTwoConclusion": "bd59a5f031a7d1795e5c5a342d5c082d4e9843ae26b3bbb6edde8299ed73e894",
+    "Wong.MainProof": "16d41c9049aacf320337631fc602d5b5bfdad4cef30e45e6bc4278b8eb7e1359",
+    "Wong.PoissonQuotient": "05a1036fcf1f1491693a1968d36b5f55719bb0673c6b829f52affa54aeaf7620",
+    "Wong.PolynomialRigidity": "9560d73113136d595680913f6d7943b58259fd62c9412dbe7668bbb739a5b8f7",
+    "Wong.PublishedHypothesisEquivalence": "18e34231908115e458fdf54ff59440a19edb9335aed913aa5423835c4322d0e8",
+    "Wong.PublishedFullEquivalence": "32997651aa3f40140f9dfccd0a5ce3a4a24c94c89cb283e777ae7d18610efc13",
+    "Wong.WongPolynomial": "98ae3c6e918cc561f256f9509e08bfda3a637fb8e9f207659fa0912afe94cfe5",
+    "Wong": "06095b5948ce5ad6f43c937cb4bb0edf420139c65a8bf14937dbc89984eede17"
+  },
+  "local_module_count": 123
+}

@@ -4,47 +4,40 @@ defaultTargets = ["Wong"]
 
 [[require]]
 name = "mathlib"
-path = "../vendor/mathlib4"
+scope = "leanprover-community"
+rev = "v4.35.0-rc2"
 
 [[require]]
 name = "plausible"
 scope = "leanprover-community"
-path = "../vendor/mathlib-deps/plausible"
-
-[[require]]
-name = "LeanSearchClient"
-scope = "leanprover-community"
-path = "../vendor/mathlib-deps/LeanSearchClient"
 
 [[require]]
 name = "importGraph"
 scope = "leanprover-community"
-path = "../vendor/mathlib-deps/importGraph"
+
+[[require]]
+name = "LeanSearchClient"
+scope = "leanprover-community"
 
 [[require]]
 name = "proofwidgets"
 scope = "leanprover-community"
-path = "../vendor/mathlib-deps/proofwidgets"
 
 [[require]]
 name = "aesop"
 scope = "leanprover-community"
-path = "../vendor/mathlib-deps/aesop"
 
 [[require]]
 name = "Qq"
 scope = "leanprover-community"
-path = "../vendor/mathlib-deps/Qq"
 
 [[require]]
 name = "batteries"
 scope = "leanprover-community"
-path = "../vendor/mathlib-deps/batteries"
 
 [[require]]
 name = "Cli"
 scope = "leanprover"
-path = "../vendor/mathlib-deps/Cli"
 
 [[lean_lib]]
 name = "Wong"

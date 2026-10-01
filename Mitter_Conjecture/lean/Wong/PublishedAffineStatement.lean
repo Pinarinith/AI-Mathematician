@@ -5,12 +5,12 @@ import Wong.RankStructure
 import Mathlib.Tactic.FinCases
 
 /-!
-# Exact statement of the user-authorized published affinity input
+# Exact statement of the published affinity theorem
 
 Reference: Ji Shi and Stephen S.-T. Yau, SIAM J. Control Optim. 55(6)
 (2017), 4227–4246, DOI 10.1137/16M1065471, Theorems 3.4 and 3.10.
 
-This module defines, but does not assume, the external proposition. It also
+This module defines, but does not assume, the published proposition. It also
 proves the equivalence between its polynomial conclusion and the actual
 affine matrix parametrization. No Bianchi or zero-slope conclusion is part
 of the published input. The original globally smooth estimation algebra,
